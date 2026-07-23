@@ -1,0 +1,40 @@
+name: Update antiadblock filter list
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-antiadblock
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Build antiadblock manifest
+        run: python3 scripts/build_antiadblock.py
+
+      - name: Commit and push if changed
+        run: |
+          if [ -z "$(git status --porcelain antiadblock/)" ]; then
+            echo "No changes to antiadblock artifacts."
+            exit 0
+          fi
+          git config user.name  "browserguard-bot"
+          git config user.email "browserguard-bot@users.noreply.github.com"
+          git add antiadblock/antiadblock.txt antiadblock/antiadblock.mbgc.json
+          today=$(date -u +'%Y-%m-%d')
+          counts=$(python3 -c "import json; c=json.load(open('antiadblock/antiadblock.mbgc.json'))['counts']; print(', '.join(f'{k}={v}' for k,v in c.items()))")
+          git commit -m "chore: update antiadblock filter list (${today})" -m "Counts: ${counts}"
+          git push
