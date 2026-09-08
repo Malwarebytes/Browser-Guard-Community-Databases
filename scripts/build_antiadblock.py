@@ -4,7 +4,8 @@ Fetch AdGuard's antiadblock.txt and convert it into a Browser Guard-consumable J
 
 Reads the raw filter list from AdGuardTeam/AdguardFilters and writes:
   antiadblock/antiadblock.txt          - raw source, verbatim
-  antiadblock/antiadblock.mbgc.json    - converted manifest
+  antiadblock/antiadblock.json         - converted manifest
+  antiadblock/NOTICE                   - GPL-3.0 attribution and provenance
 
 Rules the converter handles:
   ||host^, ||host^$options            -> DNR block rule
@@ -26,6 +27,7 @@ Rules the converter records but skips:
 
 import argparse
 import ast
+import dataclasses
 import datetime as dt
 import hashlib
 import json
@@ -36,14 +38,23 @@ import urllib.request
 from pathlib import Path
 from typing import Iterable
 
-ANTIADBLOCK_URL = (
-    "https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/BaseFilter/sections/antiadblock.txt"
-)
+USER_AGENT = "browserguard-community-databases"
+
+UPSTREAM_REPO = "AdguardTeam/AdguardFilters"
+UPSTREAM_PATH = "BaseFilter/sections/antiadblock.txt"
+UPSTREAM_SOURCE = UPSTREAM_REPO + "/" + UPSTREAM_PATH
+UPSTREAM_LICENSE_URL = "https://github.com/" + UPSTREAM_REPO + "/blob/master/LICENSE"
+RAW_URL_TEMPLATE = "https://raw.githubusercontent.com/" + UPSTREAM_REPO + "/{ref}/" + UPSTREAM_PATH
+COMMITS_API_URL = "https://api.github.com/repos/" + UPSTREAM_REPO + "/commits"
+ANTIADBLOCK_URL = RAW_URL_TEMPLATE.format(ref="master")
+
+UNPINNED_COMMIT = "unpinned (commit resolution unavailable at build time)"
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 OUTPUT_DIR = REPO_ROOT / "antiadblock"
 RAW_PATH = OUTPUT_DIR / "antiadblock.txt"
 MANIFEST_PATH = OUTPUT_DIR / "antiadblock.json"
+NOTICE_PATH = OUTPUT_DIR / "NOTICE"
 
 # Chromium MV3 is the primary target; Firefox MV3 shares the same rule shape
 # but omits webtransport/webbundle resource types (see mv3_helpers.py:7).
@@ -100,9 +111,89 @@ def _safe_eval_bool(node: ast.AST) -> bool:
 
 
 def download(url: str) -> bytes:
-    req = urllib.request.Request(url, headers={"User-Agent": "browserguard-community-databases"})
+    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
     with urllib.request.urlopen(req, timeout=60) as resp:
         return resp.read()
+
+
+def resolve_upstream_commit() -> str | None:
+    """Latest commit sha touching the upstream section file, or None if the API is unavailable."""
+    headers = {"User-Agent": USER_AGENT, "Accept": "application/vnd.github+json"}
+    token = os.environ.get("GITHUB_TOKEN")
+    if token:
+        # Raises the Actions rate limit from 60/hr to 1000/hr.
+        headers["Authorization"] = f"Bearer {token}"
+    url = f"{COMMITS_API_URL}?path={UPSTREAM_PATH}&per_page=1"
+    try:
+        req = urllib.request.Request(url, headers=headers)
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            payload = json.loads(resp.read().decode("utf-8"))
+        sha = payload[0]["sha"]
+        if not isinstance(sha, str) or not sha:
+            raise ValueError("commits API returned no usable sha")
+        return sha
+    except Exception as exc:
+        # Deliberately broad: a daily blocklist refresh must not fail on a GitHub API
+        # hiccup, and a null commit in the manifest keeps the degradation auditable.
+        print(f"warning: could not resolve upstream commit ({exc}); recording null", file=sys.stderr)
+        return None
+
+
+@dataclasses.dataclass(frozen=True)
+class Provenance:
+    """
+    Single source of truth for where the raw bytes came from.
+
+    The manifest and the NOTICE file are both rendered from one instance so they
+    can never disagree about the commit, the hash, or the fetch time.
+    """
+
+    source: str
+    source_url: str
+    upstream_commit: str | None
+    upstream_sha256: str
+    fetched_at: str
+
+    @classmethod
+    def record(cls, raw_text: str, source_url: str, upstream_commit: str | None) -> "Provenance":
+        return cls(
+            source=UPSTREAM_SOURCE,
+            source_url=source_url,
+            upstream_commit=upstream_commit,
+            upstream_sha256=hashlib.sha256(raw_text.encode("utf-8")).hexdigest(),
+            fetched_at=dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        )
+
+    def manifest_fields(self) -> dict:
+        return {
+            "source": self.source,
+            "source_url": self.source_url,
+            "fetched_at": self.fetched_at,
+            "upstream_sha256": self.upstream_sha256,
+            "upstream_commit": self.upstream_commit,
+        }
+
+    def notice_text(self) -> str:
+        return f"""\
+antiadblock.txt in this release is an unmodified, byte-for-byte copy of:
+
+    {UPSTREAM_REPO} - {UPSTREAM_PATH}
+    {self.source_url}
+    upstream commit: {self.upstream_commit or UNPINNED_COMMIT}
+    sha256:          {self.upstream_sha256}
+
+It is distributed under the GNU General Public License v3.0:
+    {UPSTREAM_LICENSE_URL}
+
+The upstream section file carries no in-file license header, which is why this
+notice accompanies it. The file itself is left untouched so that the sha256
+above stays verifiable against AdGuard's original.
+
+antiadblock.json is a derived work produced from the above by
+scripts/build_antiadblock.py, and is likewise GPL-3.0.
+
+Generated {self.fetched_at}. Do not edit by hand.
+"""
 
 
 class PreprocessorGate:
@@ -514,25 +605,22 @@ def convert(raw_text: str) -> dict:
     }
 
 
-def build_manifest(raw_text: str, source_url: str) -> dict:
+def build_manifest(raw_text: str, provenance: Provenance) -> dict:
     converted = convert(raw_text)
-    upstream_sha256 = hashlib.sha256(raw_text.encode("utf-8")).hexdigest()
     manifest = {
-        "source": "AdguardTeam/AdguardFilters/BaseFilter/sections/antiadblock.txt",
-        "source_url": source_url,
-        "fetched_at": dt.datetime.utcnow().replace(microsecond=0).isoformat() + "Z",
-        "upstream_sha256": upstream_sha256,
+        **provenance.manifest_fields(),
         **converted,
     }
     return manifest
 
 
-def write_outputs(raw_text: str, manifest: dict) -> None:
+def write_outputs(raw_text: str, manifest: dict, provenance: Provenance) -> None:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     RAW_PATH.write_text(raw_text, encoding="utf-8")
     with MANIFEST_PATH.open("w", encoding="utf-8") as fp:
         json.dump(manifest, fp, indent=2, sort_keys=True)
         fp.write("\n")
+    NOTICE_PATH.write_text(provenance.notice_text(), encoding="utf-8")
 
 
 def main(argv: Iterable[str]) -> int:
@@ -546,21 +634,31 @@ def main(argv: Iterable[str]) -> int:
                         help="Print counts to stdout, do not write files.")
     args = parser.parse_args(list(argv))
 
+    upstream_commit: str | None = None
     if args.input_file:
         raw_text = Path(args.input_file).read_text(encoding="utf-8")
+        source_url = args.source_url
+    elif args.source_url != ANTIADBLOCK_URL:
+        raw_text = download(args.source_url).decode("utf-8")
+        source_url = args.source_url
     else:
-        raw_bytes = download(args.source_url)
-        raw_text = raw_bytes.decode("utf-8")
+        # Resolve the commit before fetching. The other order is racy: an upstream push
+        # between the two calls would record a sha describing bytes we do not have.
+        upstream_commit = resolve_upstream_commit()
+        source_url = RAW_URL_TEMPLATE.format(ref=upstream_commit) if upstream_commit else ANTIADBLOCK_URL
+        raw_text = download(source_url).decode("utf-8")
 
-    manifest = build_manifest(raw_text, args.source_url)
+    provenance = Provenance.record(raw_text, source_url, upstream_commit)
+    manifest = build_manifest(raw_text, provenance)
 
     if args.dry_run:
         print(json.dumps(manifest["counts"], indent=2))
         return 0
 
-    write_outputs(raw_text, manifest)
+    write_outputs(raw_text, manifest, provenance)
     print(f"Wrote {RAW_PATH} ({len(raw_text):,} bytes)")
     print(f"Wrote {MANIFEST_PATH}")
+    print(f"Wrote {NOTICE_PATH}")
     print("Counts:")
     for key, value in manifest["counts"].items():
         print(f"  {key}: {value}")
