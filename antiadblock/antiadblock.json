@@ -11977,7 +11977,7 @@
     "scriptlet": 1851,
     "skipped": 2493
   },
-  "fetched_at": "2026-09-12T06:05:27Z",
+  "fetched_at": "2026-09-14T06:07:56Z",
   "hostIndex": {
     "*": {
       "cosmetic": true,
@@ -18192,6 +18192,13 @@
       "cosmetic": true,
       "cssInject": false,
       "scriptlets": []
+    },
+    "camslib.com": {
+      "cosmetic": false,
+      "cssInject": false,
+      "scriptlets": [
+        1028
+      ]
     },
     "camsrip.com": {
       "cosmetic": false,
@@ -57615,7 +57622,8 @@
         "excludedInitiatorDomains": [
           "internethaber.com",
           "knaqu.tv",
-          "5ch.io"
+          "5ch.io",
+          "svetserialu.to"
         ],
         "resourceTypes": [
           "script"
@@ -92162,6 +92170,7 @@
         "atob"
       ],
       "domains": [
+        "camslib.com",
         "traingon.top",
         "momon-ga.com",
         "nyahentai.*",
@@ -111661,7 +111670,7 @@
     }
   ],
   "source": "AdguardTeam/AdguardFilters/BaseFilter/sections/antiadblock.txt",
-  "source_url": "https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/7c84e77e6926b40caf237c90376c07822180008b/BaseFilter/sections/antiadblock.txt",
-  "upstream_commit": "7c84e77e6926b40caf237c90376c07822180008b",
-  "upstream_sha256": "5f2a8bda82aa41e1be8a738fe7b4e19ee368f7e843fc5d11ae556e72797bc02b"
+  "source_url": "https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/ae035a6224d877ffca6a28b4f97c931a0cc744e0/BaseFilter/sections/antiadblock.txt",
+  "upstream_commit": "ae035a6224d877ffca6a28b4f97c931a0cc744e0",
+  "upstream_sha256": "2a06d8849124c63a3ffe4d18a35ec19def8f5a91fbf13b9faea2db62d35b2952"
 }
