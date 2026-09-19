@@ -7363,6 +7363,11 @@
       "aozoraapps.net": [
         "footer ~ div[id][class*=\" \"]"
       ],
+      "apkgep.com": [
+        ".popup",
+        ".overlay",
+        ".popSc"
+      ],
       "apkmb.com": [
         "body > div[id^=\"ai-adb-\"][style^=\"position: fixed; top:\"][style*=\"z-index: 9999\"]",
         "[style*=\"cursor:\"][style*=\"user-select: none;\"][style*=\"z-index:\"]",
@@ -8085,6 +8090,12 @@
       ],
       "djbassking.club": [
         ".card center > .container:has(> .ad)"
+      ],
+      "djbasskingg.com": [
+        ".popup",
+        ".overlay",
+        ".popSc",
+        ".adb"
       ],
       "djnonstopmusic.in": [
         "body > center ~ script + style + div[id][class]"
@@ -9040,6 +9051,9 @@
       ],
       "inventariooculto.com": [
         "body > .wrap + div[id][class*=\" \"]"
+      ],
+      "investgyaan.com": [
+        "#AdbModel"
       ],
       "iphoneincanada.ca": [
         ".slbElement"
@@ -10042,6 +10056,9 @@
       ],
       "odiadance.com": [
         "#page + div[id][class]"
+      ],
+      "odiadjsong.in": [
+        "#AdbModel"
       ],
       "off-soft.net": [
         ".contents-usual .adsbygoogle:not(#content-raw)"
@@ -11989,11 +12006,11 @@
     "cosmetic_hide": 608,
     "css_inject": 454,
     "network": 341,
-    "network_exception": 1233,
-    "scriptlet": 1836,
+    "network_exception": 1237,
+    "scriptlet": 1838,
     "skipped": 2489
   },
-  "fetched_at": "2026-09-18T06:06:06Z",
+  "fetched_at": "2026-09-19T06:05:41Z",
   "hostIndex": {
     "*": {
       "cosmetic": true,
@@ -12047,8 +12064,8 @@
       "cosmetic": true,
       "cssInject": true,
       "scriptlets": [
-        1826,
-        1827
+        1828,
+        1829
       ]
     },
     "100percentfedup.com": {
@@ -12158,8 +12175,8 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1747,
-        1748
+        1749,
+        1750
       ]
     },
     "1075zoofm.com": {
@@ -12237,7 +12254,7 @@
       "cssInject": true,
       "scriptlets": [
         22,
-        1765
+        1767
       ]
     },
     "123link.pro": {
@@ -12607,7 +12624,7 @@
         336,
         337,
         338,
-        1736
+        1738
       ]
     },
     "3dyasan.com": {
@@ -13194,14 +13211,14 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1721
+        1723
       ]
     },
     "abyssplayer.com": {
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1721
+        1723
       ]
     },
     "acapellas.eu": {
@@ -14140,7 +14157,7 @@
       "cssInject": false,
       "scriptlets": [
         34,
-        1715
+        1717
       ]
     },
     "almnatiq.net": {
@@ -14370,7 +14387,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1729
+        1731
       ]
     },
     "androidecuatoriano.xyz": {
@@ -14428,7 +14445,7 @@
       "cssInject": false,
       "scriptlets": [
         885,
-        1698
+        1700
       ]
     },
     "androidrepublic.org": {
@@ -14969,6 +14986,13 @@
         8
       ]
     },
+    "apkgep.com": {
+      "cosmetic": true,
+      "cssInject": false,
+      "scriptlets": [
+        350
+      ]
+    },
     "apkgezegeni.com": {
       "cosmetic": false,
       "cssInject": false,
@@ -15027,8 +15051,8 @@
       "cosmetic": false,
       "cssInject": true,
       "scriptlets": [
-        1828,
-        1829
+        1830,
+        1831
       ]
     },
     "apkmoddone.com": {
@@ -15339,7 +15363,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1684
+        1686
       ]
     },
     "arceusxdownload.com": {
@@ -15582,7 +15606,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1721
+        1723
       ]
     },
     "aspdotnet-suresh.com": {
@@ -16280,10 +16304,10 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1822,
-        1823,
         1824,
-        1825
+        1825,
+        1826,
+        1827
       ]
     },
     "banned.porn": {
@@ -16872,7 +16896,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1835
+        1837
       ]
     },
     "bigbtc.win": {
@@ -16960,7 +16984,7 @@
       "cosmetic": true,
       "cssInject": true,
       "scriptlets": [
-        1728
+        1730
       ]
     },
     "bingotingo.com": {
@@ -18611,7 +18635,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1832
+        1834
       ]
     },
     "ceneval.shop": {
@@ -18682,9 +18706,9 @@
       "cssInject": true,
       "scriptlets": [
         22,
-        1774,
-        1775,
-        1776
+        1776,
+        1777,
+        1778
       ]
     },
     "channel5.com": {
@@ -19094,8 +19118,8 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1747,
-        1748
+        1749,
+        1750
       ]
     },
     "cinecloud.site": {
@@ -19197,7 +19221,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1833
+        1835
       ]
     },
     "cityrumorsabruzzo.it": {
@@ -19327,8 +19351,8 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1757,
-        1758
+        1759,
+        1760
       ]
     },
     "classicreload.com": {
@@ -20196,7 +20220,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1779
+        1781
       ]
     },
     "couriermail.com.au": {
@@ -20658,14 +20682,14 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1747
+        1749
       ]
     },
     "cuevana3.*": {
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1747
+        1749
       ]
     },
     "cultofmac.com": {
@@ -20814,16 +20838,16 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1796,
-        1814
+        1798,
+        1816
       ]
     },
     "cwtv.com": {
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1814,
-        1815
+        1816,
+        1817
       ]
     },
     "cyamidpulverulence530.com": {
@@ -20911,18 +20935,18 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1703,
-        1704,
-        1705
+        1705,
+        1706,
+        1707
       ]
     },
     "d000d.com": {
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1703,
-        1704,
-        1705
+        1705,
+        1706,
+        1707
       ]
     },
     "dadinthemaking.com": {
@@ -21337,7 +21361,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1725
+        1727
       ]
     },
     "ddmix.net": {
@@ -21401,7 +21425,7 @@
       "cosmetic": true,
       "cssInject": false,
       "scriptlets": [
-        1794
+        1796
       ]
     },
     "deezer.com": {
@@ -21628,6 +21652,14 @@
         91
       ]
     },
+    "devuploads.com": {
+      "cosmetic": false,
+      "cssInject": false,
+      "scriptlets": [
+        1677,
+        1678
+      ]
+    },
     "dexterclearance.com": {
       "cosmetic": false,
       "cssInject": true,
@@ -21646,8 +21678,8 @@
       "cssInject": true,
       "scriptlets": [
         22,
-        1757,
-        1758
+        1759,
+        1760
       ]
     },
     "diagnofast.com": {
@@ -21900,8 +21932,8 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1747,
-        1748
+        1749,
+        1750
       ]
     },
     "diznr.com": {
@@ -21922,6 +21954,13 @@
       "scriptlets": [
         764,
         765
+      ]
+    },
+    "djbasskingg.com": {
+      "cosmetic": true,
+      "cssInject": false,
+      "scriptlets": [
+        350
       ]
     },
     "djflpduniya.com": {
@@ -21960,10 +21999,10 @@
       "cssInject": true,
       "scriptlets": [
         25,
-        1677,
-        1678,
         1679,
-        1680
+        1680,
+        1681,
+        1682
       ]
     },
     "dl.r3sub.com": {
@@ -22034,18 +22073,18 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1703,
-        1704,
-        1705
+        1705,
+        1706,
+        1707
       ]
     },
     "do7go.com": {
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1703,
-        1704,
-        1705
+        1705,
+        1706,
+        1707
       ]
     },
     "dobleaccion.xyz": {
@@ -22218,100 +22257,100 @@
       "cosmetic": false,
       "cssInject": true,
       "scriptlets": [
-        1703,
-        1704,
-        1705
+        1705,
+        1706,
+        1707
       ]
     },
     "dood.li": {
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1703,
-        1704,
-        1705
+        1705,
+        1706,
+        1707
       ]
     },
     "dood.pm": {
       "cosmetic": false,
       "cssInject": true,
       "scriptlets": [
-        1703,
-        1704,
-        1705
+        1705,
+        1706,
+        1707
       ]
     },
     "dood.re": {
       "cosmetic": false,
       "cssInject": true,
       "scriptlets": [
-        1702,
-        1703,
         1704,
-        1705
+        1705,
+        1706,
+        1707
       ]
     },
     "dood.sh": {
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1703,
-        1704,
-        1705
+        1705,
+        1706,
+        1707
       ]
     },
     "dood.so": {
       "cosmetic": false,
       "cssInject": true,
       "scriptlets": [
-        1703,
-        1704,
-        1705
+        1705,
+        1706,
+        1707
       ]
     },
     "dood.to": {
       "cosmetic": false,
       "cssInject": true,
       "scriptlets": [
-        1703,
-        1704,
-        1705
+        1705,
+        1706,
+        1707
       ]
     },
     "dood.watch": {
       "cosmetic": false,
       "cssInject": true,
       "scriptlets": [
-        1703,
-        1704,
-        1705
+        1705,
+        1706,
+        1707
       ]
     },
     "dood.wf": {
       "cosmetic": false,
       "cssInject": true,
       "scriptlets": [
-        1703,
-        1704,
-        1705
+        1705,
+        1706,
+        1707
       ]
     },
     "dood.ws": {
       "cosmetic": false,
       "cssInject": true,
       "scriptlets": [
-        1703,
-        1704,
-        1705
+        1705,
+        1706,
+        1707
       ]
     },
     "dood.yt": {
       "cosmetic": false,
       "cssInject": true,
       "scriptlets": [
-        1703,
-        1704,
-        1705
+        1705,
+        1706,
+        1707
       ]
     },
     "doodle.com": {
@@ -22323,9 +22362,9 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1703,
-        1704,
-        1705
+        1705,
+        1706,
+        1707
       ]
     },
     "doods.to": {
@@ -22342,18 +22381,18 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1703,
-        1704,
-        1705
+        1705,
+        1706,
+        1707
       ]
     },
     "dooood.com": {
       "cosmetic": false,
       "cssInject": true,
       "scriptlets": [
-        1703,
-        1704,
-        1705
+        1705,
+        1706,
+        1707
       ]
     },
     "dopedgeeks.com": {
@@ -22725,8 +22764,8 @@
       "cosmetic": true,
       "cssInject": false,
       "scriptlets": [
-        1681,
-        1682
+        1683,
+        1684
       ]
     },
     "droplink.co": {
@@ -22762,9 +22801,9 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1703,
-        1704,
-        1705
+        1705,
+        1706,
+        1707
       ]
     },
     "dsharer.com": {
@@ -22785,10 +22824,10 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1702,
-        1703,
         1704,
-        1705
+        1705,
+        1706,
+        1707
       ]
     },
     "dtbps3games.com": {
@@ -22857,9 +22896,9 @@
         5,
         22,
         111,
-        1702,
         1704,
-        1705
+        1706,
+        1707
       ]
     },
     "dvdgayporn.com": {
@@ -23864,7 +23903,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1795
+        1797
       ]
     },
     "erai-raws.info": {
@@ -24954,7 +24993,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1721
+        1723
       ]
     },
     "femdomtb.com": {
@@ -25076,7 +25115,7 @@
       "cssInject": false,
       "scriptlets": [
         25,
-        1783
+        1785
       ]
     },
     "file-upload.net": {
@@ -25173,8 +25212,8 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1747,
-        1748
+        1749,
+        1750
       ]
     },
     "filmedonstage.com": {
@@ -25207,7 +25246,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1721
+        1723
       ]
     },
     "filmfare.com": {
@@ -25496,7 +25535,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1759
+        1761
       ]
     },
     "flcity.site": {
@@ -26181,7 +26220,7 @@
         60,
         105,
         235,
-        1726
+        1728
       ]
     },
     "freemagazinespdf.com": {
@@ -26347,8 +26386,8 @@
       "cosmetic": true,
       "cssInject": false,
       "scriptlets": [
-        1811,
-        1812
+        1813,
+        1814
       ]
     },
     "freetimelearning.com": {
@@ -26545,8 +26584,8 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1747,
-        1748
+        1749,
+        1750
       ]
     },
     "fstore.biz": {
@@ -26701,7 +26740,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1699
+        1701
       ]
     },
     "fx-22.com": {
@@ -26722,8 +26761,8 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1704,
-        1705
+        1706,
+        1707
       ]
     },
     "fyxxr.to": {
@@ -27037,7 +27076,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1727
+        1729
       ]
     },
     "games.metro.us": {
@@ -27169,7 +27208,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1804
+        1806
       ]
     },
     "garoetpos.com": {
@@ -27268,7 +27307,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1702
+        1704
       ]
     },
     "gaypornhdfree.*": {
@@ -27313,8 +27352,8 @@
       "cssInject": false,
       "scriptlets": [
         24,
-        1747,
-        1748
+        1749,
+        1750
       ]
     },
     "gazeta.pl": {
@@ -27448,7 +27487,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1740
+        1742
       ]
     },
     "gemiadamlari.org": {
@@ -27609,8 +27648,8 @@
       "cosmetic": true,
       "cssInject": false,
       "scriptlets": [
-        1784,
-        1785
+        1786,
+        1787
       ]
     },
     "getintopcm.com": {
@@ -27853,8 +27892,8 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1747,
-        1748
+        1749,
+        1750
       ]
     },
     "globalcryptopress.com": {
@@ -28089,14 +28128,14 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1732
+        1734
       ]
     },
     "gogodl.com": {
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1709
+        1711
       ]
     },
     "gokushiteki.com": {
@@ -28175,7 +28214,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1797
+        1799
       ]
     },
     "googledrivelinks.com": {
@@ -28543,8 +28582,8 @@
       "cosmetic": true,
       "cssInject": false,
       "scriptlets": [
-        1685,
-        1805
+        1687,
+        1807
       ]
     },
     "habblet.city": {
@@ -28817,7 +28856,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1831
+        1833
       ]
     },
     "haxnode.net": {
@@ -29074,7 +29113,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1777
+        1779
       ]
     },
     "helicomicro.com": {
@@ -29449,7 +29488,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1721
+        1723
       ]
     },
     "hindi.sarkarijobinformation.com": {
@@ -29485,7 +29524,7 @@
       "cssInject": true,
       "scriptlets": [
         1514,
-        1734
+        1736
       ]
     },
     "hiphopa.net": {
@@ -29875,7 +29914,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1716
+        1718
       ]
     },
     "hqq.ac": {
@@ -29885,7 +29924,7 @@
         703,
         704,
         705,
-        1748
+        1750
       ]
     },
     "hqq.to": {
@@ -29894,7 +29933,7 @@
       "scriptlets": [
         1025,
         1026,
-        1748
+        1750
       ]
     },
     "hqq.tv": {
@@ -29902,10 +29941,10 @@
       "cssInject": true,
       "scriptlets": [
         22,
-        1742,
-        1747,
-        1748,
-        1749
+        1744,
+        1749,
+        1750,
+        1751
       ]
     },
     "hrnytube.com": {
@@ -30051,7 +30090,7 @@
       "cssInject": true,
       "scriptlets": [
         22,
-        1721
+        1723
       ]
     },
     "hydrogen.lat": {
@@ -30330,8 +30369,8 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1788,
-        1789
+        1790,
+        1791
       ]
     },
     "ignboards.com": {
@@ -30435,7 +30474,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1696
+        1698
       ]
     },
     "ilrestodelcarlino.it": {
@@ -30495,7 +30534,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1795
+        1797
       ]
     },
     "imagetotext.info": {
@@ -31101,6 +31140,11 @@
         813
       ]
     },
+    "investgyaan.com": {
+      "cosmetic": true,
+      "cssInject": false,
+      "scriptlets": []
+    },
     "investing.com": {
       "cosmetic": false,
       "cssInject": true,
@@ -31439,7 +31483,7 @@
       "scriptlets": [
         27,
         105,
-        1786
+        1788
       ]
     },
     "itopmusic.org": {
@@ -32024,7 +32068,7 @@
       "scriptlets": [
         711,
         1027,
-        1697
+        1699
       ]
     },
     "javx357.com": {
@@ -32060,8 +32104,8 @@
       "cssInject": true,
       "scriptlets": [
         22,
-        1757,
-        1758
+        1759,
+        1760
       ]
     },
     "jbzd.com.pl": {
@@ -32133,7 +32177,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1721
+        1723
       ]
     },
     "jhdanime.com": {
@@ -32212,7 +32256,7 @@
         27
       ]
     },
-    "jmanga.cyou": {
+    "jmanga.actor": {
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
@@ -32265,7 +32309,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1722
+        1724
       ]
     },
     "jobnoid.net": {
@@ -32499,7 +32543,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1772
+        1774
       ]
     },
     "justlightnovels.com": {
@@ -33401,8 +33445,8 @@
       "scriptlets": [
         43,
         43,
-        1790,
-        1791
+        1792,
+        1793
       ]
     },
     "kizzboy.com": {
@@ -33491,7 +33535,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1795
+        1797
       ]
     },
     "knaqu.tv": {
@@ -33626,7 +33670,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1747
+        1749
       ]
     },
     "korogashi-san.org": {
@@ -34127,8 +34171,8 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1747,
-        1748
+        1749,
+        1750
       ]
     },
     "latribunadeautomocion.es": {
@@ -34386,7 +34430,7 @@
       "cssInject": false,
       "scriptlets": [
         34,
-        1819
+        1821
       ]
     },
     "leechyscripts.com": {
@@ -35369,9 +35413,9 @@
       "cosmetic": true,
       "cssInject": true,
       "scriptlets": [
-        1710,
-        1711,
-        1712
+        1712,
+        1713,
+        1714
       ]
     },
     "looptorrent.net": {
@@ -35697,7 +35741,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1733
+        1735
       ]
     },
     "m.kuku.lu": {
@@ -35804,7 +35848,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1760
+        1762
       ]
     },
     "macsources.com": {
@@ -35879,10 +35923,10 @@
         803,
         1264,
         1575,
-        1806,
-        1807,
         1808,
-        1809
+        1809,
+        1810,
+        1811
       ]
     },
     "magesy.download": {
@@ -35912,9 +35956,9 @@
         85,
         90,
         91,
-        1807,
-        1808,
-        1809
+        1809,
+        1810,
+        1811
       ]
     },
     "maggotdrowning.com": {
@@ -36023,7 +36067,7 @@
         27,
         34,
         34,
-        1810
+        1812
       ]
     },
     "majorscans.com": {
@@ -36543,7 +36587,7 @@
       "cosmetic": false,
       "cssInject": true,
       "scriptlets": [
-        1713
+        1715
       ]
     },
     "mdbmax.com": {
@@ -36983,8 +37027,8 @@
       "cssInject": true,
       "scriptlets": [
         22,
-        1748,
-        1749
+        1750,
+        1751
       ]
     },
     "meutimao.com.br": {
@@ -37048,7 +37092,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1795
+        1797
       ]
     },
     "miamiairportcam.com": {
@@ -37628,7 +37672,7 @@
       "cssInject": true,
       "scriptlets": [
         22,
-        1743
+        1745
       ]
     },
     "mobiranking.com": {
@@ -37972,7 +38016,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1721
+        1723
       ]
     },
     "movi.pk": {
@@ -38350,7 +38394,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1688
+        1690
       ]
     },
     "myabandonware.com": {
@@ -38379,7 +38423,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1752
+        1754
       ]
     },
     "mychannel957.com": {
@@ -38504,14 +38548,14 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1688
+        1690
       ]
     },
     "myli3k.*": {
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1688
+        1690
       ]
     },
     "mylifetime.com": {
@@ -38523,14 +38567,14 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1688
+        1690
       ]
     },
     "mylink.vc": {
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1689
+        1691
       ]
     },
     "mylivesignature.com": {
@@ -38555,7 +38599,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1737
+        1739
       ]
     },
     "myonepiecemanga.com": {
@@ -38825,8 +38869,8 @@
       "scriptlets": [
         26,
         34,
-        1820,
-        1821
+        1822,
+        1823
       ]
     },
     "myvidplay.com": {
@@ -38834,10 +38878,10 @@
       "cssInject": false,
       "scriptlets": [
         1027,
-        1702,
-        1703,
         1704,
-        1705
+        1705,
+        1706,
+        1707
       ]
     },
     "myvidster.com": {
@@ -38861,6 +38905,13 @@
       "cssInject": false,
       "scriptlets": [
         27
+      ]
+    },
+    "n1mwq.org": {
+      "cosmetic": false,
+      "cssInject": false,
+      "scriptlets": [
+        283
       ]
     },
     "nabzclan.vip": {
@@ -39027,7 +39078,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1830
+        1832
       ]
     },
     "ncaa.com": {
@@ -39217,14 +39268,14 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1748
+        1750
       ]
     },
     "netuplayer.top": {
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1748
+        1750
       ]
     },
     "netzwelt.de": {
@@ -39335,7 +39386,7 @@
       "cssInject": false,
       "scriptlets": [
         44,
-        1694
+        1696
       ]
     },
     "newsgrow.club": {
@@ -39425,7 +39476,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1817
+        1819
       ]
     },
     "nfhost.me": {
@@ -39634,7 +39685,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1816
+        1818
       ]
     },
     "nnaa66.xyz": {
@@ -39685,7 +39736,7 @@
       "cssInject": false,
       "scriptlets": [
         1223,
-        1769
+        1771
       ]
     },
     "noice.com": {
@@ -39754,7 +39805,7 @@
       "cosmetic": true,
       "cssInject": false,
       "scriptlets": [
-        1753
+        1755
       ]
     },
     "notateslaapp.com": {
@@ -39784,88 +39835,88 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1802,
-        1803
+        1804,
+        1805
       ]
     },
     "notebookcheck-ru.com": {
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1802,
-        1803
+        1804,
+        1805
       ]
     },
     "notebookcheck-tr.com": {
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1802,
-        1803
+        1804,
+        1805
       ]
     },
     "notebookcheck.biz": {
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1802,
-        1803
+        1804,
+        1805
       ]
     },
     "notebookcheck.com": {
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1802,
-        1803
+        1804,
+        1805
       ]
     },
     "notebookcheck.info": {
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1802,
-        1803
+        1804,
+        1805
       ]
     },
     "notebookcheck.it": {
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1802,
-        1803
+        1804,
+        1805
       ]
     },
     "notebookcheck.net": {
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1802,
-        1803
+        1804,
+        1805
       ]
     },
     "notebookcheck.nl": {
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1802,
-        1803
+        1804,
+        1805
       ]
     },
     "notebookcheck.org": {
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1802,
-        1803
+        1804,
+        1805
       ]
     },
     "notebookcheck.se": {
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1802,
-        1803
+        1804,
+        1805
       ]
     },
     "notepad.pw": {
@@ -39927,7 +39978,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1742
+        1744
       ]
     },
     "novelasligeras.net": {
@@ -40147,7 +40198,7 @@
       "cosmetic": false,
       "cssInject": true,
       "scriptlets": [
-        1744
+        1746
       ]
     },
     "nullforums.net": {
@@ -40390,6 +40441,11 @@
       "scriptlets": [
         71
       ]
+    },
+    "odiadjsong.in": {
+      "cosmetic": true,
+      "cssInject": false,
+      "scriptlets": []
     },
     "odkrywamyzakryte.com": {
       "cosmetic": false,
@@ -40906,8 +40962,8 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1747,
-        1748
+        1749,
+        1750
       ]
     },
     "oracleerpappsguide.com": {
@@ -41449,7 +41505,7 @@
       "cosmetic": false,
       "cssInject": true,
       "scriptlets": [
-        1735
+        1737
       ]
     },
     "parhaye.com": {
@@ -41694,7 +41750,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1750
+        1752
       ]
     },
     "pcgameszone.com": {
@@ -41709,7 +41765,7 @@
       "cosmetic": true,
       "cssInject": false,
       "scriptlets": [
-        1730
+        1732
       ]
     },
     "pclicious.net": {
@@ -41777,7 +41833,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1747
+        1749
       ]
     },
     "pelismart.com": {
@@ -42006,7 +42062,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1739
+        1741
       ]
     },
     "photooxy.com": {
@@ -42221,8 +42277,8 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1686,
-        1687
+        1688,
+        1689
       ]
     },
     "planetf1.com": {
@@ -42294,8 +42350,8 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1747,
-        1748
+        1749,
+        1750
       ]
     },
     "play.virginmediatelevision.ie": {
@@ -42317,7 +42373,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1721
+        1723
       ]
     },
     "player.amperwave.net": {
@@ -42331,8 +42387,8 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1747,
-        1748
+        1749,
+        1750
       ]
     },
     "player.malfollado.com": {
@@ -42352,8 +42408,8 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1747,
-        1748
+        1749,
+        1750
       ]
     },
     "playeranimewatch.pl": {
@@ -42375,7 +42431,7 @@
       "cssInject": true,
       "scriptlets": [
         22,
-        1721
+        1723
       ]
     },
     "playit.ch": {
@@ -42404,10 +42460,10 @@
       "cssInject": false,
       "scriptlets": [
         1027,
-        1702,
-        1703,
         1704,
-        1705
+        1705,
+        1706,
+        1707
       ]
     },
     "playmyopinion.com": {
@@ -42448,7 +42504,7 @@
       "cssInject": true,
       "scriptlets": [
         22,
-        1695
+        1697
       ]
     },
     "plaza.chu.jp": {
@@ -42573,7 +42629,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1787
+        1789
       ]
     },
     "poco.rcccn.in": {
@@ -42587,7 +42643,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1700
+        1702
       ]
     },
     "pogo.com": {
@@ -42625,8 +42681,8 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1747,
-        1748
+        1749,
+        1750
       ]
     },
     "pokemonmatome.online": {
@@ -42865,7 +42921,7 @@
       "scriptlets": [
         27,
         853,
-        1773
+        1775
       ]
     },
     "porndish.com": {
@@ -43063,7 +43119,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1748
+        1750
       ]
     },
     "porofessor.gg": {
@@ -43311,7 +43367,7 @@
       "cssInject": false,
       "scriptlets": [
         1543,
-        1691
+        1693
       ]
     },
     "prestashopturkiye.com": {
@@ -44012,7 +44068,7 @@
       "cssInject": false,
       "scriptlets": [
         232,
-        1802
+        1804
       ]
     },
     "radioamericalatina.com": {
@@ -44118,8 +44174,8 @@
       "cssInject": true,
       "scriptlets": [
         22,
-        1757,
-        1758
+        1759,
+        1760
       ]
     },
     "radsum.com": {
@@ -44311,7 +44367,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1767
+        1769
       ]
     },
     "rateyourmusic.com": {
@@ -44376,10 +44432,10 @@
       "cosmetic": true,
       "cssInject": false,
       "scriptlets": [
-        1798,
-        1799,
         1800,
-        1801
+        1801,
+        1802,
+        1803
       ]
     },
     "readcomicsonline.ru": {
@@ -44831,7 +44887,7 @@
       "scriptlets": [
         60,
         545,
-        1720
+        1722
       ]
     },
     "rinconpsicologia.com": {
@@ -44909,8 +44965,8 @@
       "cosmetic": true,
       "cssInject": true,
       "scriptlets": [
-        1770,
-        1771
+        1772,
+        1773
       ]
     },
     "roadbike.de": {
@@ -44983,8 +45039,8 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1757,
-        1758
+        1759,
+        1760
       ]
     },
     "rogoyume.jp": {
@@ -45410,16 +45466,16 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1792,
-        1793
+        1794,
+        1795
       ]
     },
     "safelinkmoba.blogspot.com": {
       "cosmetic": false,
       "cssInject": true,
       "scriptlets": [
-        1780,
-        1781
+        1782,
+        1783
       ]
     },
     "safemodapk.com": {
@@ -45459,7 +45515,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1714
+        1716
       ]
     },
     "saint2.*": {
@@ -45714,7 +45770,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1763
+        1765
       ]
     },
     "satgobmx.com": {
@@ -46088,7 +46144,7 @@
       "cosmetic": true,
       "cssInject": false,
       "scriptlets": [
-        1731
+        1733
       ]
     },
     "securityonline.info": {
@@ -46792,7 +46848,7 @@
         38,
         48,
         1269,
-        1692
+        1694
       ]
     },
     "shortix.co": {
@@ -46839,7 +46895,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1693
+        1695
       ]
     },
     "shrink.*": {
@@ -46943,7 +46999,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1723
+        1725
       ]
     },
     "sigaptech.com": {
@@ -47323,7 +47379,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1683
+        1685
       ]
     },
     "smartphonehrvatska.com": {
@@ -47401,7 +47457,7 @@
       "cosmetic": false,
       "cssInject": true,
       "scriptlets": [
-        1813
+        1815
       ]
     },
     "sms24.info": {
@@ -47466,7 +47522,7 @@
       "cssInject": false,
       "scriptlets": [
         34,
-        1707
+        1709
       ]
     },
     "snapwordz.com": {
@@ -47632,7 +47688,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1719
+        1721
       ]
     },
     "softwaresolutionshere.com": {
@@ -47711,7 +47767,7 @@
       "cssInject": false,
       "scriptlets": [
         26,
-        1741
+        1743
       ]
     },
     "somcima.com": {
@@ -47841,7 +47897,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1701
+        1703
       ]
     },
     "souq-design.com": {
@@ -47932,7 +47988,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1834
+        1836
       ]
     },
     "spatsify.com": {
@@ -47968,7 +48024,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1748
+        1750
       ]
     },
     "spiele-umsonst.de": {
@@ -48409,8 +48465,8 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1747,
-        1748
+        1749,
+        1750
       ]
     },
     "stcatharinesstandard.ca": {
@@ -48600,7 +48656,7 @@
       "cssInject": false,
       "scriptlets": [
         27,
-        1778
+        1780
       ]
     },
     "stream4free.tv": {
@@ -48614,7 +48670,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1683
+        1685
       ]
     },
     "streamadblocker.*": {
@@ -49245,7 +49301,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1717
+        1719
       ]
     },
     "sztucznainteligencjablog.pl": {
@@ -49298,7 +49354,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1738
+        1740
       ]
     },
     "tainhanhvn.com": {
@@ -49458,7 +49514,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1818
+        1820
       ]
     },
     "tarotscans.com": {
@@ -49545,7 +49601,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1768
+        1770
       ]
     },
     "teachios.com": {
@@ -49626,8 +49682,8 @@
       "cosmetic": true,
       "cssInject": false,
       "scriptlets": [
-        1784,
-        1785
+        1786,
+        1787
       ]
     },
     "tech-story.net": {
@@ -49669,7 +49725,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1690
+        1692
       ]
     },
     "techacode.com": {
@@ -50700,7 +50756,7 @@
       "cosmetic": false,
       "cssInject": true,
       "scriptlets": [
-        1708
+        1710
       ]
     },
     "thefightingcock.co.uk": {
@@ -50721,8 +50777,8 @@
       "cosmetic": false,
       "cssInject": true,
       "scriptlets": [
-        1811,
-        1812
+        1813,
+        1814
       ]
     },
     "thegatewaypundit.com": {
@@ -50818,7 +50874,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1706
+        1708
       ]
     },
     "thelibertydaily.com": {
@@ -51909,7 +51965,7 @@
       "cssInject": false,
       "scriptlets": [
         1577,
-        1724
+        1726
       ]
     },
     "touhoudougamatome.blog.fc2.com": {
@@ -52225,8 +52281,8 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1747,
-        1748
+        1749,
+        1750
       ]
     },
     "troovez.com": {
@@ -52266,7 +52322,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1788
+        1790
       ]
     },
     "truffeonline.com": {
@@ -52552,8 +52608,8 @@
       "scriptlets": [
         26,
         48,
-        1745,
-        1746
+        1747,
+        1748
       ]
     },
     "turkedebiyati.org": {
@@ -52999,7 +53055,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1718
+        1720
       ]
     },
     "u.co.uk": {
@@ -53155,18 +53211,18 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1754,
-        1755,
-        1756
+        1756,
+        1757,
+        1758
       ]
     },
     "uktvplay.uktv.co.uk": {
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1754,
-        1755,
-        1756
+        1756,
+        1757,
+        1758
       ]
     },
     "ukussa.net": {
@@ -53237,7 +53293,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1761
+        1763
       ]
     },
     "underground.tboys.ro": {
@@ -53462,7 +53518,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1782
+        1784
       ]
     },
     "uploadcloud.pro": {
@@ -53881,7 +53937,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1747
+        1749
       ]
     },
     "vakilsearch.com": {
@@ -53907,8 +53963,8 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1747,
-        1748
+        1749,
+        1750
       ]
     },
     "variatkowo.pl": {
@@ -54252,9 +54308,9 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1703,
-        1704,
-        1705
+        1705,
+        1706,
+        1707
       ]
     },
     "video.bestjavporn.com": {
@@ -54274,7 +54330,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1748
+        1750
       ]
     },
     "videoadept.com": {
@@ -54288,8 +54344,8 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1747,
-        1748
+        1749,
+        1750
       ]
     },
     "videodidixx.com": {
@@ -54952,8 +55008,8 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1747,
-        1748
+        1749,
+        1750
       ]
     },
     "vpnjantit.com": {
@@ -55057,8 +55113,8 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1747,
-        1748
+        1749,
+        1750
       ]
     },
     "w1tv.xyz": {
@@ -55087,7 +55143,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1748
+        1750
       ]
     },
     "waaw.to": {
@@ -55095,7 +55151,7 @@
       "cssInject": true,
       "scriptlets": [
         22,
-        1749
+        1751
       ]
     },
     "waaw.tv": {
@@ -55103,15 +55159,15 @@
       "cssInject": true,
       "scriptlets": [
         22,
-        1749
+        1751
       ]
     },
     "waaw1.tv": {
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1748,
-        1749
+        1750,
+        1751
       ]
     },
     "wabetainfo.com": {
@@ -55847,7 +55903,7 @@
       "scriptlets": [
         5,
         22,
-        1762
+        1764
       ]
     },
     "win7simu.visnalize.com": {
@@ -56042,7 +56098,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1766
+        1768
       ]
     },
     "wordgames.com": {
@@ -56246,7 +56302,7 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1751
+        1753
       ]
     },
     "wuyong.fun": {
@@ -56649,8 +56705,8 @@
       "cssInject": false,
       "scriptlets": [
         709,
-        1747,
-        1748
+        1749,
+        1750
       ]
     },
     "xswiper.com": {
@@ -56678,8 +56734,8 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1747,
-        1748
+        1749,
+        1750
       ]
     },
     "xtremestream.co": {
@@ -56854,8 +56910,8 @@
       "cssInject": true,
       "scriptlets": [
         22,
-        1748,
-        1749
+        1750,
+        1751
       ]
     },
     "yandexsport.ru": {
@@ -56909,7 +56965,7 @@
       "cssInject": false,
       "scriptlets": [
         43,
-        1764
+        1766
       ]
     },
     "yesporn.vip": {
@@ -57056,16 +57112,16 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1748,
-        1749
+        1750,
+        1751
       ]
     },
     "younetu.org": {
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1747,
-        1748
+        1749,
+        1750
       ]
     },
     "youporn.com": {
@@ -57288,8 +57344,8 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1747,
-        1748
+        1749,
+        1750
       ]
     },
     "zbporn.com": {
@@ -57353,8 +57409,8 @@
       "cosmetic": false,
       "cssInject": false,
       "scriptlets": [
-        1757,
-        1758
+        1759,
+        1760
       ]
     },
     "zeoob.com": {
@@ -69544,7 +69600,7 @@
         "type": "allow"
       },
       "condition": {
-        "urlFilter": "||dropgalaxy.com^"
+        "urlFilter": "||devuploads.com^"
       },
       "id": 1001,
       "priority": 50
@@ -69554,9 +69610,61 @@
         "type": "allow"
       },
       "condition": {
-        "urlFilter": "||djxmaza.in^"
+        "urlFilter": "||dropgalaxy.com^"
       },
       "id": 1002,
+      "priority": 50
+    },
+    {
+      "action": {
+        "type": "allow"
+      },
+      "condition": {
+        "urlFilter": "||djxmaza.in^"
+      },
+      "id": 1003,
+      "priority": 50
+    },
+    {
+      "action": {
+        "type": "allow"
+      },
+      "condition": {
+        "urlFilter": "/^https:\\/\\/devuploads\\.com\\/[a-z]+\\/[a-z0-9]{24}\\/[^\\/]+\\.(js|gif)"
+      },
+      "id": 1004,
+      "priority": 50
+    },
+    {
+      "action": {
+        "type": "allow"
+      },
+      "condition": {
+        "initiatorDomains": [
+          "devuploads.com"
+        ],
+        "resourceTypes": [
+          "xmlhttprequest"
+        ],
+        "urlFilter": "||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+      },
+      "id": 1005,
+      "priority": 50
+    },
+    {
+      "action": {
+        "type": "allow"
+      },
+      "condition": {
+        "initiatorDomains": [
+          "devuploads.com"
+        ],
+        "resourceTypes": [
+          "xmlhttprequest"
+        ],
+        "urlFilter": "||securepubads.g.doubleclick.net/tag/js/gpt.js"
+      },
+      "id": 1006,
       "priority": 50
     },
     {
@@ -69576,7 +69684,7 @@
         ],
         "urlFilter": "/gettoken.php?"
       },
-      "id": 1003,
+      "id": 1007,
       "priority": 50
     },
     {
@@ -69596,7 +69704,7 @@
         ],
         "urlFilter": "||securepubads.g.doubleclick.net/pagead/ppub_config?ippd="
       },
-      "id": 1004,
+      "id": 1008,
       "priority": 50
     },
     {
@@ -69618,7 +69726,7 @@
         ],
         "urlFilter": "||a2zapk.dev^"
       },
-      "id": 1005,
+      "id": 1009,
       "priority": 50
     },
     {
@@ -69638,7 +69746,7 @@
         ],
         "urlFilter": "||protagcdn.com/s/dropgalaxy.com/site.js"
       },
-      "id": 1006,
+      "id": 1010,
       "priority": 50
     },
     {
@@ -69658,7 +69766,7 @@
         ],
         "urlFilter": "||services.vlitag.com/adv1/"
       },
-      "id": 1007,
+      "id": 1011,
       "priority": 50
     },
     {
@@ -69678,7 +69786,7 @@
         ],
         "urlFilter": "||protagcdn.com/check-bot/index.html"
       },
-      "id": 1008,
+      "id": 1012,
       "priority": 50
     },
     {
@@ -69698,7 +69806,7 @@
         ],
         "urlFilter": "||assets.vlitag.com/prebid/default/prebid-*.js"
       },
-      "id": 1009,
+      "id": 1013,
       "priority": 50
     },
     {
@@ -69718,7 +69826,7 @@
         ],
         "urlFilter": "||jscdn.greeter.me/dropgalaxy.onlinehead.js"
       },
-      "id": 1010,
+      "id": 1014,
       "priority": 50
     },
     {
@@ -69738,7 +69846,7 @@
         ],
         "urlFilter": "||securepubads.g.doubleclick.net/tag/js/gpt.js"
       },
-      "id": 1011,
+      "id": 1015,
       "priority": 50
     },
     {
@@ -69758,7 +69866,7 @@
         ],
         "urlFilter": "||securepubads.g.doubleclick.net/*/pubads_impl*.js"
       },
-      "id": 1012,
+      "id": 1016,
       "priority": 50
     },
     {
@@ -69778,7 +69886,7 @@
         ],
         "urlFilter": "||player.aplhb.adipolo.com/prebidlink/"
       },
-      "id": 1013,
+      "id": 1017,
       "priority": 50
     },
     {
@@ -69798,7 +69906,7 @@
         ],
         "urlFilter": "||googletagmanager.com/gtag/js"
       },
-      "id": 1014,
+      "id": 1018,
       "priority": 50
     },
     {
@@ -69818,7 +69926,7 @@
         ],
         "urlFilter": "||googletagservices.com/tag/js/gpt.js"
       },
-      "id": 1015,
+      "id": 1019,
       "priority": 50
     },
     {
@@ -69839,7 +69947,7 @@
         ],
         "urlFilter": "||googlesyndication.com^"
       },
-      "id": 1016,
+      "id": 1020,
       "priority": 50
     },
     {
@@ -69853,7 +69961,7 @@
         ],
         "urlFilter": "||tpc.googlesyndication.com/simgad/"
       },
-      "id": 1017,
+      "id": 1021,
       "priority": 50
     },
     {
@@ -69866,7 +69974,7 @@
         ],
         "urlFilter": "||securepubads.g.doubleclick.net/gpt/pubads_impl_*.js"
       },
-      "id": 1018,
+      "id": 1022,
       "priority": 50
     },
     {
@@ -69879,7 +69987,7 @@
         ],
         "urlFilter": "||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
       },
-      "id": 1019,
+      "id": 1023,
       "priority": 50
     },
     {
@@ -69889,7 +69997,7 @@
       "condition": {
         "urlFilter": "||miamiherald.com/static/yozons-lib/choice.adb*.js"
       },
-      "id": 1020,
+      "id": 1024,
       "priority": 40
     },
     {
@@ -69900,7 +70008,7 @@
         "domainType": "firstParty",
         "urlFilter": "/ad.sense/ad-m.js"
       },
-      "id": 1021,
+      "id": 1025,
       "priority": 50
     },
     {
@@ -69910,7 +70018,7 @@
       "condition": {
         "urlFilter": "/\\/\\d{5,7}"
       },
-      "id": 1022,
+      "id": 1026,
       "priority": 50
     },
     {
@@ -69926,7 +70034,7 @@
         ],
         "urlFilter": "||ads.themoneytizer.com/*/gen.js"
       },
-      "id": 1023,
+      "id": 1027,
       "priority": 50
     },
     {
@@ -69945,7 +70053,7 @@
         ],
         "urlFilter": "||in-page-push.com^"
       },
-      "id": 1024,
+      "id": 1028,
       "priority": 50
     },
     {
@@ -69955,7 +70063,7 @@
       "condition": {
         "urlFilter": "||sp.tennessean.com^"
       },
-      "id": 1025,
+      "id": 1029,
       "priority": 40
     },
     {
@@ -69965,7 +70073,7 @@
       "condition": {
         "urlFilter": "||cdn.rawgit.com/hasrul11/mass/a68bd824/script.min.js"
       },
-      "id": 1026,
+      "id": 1030,
       "priority": 40
     },
     {
@@ -69975,7 +70083,7 @@
       "condition": {
         "urlFilter": "||cdn.reignn.com/Products/Reignn/DataPixels/AdBlockerCheck/ads.js"
       },
-      "id": 1027,
+      "id": 1031,
       "priority": 50
     },
     {
@@ -69988,7 +70096,7 @@
         ],
         "urlFilter": "||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
       },
-      "id": 1028,
+      "id": 1032,
       "priority": 50
     },
     {
@@ -69998,7 +70106,7 @@
       "condition": {
         "urlFilter": "||notebookchat.com/ads.js"
       },
-      "id": 1029,
+      "id": 1033,
       "priority": 50
     },
     {
@@ -70008,7 +70116,7 @@
       "condition": {
         "urlFilter": "||akunssh.net/assets/js/extra.min.js"
       },
-      "id": 1030,
+      "id": 1034,
       "priority": 40
     },
     {
@@ -70018,7 +70126,7 @@
       "condition": {
         "urlFilter": "||playtube.ws/js/pop.js"
       },
-      "id": 1031,
+      "id": 1035,
       "priority": 50
     },
     {
@@ -70032,7 +70140,7 @@
         ],
         "urlFilter": "||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
       },
-      "id": 1032,
+      "id": 1036,
       "priority": 50
     },
     {
@@ -70042,7 +70150,7 @@
       "condition": {
         "urlFilter": "||habbokritik.de/FuckAdBlock/fuckadblock.js"
       },
-      "id": 1033,
+      "id": 1037,
       "priority": 50
     },
     {
@@ -70052,7 +70160,7 @@
       "condition": {
         "urlFilter": "||fux.com/adblockchecker.js"
       },
-      "id": 1034,
+      "id": 1038,
       "priority": 50
     },
     {
@@ -70062,7 +70170,7 @@
       "condition": {
         "urlFilter": "||soup.io/ads.js"
       },
-      "id": 1035,
+      "id": 1039,
       "priority": 50
     },
     {
@@ -70072,7 +70180,7 @@
       "condition": {
         "urlFilter": "||i.doodcdn.io/ads/ad.js"
       },
-      "id": 1036,
+      "id": 1040,
       "priority": 50
     },
     {
@@ -70082,7 +70190,7 @@
       "condition": {
         "urlFilter": "||i.doodcdn.io/ads/pop.js"
       },
-      "id": 1037,
+      "id": 1041,
       "priority": 50
     },
     {
@@ -70096,7 +70204,7 @@
         ],
         "urlFilter": "/ad.js"
       },
-      "id": 1038,
+      "id": 1042,
       "priority": 50
     },
     {
@@ -70106,7 +70214,7 @@
       "condition": {
         "urlFilter": "||intl.startrek.com/modules/contrib/ctd_sourcepoint/js/ctd-sourcepoint.js"
       },
-      "id": 1039,
+      "id": 1043,
       "priority": 40
     },
     {
@@ -70119,7 +70227,7 @@
         ],
         "urlFilter": "||imasdk.googleapis.com/js/sdkloader/ima3.js"
       },
-      "id": 1040,
+      "id": 1044,
       "priority": 50
     },
     {
@@ -70129,7 +70237,7 @@
       "condition": {
         "urlFilter": "||firefaucet.win^"
       },
-      "id": 1041,
+      "id": 1045,
       "priority": 50
     },
     {
@@ -70139,7 +70247,7 @@
       "condition": {
         "urlFilter": "||thefastlaneforum.com/community/js/*/adblocker-leader.js"
       },
-      "id": 1042,
+      "id": 1046,
       "priority": 50
     },
     {
@@ -70149,7 +70257,7 @@
       "condition": {
         "urlFilter": "||gogodl.com/*/js/advertisement.js"
       },
-      "id": 1043,
+      "id": 1047,
       "priority": 50
     },
     {
@@ -70159,7 +70267,7 @@
       "condition": {
         "urlFilter": "||lookmovie.ag/*dfp.min.js"
       },
-      "id": 1044,
+      "id": 1048,
       "priority": 50
     },
     {
@@ -70172,7 +70280,7 @@
         ],
         "urlFilter": "||secureservercdn.net/*.myftpupload.com/wp-content/themes/jannah/assets/js/advertisement.js"
       },
-      "id": 1045,
+      "id": 1049,
       "priority": 50
     },
     {
@@ -70185,7 +70293,7 @@
         ],
         "urlFilter": "||cdn.jsdelivr.net/npm/*/fuckadblock.min.js"
       },
-      "id": 1046,
+      "id": 1050,
       "priority": 50
     },
     {
@@ -70199,7 +70307,7 @@
         ],
         "urlFilter": "||filecr.com/wp-content/plugins/holdback/"
       },
-      "id": 1047,
+      "id": 1051,
       "priority": 50
     },
     {
@@ -70215,7 +70323,7 @@
         ],
         "urlFilter": "||scriptcdn.net/code/"
       },
-      "id": 1048,
+      "id": 1052,
       "priority": 50
     },
     {
@@ -70226,7 +70334,7 @@
         "domainType": "thirdParty",
         "urlFilter": "||cdn.staticaly.com/gist/pyarmeindia/*/raw/*/gourabblock.js"
       },
-      "id": 1049,
+      "id": 1053,
       "priority": 40
     },
     {
@@ -70236,7 +70344,7 @@
       "condition": {
         "urlFilter": "||viptools.es/assets/ads.js"
       },
-      "id": 1050,
+      "id": 1054,
       "priority": 50
     },
     {
@@ -70246,7 +70354,7 @@
       "condition": {
         "urlFilter": "||adslink.pw/advertisement.js"
       },
-      "id": 1051,
+      "id": 1055,
       "priority": 50
     },
     {
@@ -70259,7 +70367,7 @@
         ],
         "urlFilter": "||imasdk.googleapis.com/js/sdkloader/ima3.js"
       },
-      "id": 1052,
+      "id": 1056,
       "priority": 50
     },
     {
@@ -70269,7 +70377,7 @@
       "condition": {
         "urlFilter": "||dloady.com/js/*/ad-banner.js"
       },
-      "id": 1053,
+      "id": 1057,
       "priority": 50
     },
     {
@@ -70283,7 +70391,7 @@
         ],
         "urlFilter": "||iamcdn.net/players/*ads*.js"
       },
-      "id": 1054,
+      "id": 1058,
       "priority": 50
     },
     {
@@ -70293,7 +70401,7 @@
       "condition": {
         "urlFilter": "||ads.remix.es/advertisement.js|"
       },
-      "id": 1055,
+      "id": 1059,
       "priority": 50
     },
     {
@@ -70306,7 +70414,7 @@
         ],
         "urlFilter": "||rddywd.com/adcode.png"
       },
-      "id": 1056,
+      "id": 1060,
       "priority": 50
     },
     {
@@ -70319,7 +70427,7 @@
         ],
         "urlFilter": "||imasdk.googleapis.com/js/sdkloader/ima3.js"
       },
-      "id": 1057,
+      "id": 1061,
       "priority": 50
     },
     {
@@ -70332,7 +70440,7 @@
         ],
         "urlFilter": "||imasdk.googleapis.com/js/sdkloader/ima3.js"
       },
-      "id": 1058,
+      "id": 1062,
       "priority": 50
     },
     {
@@ -70342,7 +70450,7 @@
       "condition": {
         "urlFilter": "||cdn.rawgit.com/perampokgoogle/AntiAdblock/master/AdblockRampok.js"
       },
-      "id": 1059,
+      "id": 1063,
       "priority": 40
     },
     {
@@ -70352,7 +70460,7 @@
       "condition": {
         "urlFilter": "||sickworldmusic.com^"
       },
-      "id": 1060,
+      "id": 1064,
       "priority": 50
     },
     {
@@ -70365,7 +70473,7 @@
         ],
         "urlFilter": "||imasdk.googleapis.com/js/sdkloader/ima3.js"
       },
-      "id": 1061,
+      "id": 1065,
       "priority": 50
     },
     {
@@ -70375,7 +70483,7 @@
       "condition": {
         "urlFilter": "||cdn.rawgit.com/Abdo-Hegazi/wdbloog/*/wdbloogablock.js"
       },
-      "id": 1062,
+      "id": 1066,
       "priority": 40
     },
     {
@@ -70385,7 +70493,7 @@
       "condition": {
         "urlFilter": "||bitent.com/lock_html5/adPlayer/v*/adPlayer.js"
       },
-      "id": 1063,
+      "id": 1067,
       "priority": 50
     },
     {
@@ -70395,7 +70503,7 @@
       "condition": {
         "urlFilter": "||fingahvf.top/advertisers.js"
       },
-      "id": 1064,
+      "id": 1068,
       "priority": 50
     },
     {
@@ -70405,7 +70513,7 @@
       "condition": {
         "urlFilter": "||retweetpicker.com^"
       },
-      "id": 1065,
+      "id": 1069,
       "priority": 50
     },
     {
@@ -70418,7 +70526,7 @@
         ],
         "urlFilter": "||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
       },
-      "id": 1066,
+      "id": 1070,
       "priority": 50
     },
     {
@@ -70428,7 +70536,7 @@
       "condition": {
         "urlFilter": "||picmix.com/js/fuckadblock.js"
       },
-      "id": 1067,
+      "id": 1071,
       "priority": 50
     },
     {
@@ -70438,7 +70546,7 @@
       "condition": {
         "urlFilter": "||pandora.com/static/ads/"
       },
-      "id": 1068,
+      "id": 1072,
       "priority": 50
     },
     {
@@ -70448,7 +70556,7 @@
       "condition": {
         "urlFilter": "||pandora.com/web-client-assets/ads.*.js"
       },
-      "id": 1069,
+      "id": 1073,
       "priority": 50
     },
     {
@@ -70458,55 +70566,6 @@
       "condition": {
         "urlFilter": "||pandora.com/web-version/*/*.json"
       },
-      "id": 1070,
-      "priority": 50
-    },
-    {
-      "action": {
-        "type": "allow"
-      },
-      "condition": {
-        "urlFilter": "||seeitworks.com/advertisement.js"
-      },
-      "id": 1071,
-      "priority": 50
-    },
-    {
-      "action": {
-        "type": "allow"
-      },
-      "condition": {
-        "initiatorDomains": [
-          "yandexcdn.com"
-        ],
-        "urlFilter": "||c.yandexcdn.com/js/adv/ads.js"
-      },
-      "id": 1072,
-      "priority": 50
-    },
-    {
-      "action": {
-        "type": "allow"
-      },
-      "condition": {
-        "initiatorDomains": [
-          "yandexcdn.com"
-        ],
-        "urlFilter": "||c.yandexcdn.com/js/adv/advert3.js"
-      },
-      "id": 1073,
-      "priority": 50
-    },
-    {
-      "action": {
-        "type": "allow"
-      },
-      "condition": {
-        "initiatorDomains": [
-          "yandexcdn.com"
-        ],
-        "urlFilter": "||c.yandexcdn.com/js/adv/fuckadblock.js"
-      },
       "id": 1074,
       "priority": 50
     },
@@ -70515,10 +70574,7 @@
         "type": "allow"
       },
       "condition": {
-        "initiatorDomains": [
-          "yandexcdn.com"
-        ],
-        "urlFilter": "||imasdk.googleapis.com/js/sdkloader/ima3.js"
+        "urlFilter": "||seeitworks.com/advertisement.js"
       },
       "id": 1075,
       "priority": 50
@@ -70531,7 +70587,7 @@
         "initiatorDomains": [
           "yandexcdn.com"
         ],
-        "urlFilter": "||cdn.jsdelivr.net/npm/videojs-contrib-ads/dist/videojs.ads.min.css"
+        "urlFilter": "||c.yandexcdn.com/js/adv/ads.js"
       },
       "id": 1076,
       "priority": 50
@@ -70544,7 +70600,7 @@
         "initiatorDomains": [
           "yandexcdn.com"
         ],
-        "urlFilter": "||cdn.jsdelivr.net/npm/videojs-contrib-ads/dist/videojs.ads.min.js"
+        "urlFilter": "||c.yandexcdn.com/js/adv/advert3.js"
       },
       "id": 1077,
       "priority": 50
@@ -70557,7 +70613,7 @@
         "initiatorDomains": [
           "yandexcdn.com"
         ],
-        "urlFilter": "||storage.googleapis.com/vkcdnservice.appspot.com/script"
+        "urlFilter": "||c.yandexcdn.com/js/adv/fuckadblock.js"
       },
       "id": 1078,
       "priority": 50
@@ -70567,7 +70623,10 @@
         "type": "allow"
       },
       "condition": {
-        "urlFilter": "||keran.co/*/libs/ad*.js"
+        "initiatorDomains": [
+          "yandexcdn.com"
+        ],
+        "urlFilter": "||imasdk.googleapis.com/js/sdkloader/ima3.js"
       },
       "id": 1079,
       "priority": 50
@@ -70577,7 +70636,10 @@
         "type": "allow"
       },
       "condition": {
-        "urlFilter": "||konten.co.id/wp-content/*/fuckadblock.js"
+        "initiatorDomains": [
+          "yandexcdn.com"
+        ],
+        "urlFilter": "||cdn.jsdelivr.net/npm/videojs-contrib-ads/dist/videojs.ads.min.css"
       },
       "id": 1080,
       "priority": 50
@@ -70587,9 +70649,55 @@
         "type": "allow"
       },
       "condition": {
-        "urlFilter": "||bing.com^"
+        "initiatorDomains": [
+          "yandexcdn.com"
+        ],
+        "urlFilter": "||cdn.jsdelivr.net/npm/videojs-contrib-ads/dist/videojs.ads.min.js"
       },
       "id": 1081,
+      "priority": 50
+    },
+    {
+      "action": {
+        "type": "allow"
+      },
+      "condition": {
+        "initiatorDomains": [
+          "yandexcdn.com"
+        ],
+        "urlFilter": "||storage.googleapis.com/vkcdnservice.appspot.com/script"
+      },
+      "id": 1082,
+      "priority": 50
+    },
+    {
+      "action": {
+        "type": "allow"
+      },
+      "condition": {
+        "urlFilter": "||keran.co/*/libs/ad*.js"
+      },
+      "id": 1083,
+      "priority": 50
+    },
+    {
+      "action": {
+        "type": "allow"
+      },
+      "condition": {
+        "urlFilter": "||konten.co.id/wp-content/*/fuckadblock.js"
+      },
+      "id": 1084,
+      "priority": 50
+    },
+    {
+      "action": {
+        "type": "allow"
+      },
+      "condition": {
+        "urlFilter": "||bing.com^"
+      },
+      "id": 1085,
       "priority": 50
     },
     {
@@ -70599,7 +70707,7 @@
       "condition": {
         "urlFilter": "||bing.com^"
       },
-      "id": 1082,
+      "id": 1086,
       "priority": 40
     },
     {
@@ -70609,7 +70717,7 @@
       "condition": {
         "urlFilter": "||androiddownload.net/themes/*/js/advertisement.js"
       },
-      "id": 1083,
+      "id": 1087,
       "priority": 50
     },
     {
@@ -70622,7 +70730,7 @@
         ],
         "urlFilter": "||ams.cdn.arkadiumhosted.com/advertisement/video/stable/video-ads.js"
       },
-      "id": 1084,
+      "id": 1088,
       "priority": 50
     },
     {
@@ -70632,7 +70740,7 @@
       "condition": {
         "urlFilter": "||geekrar.com/wp-content/*/js/ads-*.js"
       },
-      "id": 1085,
+      "id": 1089,
       "priority": 50
     },
     {
@@ -70645,7 +70753,7 @@
         ],
         "urlFilter": "||kxcdn.com/js/wutime_adblock/ads.js"
       },
-      "id": 1086,
+      "id": 1090,
       "priority": 50
     },
     {
@@ -70655,7 +70763,7 @@
       "condition": {
         "urlFilter": "||cdn.jsdelivr.net/gh/vli-platform/adb-analytics@a6f3a45/v1.0.min.js"
       },
-      "id": 1087,
+      "id": 1091,
       "priority": 40
     },
     {
@@ -70665,7 +70773,7 @@
       "condition": {
         "urlFilter": "||subtitledb.org/js/adblockcheck.js"
       },
-      "id": 1088,
+      "id": 1092,
       "priority": 40
     },
     {
@@ -70675,7 +70783,7 @@
       "condition": {
         "urlFilter": "||promods.net/ads.js"
       },
-      "id": 1089,
+      "id": 1093,
       "priority": 50
     },
     {
@@ -70688,7 +70796,7 @@
         ],
         "urlFilter": "||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
       },
-      "id": 1090,
+      "id": 1094,
       "priority": 50
     },
     {
@@ -70698,7 +70806,7 @@
       "condition": {
         "urlFilter": "||bagi.co.in/*/js/advertisement.js"
       },
-      "id": 1091,
+      "id": 1095,
       "priority": 50
     },
     {
@@ -70708,7 +70816,7 @@
       "condition": {
         "urlFilter": "||receivesms.co/js/fuckadblock.js"
       },
-      "id": 1092,
+      "id": 1096,
       "priority": 50
     },
     {
@@ -70718,7 +70826,7 @@
       "condition": {
         "urlFilter": "||radio.securenetsystems.net/cwa/scripts/ads/prebid.js"
       },
-      "id": 1093,
+      "id": 1097,
       "priority": 50
     },
     {
@@ -70728,7 +70836,7 @@
       "condition": {
         "urlFilter": "||keran.co/*/js/advertisement.js"
       },
-      "id": 1094,
+      "id": 1098,
       "priority": 50
     },
     {
@@ -70738,7 +70846,7 @@
       "condition": {
         "urlFilter": "||megaup.net/ads.js"
       },
-      "id": 1095,
+      "id": 1099,
       "priority": 50
     },
     {
@@ -70748,7 +70856,7 @@
       "condition": {
         "urlFilter": "||paraphrasing-tool.com/js/wp-banners.js"
       },
-      "id": 1096,
+      "id": 1100,
       "priority": 50
     },
     {
@@ -70758,7 +70866,7 @@
       "condition": {
         "urlFilter": "||3dtuning.com^"
       },
-      "id": 1097,
+      "id": 1101,
       "priority": 50
     },
     {
@@ -70768,7 +70876,7 @@
       "condition": {
         "urlFilter": "||myneobuxportal.com/wp-content/plugins/*/adblock-detector/advertisement.js"
       },
-      "id": 1098,
+      "id": 1102,
       "priority": 50
     },
     {
@@ -70778,7 +70886,7 @@
       "condition": {
         "urlFilter": "||tagmp3.net/ads.js"
       },
-      "id": 1099,
+      "id": 1103,
       "priority": 50
     },
     {
@@ -70788,7 +70896,7 @@
       "condition": {
         "urlFilter": "||transparentcalifornia.com/static/js/ab-message"
       },
-      "id": 1100,
+      "id": 1104,
       "priority": 40
     },
     {
@@ -70801,7 +70909,7 @@
         ],
         "urlFilter": "||stackpathcdn.com/wp-content/plugins/*/adblock-detector/advertisement.js"
       },
-      "id": 1101,
+      "id": 1105,
       "priority": 50
     },
     {
@@ -70811,7 +70919,7 @@
       "condition": {
         "urlFilter": "||conversationexchange.com/javaScript/checkBlock.js"
       },
-      "id": 1102,
+      "id": 1106,
       "priority": 40
     },
     {
@@ -70824,7 +70932,7 @@
         ],
         "urlFilter": "||cloudfront.net/assets/advertisement/ads-*.js"
       },
-      "id": 1103,
+      "id": 1107,
       "priority": 50
     },
     {
@@ -70834,7 +70942,7 @@
       "condition": {
         "urlFilter": "||services.brid.tv/player/build/plugins/adunit.js"
       },
-      "id": 1104,
+      "id": 1108,
       "priority": 50
     },
     {
@@ -70844,7 +70952,7 @@
       "condition": {
         "urlFilter": "||cdn.jsdelivr.net/gh/njentit/testads/ads.js"
       },
-      "id": 1105,
+      "id": 1109,
       "priority": 50
     },
     {
@@ -70854,7 +70962,7 @@
       "condition": {
         "urlFilter": "||sombex.com/ads.js"
       },
-      "id": 1106,
+      "id": 1110,
       "priority": 50
     },
     {
@@ -70864,7 +70972,7 @@
       "condition": {
         "urlFilter": "||vegashipcalc.co.uk/scripts/ads.js"
       },
-      "id": 1107,
+      "id": 1111,
       "priority": 50
     },
     {
@@ -70874,7 +70982,7 @@
       "condition": {
         "urlFilter": "||hqq.tv/js/optscript/script"
       },
-      "id": 1108,
+      "id": 1112,
       "priority": 50
     },
     {
@@ -70887,7 +70995,7 @@
         ],
         "urlFilter": "||storage.googleapis.com/vkcdnservice.appspot.com/script"
       },
-      "id": 1109,
+      "id": 1113,
       "priority": 50
     },
     {
@@ -70900,7 +71008,7 @@
         ],
         "urlFilter": "||imasdk.googleapis.com/js/sdkloader/ima3.js"
       },
-      "id": 1110,
+      "id": 1114,
       "priority": 50
     },
     {
@@ -70910,7 +71018,7 @@
       "condition": {
         "urlFilter": "||cdn.games.mobinozer.com/shared/loader/advert.js"
       },
-      "id": 1111,
+      "id": 1115,
       "priority": 50
     },
     {
@@ -70920,7 +71028,7 @@
       "condition": {
         "urlFilter": "||nulledteam.com/js/*/adsservice.js"
       },
-      "id": 1112,
+      "id": 1116,
       "priority": 50
     },
     {
@@ -70933,7 +71041,7 @@
         ],
         "urlFilter": "||imasdk.googleapis.com/js/sdkloader/ima3.js"
       },
-      "id": 1113,
+      "id": 1117,
       "priority": 50
     },
     {
@@ -70943,7 +71051,7 @@
       "condition": {
         "urlFilter": "||techperiod.com/wp-content/cache/min/*/wp-content/themes/TechPeriod/js/ads-*.js"
       },
-      "id": 1114,
+      "id": 1118,
       "priority": 50
     },
     {
@@ -70953,7 +71061,7 @@
       "condition": {
         "urlFilter": "||turkdown.com/*/advertisement.js"
       },
-      "id": 1115,
+      "id": 1119,
       "priority": 50
     },
     {
@@ -70969,7 +71077,7 @@
         ],
         "urlFilter": "/fuckadblock.js"
       },
-      "id": 1116,
+      "id": 1120,
       "priority": 50
     },
     {
@@ -70983,7 +71091,7 @@
         ],
         "urlFilter": "||cdn.jsdelivr.net/npm/videojs-contrib-ads/dist/videojs.ads.min.js"
       },
-      "id": 1117,
+      "id": 1121,
       "priority": 50
     },
     {
@@ -70997,7 +71105,7 @@
         ],
         "urlFilter": "||imasdk.googleapis.com/js/sdkloader/ima3.js"
       },
-      "id": 1118,
+      "id": 1122,
       "priority": 50
     },
     {
@@ -71007,7 +71115,7 @@
       "condition": {
         "urlFilter": "||satchel.rei.com/packages/adobe-target^"
       },
-      "id": 1119,
+      "id": 1123,
       "priority": 40
     },
     {
@@ -71017,7 +71125,7 @@
       "condition": {
         "urlFilter": "||solve-all-problems.info/googleads.js"
       },
-      "id": 1120,
+      "id": 1124,
       "priority": 50
     },
     {
@@ -71027,7 +71135,7 @@
       "condition": {
         "urlFilter": "||indianrailways.info/js/adblocker.js"
       },
-      "id": 1121,
+      "id": 1125,
       "priority": 50
     },
     {
@@ -71037,7 +71145,7 @@
       "condition": {
         "urlFilter": "||tsukie.com/js/guarder2.js"
       },
-      "id": 1122,
+      "id": 1126,
       "priority": 40
     },
     {
@@ -71047,7 +71155,7 @@
       "condition": {
         "urlFilter": "||ams.cdn.arkadiumhosted.com/assets/*/display-ads-f.js"
       },
-      "id": 1123,
+      "id": 1127,
       "priority": 50
     },
     {
@@ -71060,7 +71168,7 @@
         ],
         "urlFilter": "||imasdk.googleapis.com/js/sdkloader/ima3.js"
       },
-      "id": 1124,
+      "id": 1128,
       "priority": 50
     },
     {
@@ -71070,7 +71178,7 @@
       "condition": {
         "urlFilter": "||racedepartment.com/js/RD/blockDetect.min.js"
       },
-      "id": 1125,
+      "id": 1129,
       "priority": 40
     },
     {
@@ -71084,7 +71192,7 @@
         ],
         "urlFilter": "/smarttag.js"
       },
-      "id": 1126,
+      "id": 1130,
       "priority": 50
     },
     {
@@ -71098,7 +71206,7 @@
         ],
         "urlFilter": "/showads."
       },
-      "id": 1127,
+      "id": 1131,
       "priority": 50
     },
     {
@@ -71111,7 +71219,7 @@
         ],
         "urlFilter": "||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
       },
-      "id": 1128,
+      "id": 1132,
       "priority": 50
     },
     {
@@ -71121,7 +71229,7 @@
       "condition": {
         "urlFilter": "||fwlive.sonycrackle.com/ad/g/1|"
       },
-      "id": 1129,
+      "id": 1133,
       "priority": 50
     },
     {
@@ -71134,7 +71242,7 @@
         ],
         "urlFilter": "||mycastapp.*.amazonaws.com/assets/ads.js"
       },
-      "id": 1130,
+      "id": 1134,
       "priority": 50
     },
     {
@@ -71147,7 +71255,7 @@
         ],
         "urlFilter": "||conservativefiringline.com/*/*.jpg"
       },
-      "id": 1131,
+      "id": 1135,
       "priority": 40
     },
     {
@@ -71157,7 +71265,7 @@
       "condition": {
         "urlFilter": "||nosteamgames.ro/notcaptcha/adheader.js"
       },
-      "id": 1132,
+      "id": 1136,
       "priority": 50
     },
     {
@@ -71167,7 +71275,7 @@
       "condition": {
         "urlFilter": "||nosteam.ro/notcaptcha/messages.js"
       },
-      "id": 1133,
+      "id": 1137,
       "priority": 50
     },
     {
@@ -71177,7 +71285,7 @@
       "condition": {
         "urlFilter": "||veedi.com/*/js/ads/advert.js"
       },
-      "id": 1134,
+      "id": 1138,
       "priority": 50
     },
     {
@@ -71191,7 +71299,7 @@
         ],
         "urlFilter": "||v.fwmrm.net/ad/g/1"
       },
-      "id": 1135,
+      "id": 1139,
       "priority": 50
     },
     {
@@ -71201,7 +71309,7 @@
       "condition": {
         "urlFilter": "||bc.vc/fly/ads.js"
       },
-      "id": 1136,
+      "id": 1140,
       "priority": 50
     },
     {
@@ -71211,7 +71319,7 @@
       "condition": {
         "urlFilter": "||mediaite.com/*/adsbygoogle.js"
       },
-      "id": 1137,
+      "id": 1141,
       "priority": 50
     },
     {
@@ -71221,7 +71329,7 @@
       "condition": {
         "urlFilter": "||camhub.cc/player/player_ads.html"
       },
-      "id": 1138,
+      "id": 1142,
       "priority": 50
     },
     {
@@ -71231,7 +71339,7 @@
       "condition": {
         "urlFilter": "||camhub.world/player/player_ads.html"
       },
-      "id": 1139,
+      "id": 1143,
       "priority": 50
     },
     {
@@ -71249,7 +71357,7 @@
         ],
         "urlFilter": "||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
       },
-      "id": 1140,
+      "id": 1144,
       "priority": 50
     },
     {
@@ -71259,7 +71367,7 @@
       "condition": {
         "urlFilter": "||newser.com/javascript/*/adblock.js"
       },
-      "id": 1141,
+      "id": 1145,
       "priority": 50
     },
     {
@@ -71272,7 +71380,7 @@
         ],
         "urlFilter": "||gvt1.com/videoplayback/id/*/source/gfp_video_ads/*/file.mp4"
       },
-      "id": 1142,
+      "id": 1146,
       "priority": 50
     },
     {
@@ -71285,7 +71393,7 @@
         ],
         "urlFilter": "||pubads.g.doubleclick.net/gampad/live/ads?correlator="
       },
-      "id": 1143,
+      "id": 1147,
       "priority": 50
     },
     {
@@ -71295,7 +71403,7 @@
       "condition": {
         "urlFilter": "||theseotools.net^"
       },
-      "id": 1144,
+      "id": 1148,
       "priority": 50
     },
     {
@@ -71305,7 +71413,7 @@
       "condition": {
         "urlFilter": "||tinyhomebuilders.com/scripts/ads.js"
       },
-      "id": 1145,
+      "id": 1149,
       "priority": 50
     },
     {
@@ -71315,7 +71423,7 @@
       "condition": {
         "urlFilter": "||vnhax.com^"
       },
-      "id": 1146,
+      "id": 1150,
       "priority": 50
     },
     {
@@ -71325,7 +71433,7 @@
       "condition": {
         "urlFilter": "||satellite-calculations.com/ads.js"
       },
-      "id": 1147,
+      "id": 1151,
       "priority": 50
     },
     {
@@ -71335,7 +71443,7 @@
       "condition": {
         "urlFilter": "||yepi.com/assets/*advertisement-*.js"
       },
-      "id": 1148,
+      "id": 1152,
       "priority": 50
     },
     {
@@ -71345,7 +71453,7 @@
       "condition": {
         "urlFilter": "||123link.biz/js/blockadblock.js"
       },
-      "id": 1149,
+      "id": 1153,
       "priority": 50
     },
     {
@@ -71355,7 +71463,7 @@
       "condition": {
         "urlFilter": "||spinbot.com/js/adsbygoogle.js"
       },
-      "id": 1150,
+      "id": 1154,
       "priority": 50
     },
     {
@@ -71368,7 +71476,7 @@
         ],
         "urlFilter": "||thelibertydaily.com/*/*.jpg"
       },
-      "id": 1151,
+      "id": 1155,
       "priority": 40
     },
     {
@@ -71378,7 +71486,7 @@
       "condition": {
         "urlFilter": "||ratemyteachers.com/ads.js"
       },
-      "id": 1152,
+      "id": 1156,
       "priority": 50
     },
     {
@@ -71388,7 +71496,7 @@
       "condition": {
         "urlFilter": "||cyfostreams.com/advertisement.js"
       },
-      "id": 1153,
+      "id": 1157,
       "priority": 50
     },
     {
@@ -71398,7 +71506,7 @@
       "condition": {
         "urlFilter": "||xcafe.com/*/advertisement.jsf"
       },
-      "id": 1154,
+      "id": 1158,
       "priority": 50
     },
     {
@@ -71411,7 +71519,7 @@
         ],
         "urlFilter": "||s.jsrdn.com/s/1.js"
       },
-      "id": 1155,
+      "id": 1159,
       "priority": 50
     },
     {
@@ -71424,7 +71532,7 @@
         ],
         "urlFilter": "||g17media.com/detect.html"
       },
-      "id": 1156,
+      "id": 1160,
       "priority": 50
     },
     {
@@ -71439,7 +71547,7 @@
         ],
         "urlFilter": "/advert3.js|"
       },
-      "id": 1157,
+      "id": 1161,
       "priority": 50
     },
     {
@@ -71449,7 +71557,7 @@
       "condition": {
         "urlFilter": "||software-on.com/wp-content/plugins/angwp2/assets/dev/js/advertising.js"
       },
-      "id": 1158,
+      "id": 1162,
       "priority": 50
     },
     {
@@ -71459,7 +71567,7 @@
       "condition": {
         "urlFilter": "||nohat.cc/*/advertisement.js"
       },
-      "id": 1159,
+      "id": 1163,
       "priority": 50
     },
     {
@@ -71472,7 +71580,7 @@
         ],
         "urlFilter": "||d33wubrfki0l68.cloudfront.net/js/*/js/ad-payment.js"
       },
-      "id": 1160,
+      "id": 1164,
       "priority": 40
     },
     {
@@ -71483,7 +71591,7 @@
         "domainType": "firstParty",
         "urlFilter": "||sportsplays.com/ads/ad.html"
       },
-      "id": 1161,
+      "id": 1165,
       "priority": 50
     },
     {
@@ -71493,7 +71601,7 @@
       "condition": {
         "urlFilter": "||raw.githubusercontent.com/wmcmurray/just-detect-adblock/master/baits"
       },
-      "id": 1162,
+      "id": 1166,
       "priority": 50
     },
     {
@@ -71503,7 +71611,7 @@
       "condition": {
         "urlFilter": "||rmdown.com/ads.js"
       },
-      "id": 1163,
+      "id": 1167,
       "priority": 50
     },
     {
@@ -71513,7 +71621,7 @@
       "condition": {
         "urlFilter": "||pornbimbo.com/player/player_ads.html"
       },
-      "id": 1164,
+      "id": 1168,
       "priority": 50
     },
     {
@@ -71523,7 +71631,7 @@
       "condition": {
         "urlFilter": "||ams.cdn.arkadiumhosted.com/assets/*/advertisements.js"
       },
-      "id": 1165,
+      "id": 1169,
       "priority": 50
     },
     {
@@ -71533,7 +71641,7 @@
       "condition": {
         "urlFilter": "||media.trafficjunky.net/__js/test.js"
       },
-      "id": 1166,
+      "id": 1170,
       "priority": 50
     },
     {
@@ -71549,7 +71657,7 @@
         ],
         "urlFilter": "||media.trafficjunky.net/js/holiday-promo.js"
       },
-      "id": 1167,
+      "id": 1171,
       "priority": 50
     },
     {
@@ -71562,7 +71670,7 @@
         ],
         "urlFilter": "||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
       },
-      "id": 1168,
+      "id": 1172,
       "priority": 50
     },
     {
@@ -71572,7 +71680,7 @@
       "condition": {
         "urlFilter": "||geoguessr.com/_ads/"
       },
-      "id": 1169,
+      "id": 1173,
       "priority": 50
     },
     {
@@ -71582,7 +71690,7 @@
       "condition": {
         "urlFilter": "||dramaz.se/*antiadblock.js"
       },
-      "id": 1170,
+      "id": 1174,
       "priority": 50
     },
     {
@@ -71592,7 +71700,7 @@
       "condition": {
         "urlFilter": "||game-maps.com/ads.js"
       },
-      "id": 1171,
+      "id": 1175,
       "priority": 50
     },
     {
@@ -71602,7 +71710,7 @@
       "condition": {
         "urlFilter": "||tubidy.net/ads.js"
       },
-      "id": 1172,
+      "id": 1176,
       "priority": 50
     },
     {
@@ -71615,7 +71723,7 @@
         ],
         "urlFilter": "||imasdk.googleapis.com/js/sdkloader/ima3.js"
       },
-      "id": 1173,
+      "id": 1177,
       "priority": 50
     },
     {
@@ -71625,7 +71733,7 @@
       "condition": {
         "urlFilter": "||origin-ads.exosrv.com/ad99uip8i.php"
       },
-      "id": 1174,
+      "id": 1178,
       "priority": 50
     },
     {
@@ -71635,7 +71743,7 @@
       "condition": {
         "urlFilter": "||script.bloggerku.com/antiadblock/1.0/script.min.js"
       },
-      "id": 1175,
+      "id": 1179,
       "priority": 40
     },
     {
@@ -71648,7 +71756,7 @@
         ],
         "urlFilter": "||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
       },
-      "id": 1176,
+      "id": 1180,
       "priority": 50
     },
     {
@@ -71658,7 +71766,7 @@
       "condition": {
         "urlFilter": "/ad/banner/_adsense_/_adserver/_adview_.ad.json"
       },
-      "id": 1177,
+      "id": 1181,
       "priority": 50
     },
     {
@@ -71668,7 +71776,7 @@
       "condition": {
         "urlFilter": "||sexcamdb.com/advert.js"
       },
-      "id": 1178,
+      "id": 1182,
       "priority": 50
     },
     {
@@ -71678,7 +71786,7 @@
       "condition": {
         "urlFilter": "||nulledteam.com^"
       },
-      "id": 1179,
+      "id": 1183,
       "priority": 50
     },
     {
@@ -71691,7 +71799,7 @@
         ],
         "urlFilter": "||googletagmanager.com/gtag/"
       },
-      "id": 1180,
+      "id": 1184,
       "priority": 40
     },
     {
@@ -71701,7 +71809,7 @@
       "condition": {
         "urlFilter": "||textfree.us^"
       },
-      "id": 1181,
+      "id": 1185,
       "priority": 50
     },
     {
@@ -71714,7 +71822,7 @@
         ],
         "urlFilter": "||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
       },
-      "id": 1182,
+      "id": 1186,
       "priority": 50
     },
     {
@@ -71724,7 +71832,7 @@
       "condition": {
         "urlFilter": "||jolygram.com/js/ba.js"
       },
-      "id": 1183,
+      "id": 1187,
       "priority": 40
     },
     {
@@ -71734,7 +71842,7 @@
       "condition": {
         "urlFilter": "||file-up.org/js/advertisement.js"
       },
-      "id": 1184,
+      "id": 1188,
       "priority": 50
     },
     {
@@ -71751,7 +71859,7 @@
         ],
         "urlFilter": "|http*://*.*/*."
       },
-      "id": 1185,
+      "id": 1189,
       "priority": 50
     },
     {
@@ -71767,7 +71875,7 @@
         ],
         "urlFilter": "||a2zapk.dev/images/"
       },
-      "id": 1186,
+      "id": 1190,
       "priority": 50
     },
     {
@@ -71777,7 +71885,7 @@
       "condition": {
         "urlFilter": "||unlockapk.com/*ads.js"
       },
-      "id": 1187,
+      "id": 1191,
       "priority": 50
     },
     {
@@ -71790,7 +71898,7 @@
         ],
         "urlFilter": "||player.ooyala.com/static/v*/production/latest/ad-plugin/google_ima.min.js"
       },
-      "id": 1188,
+      "id": 1192,
       "priority": 50
     },
     {
@@ -71800,7 +71908,7 @@
       "condition": {
         "urlFilter": "||freshstuff4you.com^"
       },
-      "id": 1189,
+      "id": 1193,
       "priority": 50
     },
     {
@@ -71810,7 +71918,7 @@
       "condition": {
         "urlFilter": "||mshare.xyz/js/blockadblock.js"
       },
-      "id": 1190,
+      "id": 1194,
       "priority": 50
     },
     {
@@ -71820,7 +71928,7 @@
       "condition": {
         "urlFilter": "||ovh.webshark.pl/adserver/*/main_script.js?advertise_check=1"
       },
-      "id": 1191,
+      "id": 1195,
       "priority": 50
     },
     {
@@ -71830,7 +71938,7 @@
       "condition": {
         "urlFilter": "|https:///ovh.webshark.pl/adserver/*/main_script.js?advertise_check=1"
       },
-      "id": 1192,
+      "id": 1196,
       "priority": 50
     },
     {
@@ -71843,7 +71951,7 @@
         ],
         "urlFilter": "||googleads.g.doubleclick.net/pagead/ads?client=ca-pub-"
       },
-      "id": 1193,
+      "id": 1197,
       "priority": 50
     },
     {
@@ -71853,7 +71961,7 @@
       "condition": {
         "urlFilter": "||phoneworld.com.pk/wp-content/themes/phoneworld/assets/js/advertisement.js"
       },
-      "id": 1194,
+      "id": 1198,
       "priority": 50
     },
     {
@@ -71876,7 +71984,7 @@
         ],
         "urlFilter": "/assets/prebid/*.js"
       },
-      "id": 1195,
+      "id": 1199,
       "priority": 50
     },
     {
@@ -71898,7 +72006,7 @@
         ],
         "urlFilter": "/js/prebid/*/others."
       },
-      "id": 1196,
+      "id": 1200,
       "priority": 50
     },
     {
@@ -71920,7 +72028,7 @@
         ],
         "urlFilter": "/js/prebid/*/others/*"
       },
-      "id": 1197,
+      "id": 1201,
       "priority": 50
     },
     {
@@ -71942,7 +72050,7 @@
         ],
         "urlFilter": "/js/prebid/others."
       },
-      "id": 1198,
+      "id": 1202,
       "priority": 50
     },
     {
@@ -71964,7 +72072,7 @@
         ],
         "urlFilter": "/js/prebid/others/*"
       },
-      "id": 1199,
+      "id": 1203,
       "priority": 50
     },
     {
@@ -71983,7 +72091,7 @@
         ],
         "urlFilter": "||googletagservices.com/tag/js/gpt.js"
       },
-      "id": 1200,
+      "id": 1204,
       "priority": 50
     },
     {
@@ -72002,7 +72110,7 @@
         ],
         "urlFilter": "||adservice.google.*/adsid/integrator.js^"
       },
-      "id": 1201,
+      "id": 1205,
       "priority": 50
     },
     {
@@ -72021,7 +72129,7 @@
         ],
         "urlFilter": "||cdn.adsafeprotected.com/*.*.js"
       },
-      "id": 1202,
+      "id": 1206,
       "priority": 50
     },
     {
@@ -72040,7 +72148,7 @@
         ],
         "urlFilter": "||imasdk.googleapis.com/js/sdkloader/ima3.js"
       },
-      "id": 1203,
+      "id": 1207,
       "priority": 50
     },
     {
@@ -72059,7 +72167,7 @@
         ],
         "urlFilter": "||securepubads.g.doubleclick.net/gpt/pubads_impl_"
       },
-      "id": 1204,
+      "id": 1208,
       "priority": 50
     },
     {
@@ -72072,7 +72180,7 @@
         ],
         "urlFilter": "||maxisciences.com/js/amazon/"
       },
-      "id": 1205,
+      "id": 1209,
       "priority": 50
     },
     {
@@ -72082,7 +72190,7 @@
       "condition": {
         "urlFilter": "||rapidrar.com/js/fuckadblock.js"
       },
-      "id": 1206,
+      "id": 1210,
       "priority": 50
     },
     {
@@ -72095,7 +72203,7 @@
         ],
         "urlFilter": "||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
       },
-      "id": 1207,
+      "id": 1211,
       "priority": 50
     },
     {
@@ -72105,7 +72213,7 @@
       "condition": {
         "urlFilter": "||uploadbox.io/js/advertisement.js"
       },
-      "id": 1208,
+      "id": 1212,
       "priority": 50
     },
     {
@@ -72118,7 +72226,7 @@
         ],
         "urlFilter": "||google-analytics.com/analytics.js"
       },
-      "id": 1209,
+      "id": 1213,
       "priority": 50
     },
     {
@@ -72131,7 +72239,7 @@
         ],
         "urlFilter": "||imasdk.googleapis.com/js/sdkloader/ima3.js"
       },
-      "id": 1210,
+      "id": 1214,
       "priority": 50
     },
     {
@@ -72141,7 +72249,7 @@
       "condition": {
         "urlFilter": "||rawgit.com/wejdaneblogger/master/master/wejdane-adblocker.js"
       },
-      "id": 1211,
+      "id": 1215,
       "priority": 40
     },
     {
@@ -72151,7 +72259,7 @@
       "condition": {
         "urlFilter": "||gamezhero.com/api/ima3.js"
       },
-      "id": 1212,
+      "id": 1216,
       "priority": 50
     },
     {
@@ -72164,7 +72272,7 @@
         ],
         "urlFilter": "||imasdk.googleapis.com/js/sdkloader/ima3.js"
       },
-      "id": 1213,
+      "id": 1217,
       "priority": 50
     },
     {
@@ -72174,7 +72282,7 @@
       "condition": {
         "urlFilter": "||onlinemahjong.games/api/ima3.js"
       },
-      "id": 1214,
+      "id": 1218,
       "priority": 50
     },
     {
@@ -72187,7 +72295,7 @@
         ],
         "urlFilter": "||imasdk.googleapis.com/js/sdkloader/ima3.js"
       },
-      "id": 1215,
+      "id": 1219,
       "priority": 50
     },
     {
@@ -72197,7 +72305,7 @@
       "condition": {
         "urlFilter": "||mega-debrid.eu/JS/advertisement.js"
       },
-      "id": 1216,
+      "id": 1220,
       "priority": 50
     },
     {
@@ -72207,7 +72315,7 @@
       "condition": {
         "urlFilter": "||file-upload.com/js/advertisement.js"
       },
-      "id": 1217,
+      "id": 1221,
       "priority": 50
     },
     {
@@ -72220,7 +72328,7 @@
         ],
         "urlFilter": "||getintopc.com/*.js"
       },
-      "id": 1218,
+      "id": 1222,
       "priority": 50
     },
     {
@@ -72230,7 +72338,7 @@
       "condition": {
         "urlFilter": "||getintopc.com^"
       },
-      "id": 1219,
+      "id": 1223,
       "priority": 50
     },
     {
@@ -72240,7 +72348,7 @@
       "condition": {
         "urlFilter": "||tech-platform.info^"
       },
-      "id": 1220,
+      "id": 1224,
       "priority": 50
     },
     {
@@ -72250,7 +72358,7 @@
       "condition": {
         "urlFilter": "||h5.4j.com/js/ima3.js"
       },
-      "id": 1221,
+      "id": 1225,
       "priority": 50
     },
     {
@@ -72263,7 +72371,7 @@
         ],
         "urlFilter": "||imasdk.googleapis.com/js/sdkloader/ima3.js"
       },
-      "id": 1222,
+      "id": 1226,
       "priority": 50
     },
     {
@@ -72273,7 +72381,7 @@
       "condition": {
         "urlFilter": "||itopmusic.com/wp-content/plugins/ad-ace//includes/adblock-detector/advertisement.js"
       },
-      "id": 1223,
+      "id": 1227,
       "priority": 50
     },
     {
@@ -72283,7 +72391,7 @@
       "condition": {
         "urlFilter": "||imgview.net/js/jquery-*.min.js"
       },
-      "id": 1224,
+      "id": 1228,
       "priority": 50
     },
     {
@@ -72293,7 +72401,7 @@
       "condition": {
         "urlFilter": "||linkjust.com^"
       },
-      "id": 1225,
+      "id": 1229,
       "priority": 50
     },
     {
@@ -72303,7 +72411,7 @@
       "condition": {
         "urlFilter": "||emailregex.com^"
       },
-      "id": 1226,
+      "id": 1230,
       "priority": 50
     },
     {
@@ -72316,7 +72424,7 @@
         ],
         "urlFilter": "||pagead2.googlesyndication.com/pagead/show_ads.js"
       },
-      "id": 1227,
+      "id": 1231,
       "priority": 50
     },
     {
@@ -72329,7 +72437,7 @@
         ],
         "urlFilter": "||pagead2.googlesyndication.com/pagead/js/*/show_ads_impl.js"
       },
-      "id": 1228,
+      "id": 1232,
       "priority": 50
     },
     {
@@ -72339,7 +72447,7 @@
       "condition": {
         "urlFilter": "||practicequiz.com/responsive/plugins/detectAdBlock.js"
       },
-      "id": 1229,
+      "id": 1233,
       "priority": 40
     },
     {
@@ -72349,7 +72457,7 @@
       "condition": {
         "urlFilter": "||practicequiz.com/responsive/js/detectAdBlockPC.js"
       },
-      "id": 1230,
+      "id": 1234,
       "priority": 40
     },
     {
@@ -72362,7 +72470,7 @@
         ],
         "urlFilter": "||kizicdn.com/assets/prebid.detect_ad_blocker-*.js"
       },
-      "id": 1231,
+      "id": 1235,
       "priority": 50
     },
     {
@@ -72372,7 +72480,7 @@
       "condition": {
         "urlFilter": "||kizi.com/assets/*advertisement-*.js"
       },
-      "id": 1232,
+      "id": 1236,
       "priority": 50
     },
     {
@@ -72385,7 +72493,7 @@
         ],
         "urlFilter": "||imasdk.googleapis.com/js/sdkloader/ima3.js"
       },
-      "id": 1233,
+      "id": 1237,
       "priority": 50
     },
     {
@@ -72398,7 +72506,7 @@
         ],
         "urlFilter": "||deepbrid.com/backend-dl/app/views/site/default/ads/*.js"
       },
-      "id": 1234,
+      "id": 1238,
       "priority": 50
     },
     {
@@ -72409,7 +72517,7 @@
         "domainType": "thirdParty",
         "urlFilter": "||cdn.rawgit.com/MuhBayu/adBDetect^"
       },
-      "id": 1235,
+      "id": 1239,
       "priority": 40
     },
     {
@@ -72420,7 +72528,7 @@
         "domainType": "firstParty",
         "urlFilter": "||porntube.com/adb_detector.js|"
       },
-      "id": 1236,
+      "id": 1240,
       "priority": 50
     },
     {
@@ -72433,7 +72541,7 @@
         ],
         "urlFilter": "||pagead2.googlesyndication.com/pagead/show_ads.js"
       },
-      "id": 1237,
+      "id": 1241,
       "priority": 50
     },
     {
@@ -72446,7 +72554,7 @@
         ],
         "urlFilter": "||pagead2.googlesyndication.com/pagead/js/r*/show_ads_impl.js"
       },
-      "id": 1238,
+      "id": 1242,
       "priority": 50
     },
     {
@@ -72456,7 +72564,7 @@
       "condition": {
         "urlFilter": "||fontsrepo.com/plugin/*/inc/pause-front.js"
       },
-      "id": 1239,
+      "id": 1243,
       "priority": 40
     },
     {
@@ -72469,7 +72577,7 @@
         ],
         "urlFilter": "||imasdk.googleapis.com/js/sdkloader/ima3.js"
       },
-      "id": 1240,
+      "id": 1244,
       "priority": 50
     },
     {
@@ -72479,7 +72587,7 @@
       "condition": {
         "urlFilter": "||thurrott.com/wp-content/themes/theme/assets/dist/scripts/wp-banners.js"
       },
-      "id": 1241,
+      "id": 1245,
       "priority": 50
     },
     {
@@ -72492,7 +72600,7 @@
         ],
         "urlFilter": "||service.videoplaza.tv/proxy/pulse-sdk-html5/*/latest.min.js"
       },
-      "id": 1242,
+      "id": 1246,
       "priority": 50
     },
     {
@@ -72502,7 +72610,7 @@
       "condition": {
         "urlFilter": "||vivo.sx^"
       },
-      "id": 1243,
+      "id": 1247,
       "priority": 50
     },
     {
@@ -72515,7 +72623,7 @@
         ],
         "urlFilter": "||cdnjs.cloudflare.com/ajax/libs/fuckadblock/*/fuckadblock.min.js"
       },
-      "id": 1244,
+      "id": 1248,
       "priority": 50
     },
     {
@@ -72525,7 +72633,7 @@
       "condition": {
         "urlFilter": "||files.vitalitygames.com/games/webgl/PreloaderBG/*/game-ads.js"
       },
-      "id": 1245,
+      "id": 1249,
       "priority": 50
     },
     {
@@ -72535,7 +72643,7 @@
       "condition": {
         "urlFilter": "||firstonetv.net^"
       },
-      "id": 1246,
+      "id": 1250,
       "priority": 50
     },
     {
@@ -72545,7 +72653,7 @@
       "condition": {
         "urlFilter": "||pngtosvg.com/wp-content/plugins/ad-inserter^"
       },
-      "id": 1247,
+      "id": 1251,
       "priority": 50
     },
     {
@@ -72555,7 +72663,7 @@
       "condition": {
         "urlFilter": "||opjav.com/statics/defaultv2/js/dedect.js"
       },
-      "id": 1248,
+      "id": 1252,
       "priority": 40
     },
     {
@@ -72565,7 +72673,7 @@
       "condition": {
         "urlFilter": "||adulttvlive.net/advertisement.js"
       },
-      "id": 1249,
+      "id": 1253,
       "priority": 50
     },
     {
@@ -72575,7 +72683,7 @@
       "condition": {
         "urlFilter": "||lunaticfiles.com/ads.js|"
       },
-      "id": 1250,
+      "id": 1254,
       "priority": 50
     },
     {
@@ -72585,7 +72693,7 @@
       "condition": {
         "urlFilter": "||everydayporn.co/player/player_ads.html"
       },
-      "id": 1251,
+      "id": 1255,
       "priority": 50
     },
     {
@@ -72595,7 +72703,7 @@
       "condition": {
         "urlFilter": "||vb.icdrama.se/advertisement.js"
       },
-      "id": 1252,
+      "id": 1256,
       "priority": 50
     },
     {
@@ -72608,7 +72716,7 @@
         ],
         "urlFilter": "||pubads.g.doubleclick.net/gampad/adx"
       },
-      "id": 1253,
+      "id": 1257,
       "priority": 50
     },
     {
@@ -72621,7 +72729,7 @@
         ],
         "urlFilter": "||securepubads.g.doubleclick.net/gpt/pubads_impl_*.js"
       },
-      "id": 1254,
+      "id": 1258,
       "priority": 50
     },
     {
@@ -72631,7 +72739,7 @@
       "condition": {
         "urlFilter": "||stream2watch.org/js/advertisement.js"
       },
-      "id": 1255,
+      "id": 1259,
       "priority": 50
     },
     {
@@ -72644,7 +72752,7 @@
         ],
         "urlFilter": "||imasdk.googleapis.com/js/sdkloader/ima3_debug.js"
       },
-      "id": 1256,
+      "id": 1260,
       "priority": 50
     },
     {
@@ -72654,7 +72762,7 @@
       "condition": {
         "urlFilter": "||mp4upload.com/ads.js"
       },
-      "id": 1257,
+      "id": 1261,
       "priority": 50
     },
     {
@@ -72664,7 +72772,7 @@
       "condition": {
         "urlFilter": "||wroffle.com/wp-content/plugins/ad-inserter^"
       },
-      "id": 1258,
+      "id": 1262,
       "priority": 50
     },
     {
@@ -72677,7 +72785,7 @@
         ],
         "urlFilter": "||imasdk.googleapis.com/js/sdkloader/ima3.js"
       },
-      "id": 1259,
+      "id": 1263,
       "priority": 50
     },
     {
@@ -72687,7 +72795,7 @@
       "condition": {
         "urlFilter": "||zonebourse.com/js/googleads.js"
       },
-      "id": 1260,
+      "id": 1264,
       "priority": 50
     },
     {
@@ -72697,7 +72805,7 @@
       "condition": {
         "urlFilter": "||imgdrive.net/anex/alt2.js"
       },
-      "id": 1261,
+      "id": 1265,
       "priority": 50
     },
     {
@@ -72710,7 +72818,7 @@
         ],
         "urlFilter": "||imasdk.googleapis.com/js/sdkloader/ima3.js"
       },
-      "id": 1262,
+      "id": 1266,
       "priority": 50
     },
     {
@@ -72723,7 +72831,7 @@
         ],
         "urlFilter": "||securepubads.g.doubleclick.net/gpt/pubads_impl_*.js"
       },
-      "id": 1263,
+      "id": 1267,
       "priority": 50
     },
     {
@@ -72733,7 +72841,7 @@
       "condition": {
         "urlFilter": "||tetris.com/play-tetris-content/ads.js"
       },
-      "id": 1264,
+      "id": 1268,
       "priority": 50
     },
     {
@@ -72748,7 +72856,7 @@
         ],
         "urlFilter": "/adBlockDetector.js"
       },
-      "id": 1265,
+      "id": 1269,
       "priority": 50
     },
     {
@@ -72762,7 +72870,7 @@
         ],
         "urlFilter": "||imasdk.googleapis.com/js/sdkloader/ima3.js"
       },
-      "id": 1266,
+      "id": 1270,
       "priority": 50
     },
     {
@@ -72775,7 +72883,7 @@
         ],
         "urlFilter": "||imasdk.googleapis.com/js/sdkloader/ima3.js"
       },
-      "id": 1267,
+      "id": 1271,
       "priority": 50
     },
     {
@@ -72788,7 +72896,7 @@
         ],
         "urlFilter": "||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
       },
-      "id": 1268,
+      "id": 1272,
       "priority": 50
     },
     {
@@ -72801,7 +72909,7 @@
         ],
         "urlFilter": "||pagead2.googlesyndication.com/pagead/js/*/show_ads_impl.js"
       },
-      "id": 1269,
+      "id": 1273,
       "priority": 50
     },
     {
@@ -72814,7 +72922,7 @@
         ],
         "urlFilter": "||g.doubleclick.net/pagead/managed/js/gpt/*/pubads_impl.js"
       },
-      "id": 1270,
+      "id": 1274,
       "priority": 50
     },
     {
@@ -72828,7 +72936,7 @@
         ],
         "urlFilter": "||imasdk.googleapis.com/js/sdkloader/ima3.js"
       },
-      "id": 1271,
+      "id": 1275,
       "priority": 50
     },
     {
@@ -72838,7 +72946,7 @@
       "condition": {
         "urlFilter": "||foxbooru.com/js/bab.min.js"
       },
-      "id": 1272,
+      "id": 1276,
       "priority": 40
     },
     {
@@ -72848,7 +72956,7 @@
       "condition": {
         "urlFilter": "||hm732.com/adverts/ad-400.js"
       },
-      "id": 1273,
+      "id": 1277,
       "priority": 50
     },
     {
@@ -72858,7 +72966,7 @@
       "condition": {
         "urlFilter": "||evowars.io/ads.js"
       },
-      "id": 1274,
+      "id": 1278,
       "priority": 50
     },
     {
@@ -72868,7 +72976,7 @@
       "condition": {
         "urlFilter": "||1fichier.com^"
       },
-      "id": 1275,
+      "id": 1279,
       "priority": 50
     },
     {
@@ -72881,7 +72989,7 @@
         ],
         "urlFilter": "||cdnjs.cloudflare.com/ajax/libs/blockadblock/3.2.1/blockadblock.min.js"
       },
-      "id": 1276,
+      "id": 1280,
       "priority": 50
     },
     {
@@ -72904,7 +73012,7 @@
         ],
         "urlFilter": "/nbc-ad*.js"
       },
-      "id": 1277,
+      "id": 1281,
       "priority": 50
     },
     {
@@ -72927,7 +73035,7 @@
         ],
         "urlFilter": "/ads.*.js"
       },
-      "id": 1278,
+      "id": 1282,
       "priority": 50
     },
     {
@@ -72937,7 +73045,7 @@
       "condition": {
         "urlFilter": "||notebookcheck*/fileadmin/scripts/pagecall_dfp_async.js"
       },
-      "id": 1279,
+      "id": 1283,
       "priority": 50
     },
     {
@@ -72947,7 +73055,7 @@
       "condition": {
         "urlFilter": "||hulkshare.com/combine/*adblocker.js"
       },
-      "id": 1280,
+      "id": 1284,
       "priority": 50
     },
     {
@@ -72957,7 +73065,7 @@
       "condition": {
         "urlFilter": "||maps4heroes.com^"
       },
-      "id": 1281,
+      "id": 1285,
       "priority": 50
     },
     {
@@ -72970,7 +73078,7 @@
         ],
         "urlFilter": "||pagead2.googlesyndication.com/pagead/"
       },
-      "id": 1282,
+      "id": 1286,
       "priority": 50
     },
     {
@@ -72980,7 +73088,7 @@
       "condition": {
         "urlFilter": "||tvcatchup.com^"
       },
-      "id": 1283,
+      "id": 1287,
       "priority": 50
     },
     {
@@ -72993,7 +73101,7 @@
         ],
         "urlFilter": "||pagead2.googlesyndication.com/pagead/js/*/show_ads_impl.js"
       },
-      "id": 1284,
+      "id": 1288,
       "priority": 50
     },
     {
@@ -73006,7 +73114,7 @@
         ],
         "urlFilter": "||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
       },
-      "id": 1285,
+      "id": 1289,
       "priority": 50
     },
     {
@@ -73017,7 +73125,7 @@
         "domainType": "firstParty",
         "urlFilter": "||assets.beinsports.com/*/scripts/ads.js"
       },
-      "id": 1286,
+      "id": 1290,
       "priority": 50
     },
     {
@@ -73027,7 +73135,7 @@
       "condition": {
         "urlFilter": "||billiongraves.com^"
       },
-      "id": 1287,
+      "id": 1291,
       "priority": 50
     },
     {
@@ -73037,7 +73145,7 @@
       "condition": {
         "urlFilter": "||education-load.com/js/main.js"
       },
-      "id": 1288,
+      "id": 1292,
       "priority": 40
     },
     {
@@ -73047,7 +73155,7 @@
       "condition": {
         "urlFilter": "||houstonpress.com/js_cache/ads.js"
       },
-      "id": 1289,
+      "id": 1293,
       "priority": 50
     },
     {
@@ -73060,7 +73168,7 @@
         ],
         "urlFilter": "||imasdk.googleapis.com/js/sdkloader/ima3.js"
       },
-      "id": 1290,
+      "id": 1294,
       "priority": 50
     },
     {
@@ -73070,7 +73178,7 @@
       "condition": {
         "urlFilter": "||phoenixnewtimes.com/js_cache/ads.js^"
       },
-      "id": 1291,
+      "id": 1295,
       "priority": 50
     },
     {
@@ -73083,7 +73191,7 @@
         ],
         "urlFilter": "||cdn-surfline.com/quiver/*/scripts/"
       },
-      "id": 1292,
+      "id": 1296,
       "priority": 50
     },
     {
@@ -73093,7 +73201,7 @@
       "condition": {
         "urlFilter": "||thememypc.net/wp-content/plugins/nervous-pleasure/assets/js/advertisement.min.js"
       },
-      "id": 1293,
+      "id": 1297,
       "priority": 50
     },
     {
@@ -73106,7 +73214,7 @@
         ],
         "urlFilter": "/^https?:\\/\\/anonymousemail\\.me\\/[\\S]{3,10}\\.js"
       },
-      "id": 1294,
+      "id": 1298,
       "priority": 40
     },
     {
@@ -73119,7 +73227,7 @@
         ],
         "urlFilter": "||benkhouya.com/ads.js"
       },
-      "id": 1295,
+      "id": 1299,
       "priority": 50
     },
     {
@@ -73129,7 +73237,7 @@
       "condition": {
         "urlFilter": "||einthusan.ca/prebid.js"
       },
-      "id": 1296,
+      "id": 1300,
       "priority": 50
     },
     {
@@ -73139,7 +73247,7 @@
       "condition": {
         "urlFilter": "||einthusan.tv/prebid.js"
       },
-      "id": 1297,
+      "id": 1301,
       "priority": 50
     },
     {
@@ -73149,7 +73257,7 @@
       "condition": {
         "urlFilter": "||einthusan.com/prebid.js"
       },
-      "id": 1298,
+      "id": 1302,
       "priority": 50
     },
     {
@@ -73159,7 +73267,7 @@
       "condition": {
         "urlFilter": "||vid.springserve.com/vast/*einthusan.ca"
       },
-      "id": 1299,
+      "id": 1303,
       "priority": 50
     },
     {
@@ -73169,7 +73277,7 @@
       "condition": {
         "urlFilter": "||vid.springserve.com/vast/*einthusan.tv"
       },
-      "id": 1300,
+      "id": 1304,
       "priority": 50
     },
     {
@@ -73179,7 +73287,7 @@
       "condition": {
         "urlFilter": "||vid.springserve.com/vast/*einthusan.com"
       },
-      "id": 1301,
+      "id": 1305,
       "priority": 50
     },
     {
@@ -73194,7 +73302,7 @@
         ],
         "urlFilter": "||imasdk.googleapis.com/js/sdkloader/loader.js"
       },
-      "id": 1302,
+      "id": 1306,
       "priority": 50
     },
     {
@@ -73204,7 +73312,7 @@
       "condition": {
         "urlFilter": "||gardenista.com/assets/scripts/advert.js"
       },
-      "id": 1303,
+      "id": 1307,
       "priority": 50
     },
     {
@@ -73217,7 +73325,7 @@
         ],
         "urlFilter": "/js/advertisement."
       },
-      "id": 1304,
+      "id": 1308,
       "priority": 50
     },
     {
@@ -73230,7 +73338,7 @@
         ],
         "urlFilter": "||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
       },
-      "id": 1305,
+      "id": 1309,
       "priority": 50
     },
     {
@@ -73240,7 +73348,7 @@
       "condition": {
         "urlFilter": "||hgtv.ca^"
       },
-      "id": 1306,
+      "id": 1310,
       "priority": 50
     },
     {
@@ -73250,7 +73358,7 @@
       "condition": {
         "urlFilter": "||livesports.pw/*adblock.js"
       },
-      "id": 1307,
+      "id": 1311,
       "priority": 50
     },
     {
@@ -73260,7 +73368,7 @@
       "condition": {
         "urlFilter": "||faucetcrypto.com^"
       },
-      "id": 1308,
+      "id": 1312,
       "priority": 50
     },
     {
@@ -73273,7 +73381,7 @@
         ],
         "urlFilter": "||v.fwmrm.net/ad/g/1"
       },
-      "id": 1309,
+      "id": 1313,
       "priority": 50
     },
     {
@@ -73286,7 +73394,7 @@
         ],
         "urlFilter": "||pubads.g.doubleclick.net^"
       },
-      "id": 1310,
+      "id": 1314,
       "priority": 50
     },
     {
@@ -73296,7 +73404,7 @@
       "condition": {
         "urlFilter": "||mapquest.com^"
       },
-      "id": 1311,
+      "id": 1315,
       "priority": 50
     },
     {
@@ -73306,7 +73414,7 @@
       "condition": {
         "urlFilter": "||tvarticles.org^"
       },
-      "id": 1312,
+      "id": 1316,
       "priority": 50
     },
     {
@@ -73322,7 +73430,7 @@
         ],
         "urlFilter": "||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
       },
-      "id": 1313,
+      "id": 1317,
       "priority": 40
     },
     {
@@ -73332,7 +73440,7 @@
       "condition": {
         "urlFilter": "||cdncontent.wakanim.tv/scripts/dist/ads.js"
       },
-      "id": 1314,
+      "id": 1318,
       "priority": 50
     },
     {
@@ -73342,7 +73450,7 @@
       "condition": {
         "urlFilter": "||speedtest.net/javascript/ads.js"
       },
-      "id": 1315,
+      "id": 1319,
       "priority": 50
     },
     {
@@ -73352,7 +73460,7 @@
       "condition": {
         "urlFilter": "||fcportables.com/wp-content/uploads/ad-inserter^"
       },
-      "id": 1316,
+      "id": 1320,
       "priority": 50
     },
     {
@@ -73365,7 +73473,7 @@
         ],
         "urlFilter": "||liveadexchanger.com/a/display.php^"
       },
-      "id": 1317,
+      "id": 1321,
       "priority": 50
     },
     {
@@ -73375,7 +73483,7 @@
       "condition": {
         "urlFilter": "||majesy.com/css-cdn/advertisement.js"
       },
-      "id": 1318,
+      "id": 1322,
       "priority": 50
     },
     {
@@ -73385,7 +73493,7 @@
       "condition": {
         "urlFilter": "||mage.si/advertisement.js"
       },
-      "id": 1319,
+      "id": 1323,
       "priority": 50
     },
     {
@@ -73395,7 +73503,7 @@
       "condition": {
         "urlFilter": "||majesy.com/advertisement.js"
       },
-      "id": 1320,
+      "id": 1324,
       "priority": 50
     },
     {
@@ -73405,7 +73513,7 @@
       "condition": {
         "urlFilter": "||magesy.blog/dublocker.js"
       },
-      "id": 1321,
+      "id": 1325,
       "priority": 40
     },
     {
@@ -73415,7 +73523,7 @@
       "condition": {
         "urlFilter": "/https?:\\/\\/magesy\\.net\\/[a-z]{1,5}_[a-zA-Z0-9]{15,35}\\.js"
       },
-      "id": 1322,
+      "id": 1326,
       "priority": 40
     },
     {
@@ -73430,7 +73538,7 @@
         ],
         "urlFilter": "/ad_banner.js"
       },
-      "id": 1323,
+      "id": 1327,
       "priority": 50
     },
     {
@@ -73440,7 +73548,7 @@
       "condition": {
         "urlFilter": "||img.tfd.com/ads.js"
       },
-      "id": 1324,
+      "id": 1328,
       "priority": 50
     },
     {
@@ -73450,7 +73558,7 @@
       "condition": {
         "urlFilter": "||thefreedictionary.com/_/tr.ashx?"
       },
-      "id": 1325,
+      "id": 1329,
       "priority": 40
     },
     {
@@ -73460,7 +73568,7 @@
       "condition": {
         "urlFilter": "||sltrib.com/pb/resources/scripts/utils/ads/ads.js"
       },
-      "id": 1326,
+      "id": 1330,
       "priority": 50
     },
     {
@@ -73473,7 +73581,7 @@
         ],
         "urlFilter": "||securepubads.g.doubleclick.net/gampad/ads^"
       },
-      "id": 1327,
+      "id": 1331,
       "priority": 50
     },
     {
@@ -73483,7 +73591,7 @@
       "condition": {
         "urlFilter": "||cdn.theatlantic.com/assets/static/*/js/advertisement.2.js"
       },
-      "id": 1328,
+      "id": 1332,
       "priority": 50
     },
     {
@@ -73493,7 +73601,7 @@
       "condition": {
         "urlFilter": "||hotcopper.com.au/ads.js"
       },
-      "id": 1329,
+      "id": 1333,
       "priority": 50
     },
     {
@@ -73506,7 +73614,7 @@
         ],
         "urlFilter": "||cdn.broadstreetads.com/init.js"
       },
-      "id": 1330,
+      "id": 1334,
       "priority": 50
     },
     {
@@ -73516,7 +73624,7 @@
       "condition": {
         "urlFilter": "||mma-core.com/vidjs*.js"
       },
-      "id": 1331,
+      "id": 1335,
       "priority": 40
     },
     {
@@ -73526,7 +73634,7 @@
       "condition": {
         "urlFilter": "||clksite.com/static/advertisement.js"
       },
-      "id": 1332,
+      "id": 1336,
       "priority": 50
     },
     {
@@ -73536,7 +73644,7 @@
       "condition": {
         "urlFilter": "||dl.go4up.com/*ad*.js"
       },
-      "id": 1333,
+      "id": 1337,
       "priority": 50
     },
     {
@@ -73552,7 +73660,7 @@
         ],
         "urlFilter": "||sharethis.com/button/"
       },
-      "id": 1334,
+      "id": 1338,
       "priority": 50
     },
     {
@@ -73565,7 +73673,7 @@
         ],
         "urlFilter": "||static.adsafeprotected.com/skeleton.js"
       },
-      "id": 1335,
+      "id": 1339,
       "priority": 50
     },
     {
@@ -73575,7 +73683,7 @@
       "condition": {
         "urlFilter": "||minecraftbuildinginc.com/wp-content/themes/*/js/advertisement.js"
       },
-      "id": 1336,
+      "id": 1340,
       "priority": 50
     },
     {
@@ -73585,7 +73693,7 @@
       "condition": {
         "urlFilter": "||surfguru.com^"
       },
-      "id": 1337,
+      "id": 1341,
       "priority": 50
     },
     {
@@ -73595,7 +73703,7 @@
       "condition": {
         "urlFilter": "||games.gamesplaza.com^"
       },
-      "id": 1338,
+      "id": 1342,
       "priority": 50
     },
     {
@@ -73605,7 +73713,7 @@
       "condition": {
         "urlFilter": "||games.gamesplaza.com/shared/loader/advert.js"
       },
-      "id": 1339,
+      "id": 1343,
       "priority": 50
     },
     {
@@ -73618,7 +73726,7 @@
         ],
         "urlFilter": "||imasdk.googleapis.com/js/sdkloader/ima3.js"
       },
-      "id": 1340,
+      "id": 1344,
       "priority": 50
     },
     {
@@ -73628,7 +73736,7 @@
       "condition": {
         "urlFilter": "||games.gamesplaza.com/shared/loader/gads.js"
       },
-      "id": 1341,
+      "id": 1345,
       "priority": 50
     },
     {
@@ -73638,7 +73746,7 @@
       "condition": {
         "urlFilter": "||media.studybreakmedia.com/doubleclick/ads2.js"
       },
-      "id": 1342,
+      "id": 1346,
       "priority": 50
     },
     {
@@ -73648,7 +73756,7 @@
       "condition": {
         "urlFilter": "||123link.pw/1/2/advertisement.js"
       },
-      "id": 1343,
+      "id": 1347,
       "priority": 50
     },
     {
@@ -73661,7 +73769,7 @@
         ],
         "urlFilter": "||imasdk.googleapis.com/js/sdkloader/ima3.js"
       },
-      "id": 1344,
+      "id": 1348,
       "priority": 50
     },
     {
@@ -73671,7 +73779,7 @@
       "condition": {
         "urlFilter": "||doomed.io/scripts/ads.min.js"
       },
-      "id": 1345,
+      "id": 1349,
       "priority": 50
     },
     {
@@ -73684,7 +73792,7 @@
         ],
         "urlFilter": "||pagead2.googlesyndication.com/pagead/js/r20180124/r20170110/osd.js"
       },
-      "id": 1346,
+      "id": 1350,
       "priority": 50
     },
     {
@@ -73694,7 +73802,7 @@
       "condition": {
         "urlFilter": "||9bis.net/advert.js"
       },
-      "id": 1347,
+      "id": 1351,
       "priority": 50
     },
     {
@@ -73710,7 +73818,7 @@
         ],
         "urlFilter": "||pagead2.googlesyndication.com/pagead/"
       },
-      "id": 1348,
+      "id": 1352,
       "priority": 50
     },
     {
@@ -73720,7 +73828,7 @@
       "condition": {
         "urlFilter": "||metabomb.net^"
       },
-      "id": 1349,
+      "id": 1353,
       "priority": 50
     },
     {
@@ -73730,7 +73838,7 @@
       "condition": {
         "urlFilter": "||www.multiup.*/js/compiled_js_"
       },
-      "id": 1350,
+      "id": 1354,
       "priority": 40
     },
     {
@@ -73743,7 +73851,7 @@
         ],
         "urlFilter": "||c.amazon-adsystem.com/aax2/apstag.js"
       },
-      "id": 1351,
+      "id": 1355,
       "priority": 50
     },
     {
@@ -73753,7 +73861,7 @@
       "condition": {
         "urlFilter": "||player.watch.aetnd.com^"
       },
-      "id": 1352,
+      "id": 1356,
       "priority": 50
     },
     {
@@ -73766,7 +73874,7 @@
         ],
         "urlFilter": "||imasdk.googleapis.com/js/sdkloader/ima3.js"
       },
-      "id": 1353,
+      "id": 1357,
       "priority": 50
     },
     {
@@ -73776,7 +73884,7 @@
       "condition": {
         "urlFilter": "||download.hr/module/detector/adsbygoogle.js"
       },
-      "id": 1354,
+      "id": 1358,
       "priority": 50
     },
     {
@@ -73789,7 +73897,7 @@
         ],
         "urlFilter": "||fwmrm.net^"
       },
-      "id": 1355,
+      "id": 1359,
       "priority": 50
     },
     {
@@ -73802,7 +73910,7 @@
         ],
         "urlFilter": "||v.fwmrm.net/ad/g/1?"
       },
-      "id": 1356,
+      "id": 1360,
       "priority": 50
     },
     {
@@ -73815,7 +73923,7 @@
         ],
         "urlFilter": "||googleads.g.doubleclick.net/pagead/images/abg"
       },
-      "id": 1357,
+      "id": 1361,
       "priority": 50
     },
     {
@@ -73828,7 +73936,7 @@
         ],
         "urlFilter": "||pagead2.googlesyndication.com/pagead/js/*/show_ads_impl.js"
       },
-      "id": 1358,
+      "id": 1362,
       "priority": 50
     },
     {
@@ -73838,7 +73946,7 @@
       "condition": {
         "urlFilter": "||assets.jumpstartmediavault.com/abd/v2/jam_abd.min.js"
       },
-      "id": 1359,
+      "id": 1363,
       "priority": 40
     },
     {
@@ -73848,7 +73956,7 @@
       "condition": {
         "urlFilter": "||assets.jumpstartmediavault.com/abd/v2/jam_abd_nag.min.js"
       },
-      "id": 1360,
+      "id": 1364,
       "priority": 40
     },
     {
@@ -73858,7 +73966,7 @@
       "condition": {
         "urlFilter": "||seattletimes.com/wp-content/plugins/st-privacy-detection/js/src/ads/ad-test.js"
       },
-      "id": 1361,
+      "id": 1365,
       "priority": 50
     },
     {
@@ -73868,7 +73976,7 @@
       "condition": {
         "urlFilter": "||therichest.com^"
       },
-      "id": 1362,
+      "id": 1366,
       "priority": 50
     },
     {
@@ -73878,7 +73986,7 @@
       "condition": {
         "urlFilter": "||gigaleecher.com/templates/plugmod/giga.js"
       },
-      "id": 1363,
+      "id": 1367,
       "priority": 40
     },
     {
@@ -73892,7 +74000,7 @@
         ],
         "urlFilter": "||menshealth.com/*/pubads"
       },
-      "id": 1364,
+      "id": 1368,
       "priority": 50
     },
     {
@@ -73906,7 +74014,7 @@
         ],
         "urlFilter": "||ad.doubleclick.net/ddm/ad/*"
       },
-      "id": 1365,
+      "id": 1369,
       "priority": 50
     },
     {
@@ -73916,7 +74024,7 @@
       "condition": {
         "urlFilter": "||porn.com^"
       },
-      "id": 1366,
+      "id": 1370,
       "priority": 50
     },
     {
@@ -73926,7 +74034,7 @@
       "condition": {
         "urlFilter": "||getfree.co.in^"
       },
-      "id": 1367,
+      "id": 1371,
       "priority": 50
     },
     {
@@ -73936,7 +74044,7 @@
       "condition": {
         "urlFilter": "||apjr.needrom.com/advert*.js"
       },
-      "id": 1368,
+      "id": 1372,
       "priority": 50
     },
     {
@@ -73946,7 +74054,7 @@
       "condition": {
         "urlFilter": "||themelock.com/advertisement.js"
       },
-      "id": 1369,
+      "id": 1373,
       "priority": 50
     },
     {
@@ -73956,7 +74064,7 @@
       "condition": {
         "urlFilter": "||target.my.com/media/js/app/ads.js^"
       },
-      "id": 1370,
+      "id": 1374,
       "priority": 50
     },
     {
@@ -73966,7 +74074,7 @@
       "condition": {
         "urlFilter": "||ebates.com^"
       },
-      "id": 1371,
+      "id": 1375,
       "priority": 50
     },
     {
@@ -73976,7 +74084,7 @@
       "condition": {
         "urlFilter": "||vortez.net/jscript/warn2.js"
       },
-      "id": 1372,
+      "id": 1376,
       "priority": 40
     },
     {
@@ -73989,7 +74097,7 @@
         ],
         "urlFilter": "||imasdk.googleapis.com/js/sdkloader/ima3.js"
       },
-      "id": 1373,
+      "id": 1377,
       "priority": 50
     },
     {
@@ -73999,7 +74107,7 @@
       "condition": {
         "urlFilter": "||uploadcloud.pro/js/Aab-js-"
       },
-      "id": 1374,
+      "id": 1378,
       "priority": 40
     },
     {
@@ -74009,7 +74117,7 @@
       "condition": {
         "urlFilter": "||uploadcloud.pro^"
       },
-      "id": 1375,
+      "id": 1379,
       "priority": 50
     },
     {
@@ -74019,7 +74127,7 @@
       "condition": {
         "urlFilter": "||festyy.com^"
       },
-      "id": 1376,
+      "id": 1380,
       "priority": 50
     },
     {
@@ -74029,7 +74137,7 @@
       "condition": {
         "urlFilter": "||bravofly.com^"
       },
-      "id": 1377,
+      "id": 1381,
       "priority": 50
     },
     {
@@ -74039,7 +74147,7 @@
       "condition": {
         "urlFilter": "||cpmlink.net^"
       },
-      "id": 1378,
+      "id": 1382,
       "priority": 50
     },
     {
@@ -74052,7 +74160,7 @@
         ],
         "urlFilter": "||v.fwmrm.net/ad/g/1?"
       },
-      "id": 1379,
+      "id": 1383,
       "priority": 50
     },
     {
@@ -74062,7 +74170,7 @@
       "condition": {
         "urlFilter": "||thebookee.net^"
       },
-      "id": 1380,
+      "id": 1384,
       "priority": 50
     },
     {
@@ -74072,7 +74180,7 @@
       "condition": {
         "urlFilter": "||vpnsplit.com/ads/advertisement.js"
       },
-      "id": 1381,
+      "id": 1385,
       "priority": 50
     },
     {
@@ -74082,7 +74190,7 @@
       "condition": {
         "urlFilter": "||tcpvpn.com/ads/advertisement.js"
       },
-      "id": 1382,
+      "id": 1386,
       "priority": 50
     },
     {
@@ -74092,7 +74200,7 @@
       "condition": {
         "urlFilter": "||firstonetv.net/*/*&&_="
       },
-      "id": 1383,
+      "id": 1387,
       "priority": 50
     },
     {
@@ -74102,7 +74210,7 @@
       "condition": {
         "urlFilter": "||media.wired.it/static/js/cn-adv.js"
       },
-      "id": 1384,
+      "id": 1388,
       "priority": 50
     },
     {
@@ -74112,7 +74220,7 @@
       "condition": {
         "urlFilter": "||hdliveextra-a.akamaihd.net/HD/scripts/*/config/ads.js"
       },
-      "id": 1385,
+      "id": 1389,
       "priority": 50
     },
     {
@@ -74122,7 +74230,7 @@
       "condition": {
         "urlFilter": "||bigspeeds.com/ajax/advertisement.js"
       },
-      "id": 1386,
+      "id": 1390,
       "priority": 50
     },
     {
@@ -74132,7 +74240,7 @@
       "condition": {
         "urlFilter": "||rappers.in/js/antiadblock.js"
       },
-      "id": 1387,
+      "id": 1391,
       "priority": 50
     },
     {
@@ -74142,7 +74250,7 @@
       "condition": {
         "urlFilter": "||javhiv.com/statics/defaultv2/js/dedect.js"
       },
-      "id": 1388,
+      "id": 1392,
       "priority": 40
     },
     {
@@ -74152,7 +74260,7 @@
       "condition": {
         "urlFilter": "||wendgames.com/advertisement.js"
       },
-      "id": 1389,
+      "id": 1393,
       "priority": 50
     },
     {
@@ -74162,7 +74270,7 @@
       "condition": {
         "urlFilter": "||pigav.com/cdn-cgi/apps/head/*.js"
       },
-      "id": 1390,
+      "id": 1394,
       "priority": 40
     },
     {
@@ -74173,7 +74281,7 @@
         "domainType": "firstParty",
         "urlFilter": "||anonymousemail.me/*.js"
       },
-      "id": 1391,
+      "id": 1395,
       "priority": 50
     },
     {
@@ -74183,7 +74291,7 @@
       "condition": {
         "urlFilter": "||gpone.com/cdn-cgi/apps/head/*.js"
       },
-      "id": 1392,
+      "id": 1396,
       "priority": 40
     },
     {
@@ -74193,7 +74301,7 @@
       "condition": {
         "urlFilter": "||beinsports.com/wp-content/themes/bein/dist/scripts/fuckadblock.js"
       },
-      "id": 1393,
+      "id": 1397,
       "priority": 50
     },
     {
@@ -74203,7 +74311,7 @@
       "condition": {
         "urlFilter": "||tmearn.com/js/ads*.js"
       },
-      "id": 1394,
+      "id": 1398,
       "priority": 50
     },
     {
@@ -74213,7 +74321,7 @@
       "condition": {
         "urlFilter": "||7sim.net^"
       },
-      "id": 1395,
+      "id": 1399,
       "priority": 50
     },
     {
@@ -74223,7 +74331,7 @@
       "condition": {
         "urlFilter": "||a10.com/wdg/js_aggregator-active/js/module/monetisation/advertisement.js"
       },
-      "id": 1396,
+      "id": 1400,
       "priority": 50
     },
     {
@@ -74233,7 +74341,7 @@
       "condition": {
         "urlFilter": "||vertamedia.com/assets/img/adimage.png"
       },
-      "id": 1397,
+      "id": 1401,
       "priority": 50
     },
     {
@@ -74246,7 +74354,7 @@
         ],
         "urlFilter": "||v.fwmrm.net/ad/g/1?"
       },
-      "id": 1398,
+      "id": 1402,
       "priority": 50
     },
     {
@@ -74259,7 +74367,7 @@
         ],
         "urlFilter": "||mssl.fwmrm.net/*/MTG_Brightcove_HTML5/AdManager.js"
       },
-      "id": 1399,
+      "id": 1403,
       "priority": 50
     },
     {
@@ -74272,7 +74380,7 @@
         ],
         "urlFilter": "||play.tv3.lt/ad/banner/*.ad.json"
       },
-      "id": 1400,
+      "id": 1404,
       "priority": 50
     },
     {
@@ -74282,7 +74390,7 @@
       "condition": {
         "urlFilter": "||business-standard.com/ad/banner.js"
       },
-      "id": 1401,
+      "id": 1405,
       "priority": 50
     },
     {
@@ -74295,7 +74403,7 @@
         ],
         "urlFilter": "||v.fwmrm.net/ad/l/1"
       },
-      "id": 1402,
+      "id": 1406,
       "priority": 50
     },
     {
@@ -74308,7 +74416,7 @@
         ],
         "urlFilter": "||v.fwmrm.net/ad/g/1"
       },
-      "id": 1403,
+      "id": 1407,
       "priority": 50
     },
     {
@@ -74321,7 +74429,7 @@
         ],
         "urlFilter": "||mssl.fwmrm.net/*/MTG_Brightcove_HTML5/AdManager.js"
       },
-      "id": 1404,
+      "id": 1408,
       "priority": 50
     },
     {
@@ -74334,7 +74442,7 @@
         ],
         "urlFilter": "||ads.korri.fr/index.js"
       },
-      "id": 1405,
+      "id": 1409,
       "priority": 50
     },
     {
@@ -74347,7 +74455,7 @@
         ],
         "urlFilter": "||amsarkadium-a.akamaihd.net/assets/*/arena/heap/advertisements.js"
       },
-      "id": 1406,
+      "id": 1410,
       "priority": 50
     },
     {
@@ -74360,7 +74468,7 @@
         ],
         "urlFilter": "||v.fwmrm.net/ad/p/1?"
       },
-      "id": 1407,
+      "id": 1411,
       "priority": 50
     },
     {
@@ -74373,7 +74481,7 @@
         ],
         "urlFilter": "/crossdomain.xml"
       },
-      "id": 1408,
+      "id": 1412,
       "priority": 50
     },
     {
@@ -74386,7 +74494,7 @@
         ],
         "urlFilter": "||ak.http.anno.channel4.com^"
       },
-      "id": 1409,
+      "id": 1413,
       "priority": 50
     },
     {
@@ -74399,7 +74507,7 @@
         ],
         "urlFilter": "||cf.http.anno.channel4.com^"
       },
-      "id": 1410,
+      "id": 1414,
       "priority": 50
     },
     {
@@ -74412,7 +74520,7 @@
         ],
         "urlFilter": "||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
       },
-      "id": 1411,
+      "id": 1415,
       "priority": 50
     },
     {
@@ -74423,7 +74531,7 @@
         "domainType": "firstParty",
         "urlFilter": "||egobits.com/envato/detector/detector/adsbygoogle.js"
       },
-      "id": 1412,
+      "id": 1416,
       "priority": 50
     },
     {
@@ -74436,7 +74544,7 @@
         ],
         "urlFilter": "||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
       },
-      "id": 1413,
+      "id": 1417,
       "priority": 50
     },
     {
@@ -74446,7 +74554,7 @@
       "condition": {
         "urlFilter": "||moviemakeronline.com/resources/jsc/ads.js"
       },
-      "id": 1414,
+      "id": 1418,
       "priority": 50
     },
     {
@@ -74456,7 +74564,7 @@
       "condition": {
         "urlFilter": "||sportspyder.com/assets/ads-*.js|"
       },
-      "id": 1415,
+      "id": 1419,
       "priority": 50
     },
     {
@@ -74466,7 +74574,7 @@
       "condition": {
         "urlFilter": "||stream.nbcsports.com/assets/page/general/ads.js"
       },
-      "id": 1416,
+      "id": 1420,
       "priority": 50
     },
     {
@@ -74476,7 +74584,7 @@
       "condition": {
         "urlFilter": "||copypastecharacter.com^"
       },
-      "id": 1417,
+      "id": 1421,
       "priority": 50
     },
     {
@@ -74486,7 +74594,7 @@
       "condition": {
         "urlFilter": "||vaughnlive.tv/*/js/ima3.js"
       },
-      "id": 1418,
+      "id": 1422,
       "priority": 50
     },
     {
@@ -74499,7 +74607,7 @@
         ],
         "urlFilter": "||cdn.pelcro.com/js/bab/min.js"
       },
-      "id": 1419,
+      "id": 1423,
       "priority": 40
     },
     {
@@ -74509,7 +74617,7 @@
       "condition": {
         "urlFilter": "||kingofdown.com^"
       },
-      "id": 1420,
+      "id": 1424,
       "priority": 50
     },
     {
@@ -74522,7 +74630,7 @@
         ],
         "urlFilter": "||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
       },
-      "id": 1421,
+      "id": 1425,
       "priority": 50
     },
     {
@@ -74532,7 +74640,7 @@
       "condition": {
         "urlFilter": "||assets.gameallianz.com/api/js/ads/ads.js"
       },
-      "id": 1422,
+      "id": 1426,
       "priority": 50
     },
     {
@@ -74545,7 +74653,7 @@
         ],
         "urlFilter": "||imasdk.googleapis.com/js/sdkloader/ima3.js"
       },
-      "id": 1423,
+      "id": 1427,
       "priority": 50
     },
     {
@@ -74555,7 +74663,7 @@
       "condition": {
         "urlFilter": "||games.iwin.com^"
       },
-      "id": 1424,
+      "id": 1428,
       "priority": 50
     },
     {
@@ -74573,7 +74681,7 @@
         ],
         "urlFilter": "/adsense.js"
       },
-      "id": 1425,
+      "id": 1429,
       "priority": 50
     },
     {
@@ -74583,7 +74691,7 @@
       "condition": {
         "urlFilter": "||ahmedabadmirror.indiatimes.com/ads.cms"
       },
-      "id": 1426,
+      "id": 1430,
       "priority": 50
     },
     {
@@ -74593,7 +74701,7 @@
       "condition": {
         "urlFilter": "||timesofindia.indiatimes.com/ads_native_js^"
       },
-      "id": 1427,
+      "id": 1431,
       "priority": 50
     },
     {
@@ -74603,7 +74711,7 @@
       "condition": {
         "urlFilter": "||timesofindia.indiatimes.com/ad-banner-zedo^"
       },
-      "id": 1428,
+      "id": 1432,
       "priority": 50
     },
     {
@@ -74613,7 +74721,7 @@
       "condition": {
         "urlFilter": "||cdn.reverso.net/*/static/js/advertising.js^"
       },
-      "id": 1429,
+      "id": 1433,
       "priority": 50
     },
     {
@@ -74623,7 +74731,7 @@
       "condition": {
         "urlFilter": "||indiaeveryday.com/staticcontent/ads/googleads.js^"
       },
-      "id": 1430,
+      "id": 1434,
       "priority": 50
     },
     {
@@ -74633,7 +74741,7 @@
       "condition": {
         "urlFilter": "||tubeninja.net/ads.js^"
       },
-      "id": 1431,
+      "id": 1435,
       "priority": 50
     },
     {
@@ -74643,7 +74751,7 @@
       "condition": {
         "urlFilter": "||destyy.com^"
       },
-      "id": 1432,
+      "id": 1436,
       "priority": 50
     },
     {
@@ -74653,7 +74761,7 @@
       "condition": {
         "urlFilter": "||getfreesmsnumber.com/js/advertisement.js^"
       },
-      "id": 1433,
+      "id": 1437,
       "priority": 50
     },
     {
@@ -74663,7 +74771,7 @@
       "condition": {
         "urlFilter": "||realclearpolitics.com/asset/section/ad-blocker.js"
       },
-      "id": 1434,
+      "id": 1438,
       "priority": 50
     },
     {
@@ -74676,7 +74784,7 @@
         ],
         "urlFilter": "||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
       },
-      "id": 1435,
+      "id": 1439,
       "priority": 50
     },
     {
@@ -74686,7 +74794,7 @@
       "condition": {
         "urlFilter": "||uploadboy.com/ads.js"
       },
-      "id": 1436,
+      "id": 1440,
       "priority": 50
     },
     {
@@ -74696,7 +74804,7 @@
       "condition": {
         "urlFilter": "||travel-assets.com/ads/*/expadsblocked.js^"
       },
-      "id": 1437,
+      "id": 1441,
       "priority": 50
     },
     {
@@ -74706,7 +74814,7 @@
       "condition": {
         "urlFilter": "||d.ibtimes.co.uk/imasdk/ads.js^"
       },
-      "id": 1438,
+      "id": 1442,
       "priority": 50
     },
     {
@@ -74716,7 +74824,7 @@
       "condition": {
         "urlFilter": "||dailygeekshow.com/wp-content/themes/soofresh2/js/advertisement.js^"
       },
-      "id": 1439,
+      "id": 1443,
       "priority": 50
     },
     {
@@ -74726,7 +74834,7 @@
       "condition": {
         "urlFilter": "||b.slipstick.com/bmp/bmpjquery.js"
       },
-      "id": 1440,
+      "id": 1444,
       "priority": 40
     },
     {
@@ -74736,7 +74844,7 @@
       "condition": {
         "urlFilter": "||vidoza.net/js/pop.js"
       },
-      "id": 1441,
+      "id": 1445,
       "priority": 50
     },
     {
@@ -74749,7 +74857,7 @@
         ],
         "urlFilter": "||api.tinypass.com^"
       },
-      "id": 1442,
+      "id": 1446,
       "priority": 40
     },
     {
@@ -74762,7 +74870,7 @@
         ],
         "urlFilter": "||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
       },
-      "id": 1443,
+      "id": 1447,
       "priority": 50
     },
     {
@@ -74775,7 +74883,7 @@
         ],
         "urlFilter": "||pagead2.googlesyndication.com/pagead/js/*/show_ads_impl.js"
       },
-      "id": 1444,
+      "id": 1448,
       "priority": 50
     },
     {
@@ -74785,7 +74893,7 @@
       "condition": {
         "urlFilter": "||gaia.adage.com/assets/js/min/BlockDetector.js^"
       },
-      "id": 1445,
+      "id": 1449,
       "priority": 40
     },
     {
@@ -74796,7 +74904,7 @@
         "domainType": "thirdParty",
         "urlFilter": "||dashboard.tinypass.com/*/load^"
       },
-      "id": 1446,
+      "id": 1450,
       "priority": 40
     },
     {
@@ -74809,7 +74917,7 @@
         ],
         "urlFilter": "||outlookindia.com/*anti_ab.js"
       },
-      "id": 1447,
+      "id": 1451,
       "priority": 50
     },
     {
@@ -74819,7 +74927,7 @@
       "condition": {
         "urlFilter": "||outlookindia.com"
       },
-      "id": 1448,
+      "id": 1452,
       "priority": 50
     },
     {
@@ -74829,7 +74937,7 @@
       "condition": {
         "urlFilter": "||onlinemschool.com/script/ads.js"
       },
-      "id": 1449,
+      "id": 1453,
       "priority": 50
     },
     {
@@ -74839,7 +74947,7 @@
       "condition": {
         "urlFilter": "||onlinemschool.com/script/ads1.js"
       },
-      "id": 1450,
+      "id": 1454,
       "priority": 50
     },
     {
@@ -74849,7 +74957,7 @@
       "condition": {
         "urlFilter": "||onlinemschool.com^"
       },
-      "id": 1451,
+      "id": 1455,
       "priority": 50
     },
     {
@@ -74859,7 +74967,7 @@
       "condition": {
         "urlFilter": "||streamlive.to^"
       },
-      "id": 1452,
+      "id": 1456,
       "priority": 50
     },
     {
@@ -74872,7 +74980,7 @@
         ],
         "urlFilter": "||tff.tf/popunder.js"
       },
-      "id": 1453,
+      "id": 1457,
       "priority": 50
     },
     {
@@ -74882,7 +74990,7 @@
       "condition": {
         "urlFilter": "||xda-developers-forum.blogspot.com^"
       },
-      "id": 1454,
+      "id": 1458,
       "priority": 50
     },
     {
@@ -74895,7 +75003,7 @@
         ],
         "urlFilter": "||googletagservices.com/tag/js/gpt.js"
       },
-      "id": 1455,
+      "id": 1459,
       "priority": 50
     },
     {
@@ -74908,7 +75016,7 @@
         ],
         "urlFilter": "||cdn.springserve.com/assets/0/playerJS/chegg_unlocked_cm.js"
       },
-      "id": 1456,
+      "id": 1460,
       "priority": 50
     },
     {
@@ -74918,7 +75026,7 @@
       "condition": {
         "urlFilter": "||snippets.studybreakmedia.com/doubleclick/ads.js"
       },
-      "id": 1457,
+      "id": 1461,
       "priority": 50
     },
     {
@@ -74928,7 +75036,7 @@
       "condition": {
         "urlFilter": "||adm.fwmrm.net/p/fox_live/AdManager.js^"
       },
-      "id": 1458,
+      "id": 1462,
       "priority": 50
     },
     {
@@ -74944,7 +75052,7 @@
         ],
         "urlFilter": "||player.foxdcg.com/*/js/playback.js?*^ad"
       },
-      "id": 1459,
+      "id": 1463,
       "priority": 50
     },
     {
@@ -74954,7 +75062,7 @@
       "condition": {
         "urlFilter": "||bsp.needrom.com/advert*.js"
       },
-      "id": 1460,
+      "id": 1464,
       "priority": 50
     },
     {
@@ -74964,7 +75072,7 @@
       "condition": {
         "urlFilter": "||bestlistofporn.com^"
       },
-      "id": 1461,
+      "id": 1465,
       "priority": 50
     },
     {
@@ -74974,7 +75082,7 @@
       "condition": {
         "urlFilter": "||battlecats.spica-net.com^"
       },
-      "id": 1462,
+      "id": 1466,
       "priority": 50
     },
     {
@@ -74984,7 +75092,7 @@
       "condition": {
         "urlFilter": "||ratemyprofessors.com/assets/libs/adFrame_ads-*.js"
       },
-      "id": 1463,
+      "id": 1467,
       "priority": 50
     },
     {
@@ -75000,7 +75108,7 @@
         ],
         "urlFilter": "||ads2.contentabc.com/ads?spot_id="
       },
-      "id": 1464,
+      "id": 1468,
       "priority": 50
     },
     {
@@ -75010,7 +75118,7 @@
       "condition": {
         "urlFilter": "||8muses.com^"
       },
-      "id": 1465,
+      "id": 1469,
       "priority": 50
     },
     {
@@ -75020,7 +75128,7 @@
       "condition": {
         "urlFilter": "||forumfree.net/js/anti_adb.js"
       },
-      "id": 1466,
+      "id": 1470,
       "priority": 40
     },
     {
@@ -75033,7 +75141,7 @@
         ],
         "urlFilter": "||imasdk.googleapis.com/js/sdkloader/ima3.js^"
       },
-      "id": 1467,
+      "id": 1471,
       "priority": 50
     },
     {
@@ -75046,7 +75154,7 @@
         ],
         "urlFilter": "||pubads.g.doubleclick.net/gampad/ad?"
       },
-      "id": 1468,
+      "id": 1472,
       "priority": 50
     },
     {
@@ -75059,7 +75167,7 @@
         ],
         "urlFilter": "||tpc.googlesyndication.com/pagead/imgad?id="
       },
-      "id": 1469,
+      "id": 1473,
       "priority": 50
     },
     {
@@ -75069,7 +75177,7 @@
       "condition": {
         "urlFilter": "||mp3fy.com^"
       },
-      "id": 1470,
+      "id": 1474,
       "priority": 50
     },
     {
@@ -75079,7 +75187,7 @@
       "condition": {
         "urlFilter": "||cam-archive.com/js/fuckadblock.js"
       },
-      "id": 1471,
+      "id": 1475,
       "priority": 50
     },
     {
@@ -75089,7 +75197,7 @@
       "condition": {
         "urlFilter": "||cam-archive.com^"
       },
-      "id": 1472,
+      "id": 1476,
       "priority": 50
     },
     {
@@ -75099,7 +75207,7 @@
       "condition": {
         "urlFilter": "||hdliveextra-a.akamaihd.net/*/showads*.js"
       },
-      "id": 1473,
+      "id": 1477,
       "priority": 50
     },
     {
@@ -75109,7 +75217,7 @@
       "condition": {
         "urlFilter": "||msn.com/advertisement.ad.js"
       },
-      "id": 1474,
+      "id": 1478,
       "priority": 50
     },
     {
@@ -75119,7 +75227,7 @@
       "condition": {
         "urlFilter": "||aranzulla.it/_adv/"
       },
-      "id": 1475,
+      "id": 1479,
       "priority": 50
     },
     {
@@ -75129,7 +75237,7 @@
       "condition": {
         "urlFilter": "||traffichaus.com/scripts/banner-ad.js"
       },
-      "id": 1476,
+      "id": 1480,
       "priority": 50
     },
     {
@@ -75142,7 +75250,7 @@
         ],
         "urlFilter": "||traffichaus.com/scripts/*ad*.js"
       },
-      "id": 1477,
+      "id": 1481,
       "priority": 50
     },
     {
@@ -75156,7 +75264,7 @@
         ],
         "urlFilter": "||ad.atdmt.com/m/*account_id=*&source=cm&step=1^"
       },
-      "id": 1478,
+      "id": 1482,
       "priority": 50
     },
     {
@@ -75166,7 +75274,7 @@
       "condition": {
         "urlFilter": "||dato.porn/js/pop.js|"
       },
-      "id": 1479,
+      "id": 1483,
       "priority": 50
     },
     {
@@ -75176,7 +75284,7 @@
       "condition": {
         "urlFilter": "||einthusan.tv^"
       },
-      "id": 1480,
+      "id": 1484,
       "priority": 50
     },
     {
@@ -75189,7 +75297,7 @@
         ],
         "urlFilter": "||securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1"
       },
-      "id": 1481,
+      "id": 1485,
       "priority": 50
     },
     {
@@ -75199,7 +75307,7 @@
       "condition": {
         "urlFilter": "||football-lineups.com^"
       },
-      "id": 1482,
+      "id": 1486,
       "priority": 50
     },
     {
@@ -75212,7 +75320,7 @@
         ],
         "urlFilter": ".adcenter."
       },
-      "id": 1483,
+      "id": 1487,
       "priority": 50
     },
     {
@@ -75222,7 +75330,7 @@
       "condition": {
         "urlFilter": "||indiansgetfucked.com"
       },
-      "id": 1484,
+      "id": 1488,
       "priority": 50
     },
     {
@@ -75232,7 +75340,7 @@
       "condition": {
         "urlFilter": "||s0ft4pc.com^"
       },
-      "id": 1485,
+      "id": 1489,
       "priority": 50
     },
     {
@@ -75242,7 +75350,7 @@
       "condition": {
         "urlFilter": "||ah-me.com^"
       },
-      "id": 1486,
+      "id": 1490,
       "priority": 50
     },
     {
@@ -75252,7 +75360,7 @@
       "condition": {
         "urlFilter": "||gamenguide.com/common/js/common/ads.js"
       },
-      "id": 1487,
+      "id": 1491,
       "priority": 50
     },
     {
@@ -75262,7 +75370,7 @@
       "condition": {
         "urlFilter": "||gamenguide.com*adbk"
       },
-      "id": 1488,
+      "id": 1492,
       "priority": 40
     },
     {
@@ -75272,7 +75380,7 @@
       "condition": {
         "urlFilter": "||itechpost.com*adbk"
       },
-      "id": 1489,
+      "id": 1493,
       "priority": 40
     },
     {
@@ -75282,7 +75390,7 @@
       "condition": {
         "urlFilter": "||itechpost.com/common/js/common/ads.js"
       },
-      "id": 1490,
+      "id": 1494,
       "priority": 50
     },
     {
@@ -75295,7 +75403,7 @@
         ],
         "urlFilter": "||cloudfront.net^*adframe.js"
       },
-      "id": 1491,
+      "id": 1495,
       "priority": 50
     },
     {
@@ -75308,7 +75416,7 @@
         ],
         "urlFilter": "||contextual.media.net/nmedianet.js"
       },
-      "id": 1492,
+      "id": 1496,
       "priority": 50
     },
     {
@@ -75321,7 +75429,7 @@
         ],
         "urlFilter": "||contextual.media.net/fcmdynet.js"
       },
-      "id": 1493,
+      "id": 1497,
       "priority": 50
     },
     {
@@ -75331,7 +75439,7 @@
       "condition": {
         "urlFilter": "||tehnotone.com^"
       },
-      "id": 1494,
+      "id": 1498,
       "priority": 50
     },
     {
@@ -75347,7 +75455,7 @@
         ],
         "urlFilter": "||s3.amazonaws.com/khachack/*.js"
       },
-      "id": 1495,
+      "id": 1499,
       "priority": 50
     },
     {
@@ -75360,7 +75468,7 @@
         ],
         "urlFilter": "||gadgets360.com/*ad"
       },
-      "id": 1496,
+      "id": 1500,
       "priority": 50
     },
     {
@@ -75370,7 +75478,7 @@
       "condition": {
         "urlFilter": "||cdn.vidyomani.com/*/*ads*.js"
       },
-      "id": 1497,
+      "id": 1501,
       "priority": 50
     },
     {
@@ -75380,7 +75488,7 @@
       "condition": {
         "urlFilter": "||paybis.com/assets/*/responsive/*.js"
       },
-      "id": 1498,
+      "id": 1502,
       "priority": 50
     },
     {
@@ -75390,7 +75498,7 @@
       "condition": {
         "urlFilter": "||crawlist.net^"
       },
-      "id": 1499,
+      "id": 1503,
       "priority": 50
     },
     {
@@ -75403,7 +75511,7 @@
         ],
         "urlFilter": "||ad.crwdcntrl.net/*/callback="
       },
-      "id": 1500,
+      "id": 1504,
       "priority": 50
     },
     {
@@ -75416,7 +75524,7 @@
         ],
         "urlFilter": "||partner.googleadservices.com/gpt/pubads_impl_"
       },
-      "id": 1501,
+      "id": 1505,
       "priority": 50
     },
     {
@@ -75429,7 +75537,7 @@
         ],
         "urlFilter": "||securepubads.g.doubleclick.net/gampad/ads"
       },
-      "id": 1502,
+      "id": 1506,
       "priority": 50
     },
     {
@@ -75443,7 +75551,7 @@
         ],
         "urlFilter": "/advert.js"
       },
-      "id": 1503,
+      "id": 1507,
       "priority": 50
     },
     {
@@ -75453,7 +75561,7 @@
       "condition": {
         "urlFilter": "||eenadu.net/ads.js"
       },
-      "id": 1504,
+      "id": 1508,
       "priority": 50
     },
     {
@@ -75466,7 +75574,7 @@
         ],
         "urlFilter": "://*.ico"
       },
-      "id": 1505,
+      "id": 1509,
       "priority": 50
     },
     {
@@ -75479,7 +75587,7 @@
         ],
         "urlFilter": "||adsatt.espn.starwave.com^"
       },
-      "id": 1506,
+      "id": 1510,
       "priority": 50
     },
     {
@@ -75489,7 +75597,7 @@
       "condition": {
         "urlFilter": "||sexwebvideo.com/js/ad*.js"
       },
-      "id": 1507,
+      "id": 1511,
       "priority": 50
     },
     {
@@ -75499,7 +75607,7 @@
       "condition": {
         "urlFilter": "||katfile.com/js/*ad*.js"
       },
-      "id": 1508,
+      "id": 1512,
       "priority": 50
     },
     {
@@ -75509,7 +75617,7 @@
       "condition": {
         "urlFilter": "||static.cdn.web.tv/scripts/ads.js"
       },
-      "id": 1509,
+      "id": 1513,
       "priority": 50
     },
     {
@@ -75522,7 +75630,7 @@
         ],
         "urlFilter": "||ad.doubleclick.net/ddm/ad/*"
       },
-      "id": 1510,
+      "id": 1514,
       "priority": 50
     },
     {
@@ -75532,7 +75640,7 @@
       "condition": {
         "urlFilter": "||climatempo.com.br/climatempo/climatempo/js/vendor/detectadblock/"
       },
-      "id": 1511,
+      "id": 1515,
       "priority": 50
     },
     {
@@ -75550,7 +75658,7 @@
         ],
         "urlFilter": "||ad.doubleclick.net/ddm/ad/*"
       },
-      "id": 1512,
+      "id": 1516,
       "priority": 50
     },
     {
@@ -75563,7 +75671,7 @@
         ],
         "urlFilter": "||ad.doubleclick.net/ddm/ad/*"
       },
-      "id": 1513,
+      "id": 1517,
       "priority": 50
     },
     {
@@ -75573,7 +75681,7 @@
       "condition": {
         "urlFilter": "||familyhandyman.com"
       },
-      "id": 1514,
+      "id": 1518,
       "priority": 50
     },
     {
@@ -75583,7 +75691,7 @@
       "condition": {
         "urlFilter": "||kelleybbook.tt.omtrdc.net/m2/kelleybbook/mbox/ajax?mboxHost="
       },
-      "id": 1515,
+      "id": 1519,
       "priority": 40
     },
     {
@@ -75596,7 +75704,7 @@
         ],
         "urlFilter": "||pagead2.googlesyndication.com/pagead/js/lidar.js"
       },
-      "id": 1516,
+      "id": 1520,
       "priority": 50
     },
     {
@@ -75609,7 +75717,7 @@
         ],
         "urlFilter": "||ad.doubleclick.net/favicon.ico"
       },
-      "id": 1517,
+      "id": 1521,
       "priority": 50
     },
     {
@@ -75622,7 +75730,7 @@
         ],
         "urlFilter": "/pop.js|"
       },
-      "id": 1518,
+      "id": 1522,
       "priority": 50
     },
     {
@@ -75632,7 +75740,7 @@
       "condition": {
         "urlFilter": "||multiup.org/pop.js"
       },
-      "id": 1519,
+      "id": 1523,
       "priority": 50
     },
     {
@@ -75645,7 +75753,7 @@
         ],
         "urlFilter": "||myadcash.com/video_landing/js/jquery.inview.min.js"
       },
-      "id": 1520,
+      "id": 1524,
       "priority": 50
     },
     {
@@ -75655,7 +75763,7 @@
       "condition": {
         "urlFilter": "||rapidrar.com^"
       },
-      "id": 1521,
+      "id": 1525,
       "priority": 50
     },
     {
@@ -75668,7 +75776,7 @@
         ],
         "urlFilter": "||ad.doubleclick.net/ddm/ad/*"
       },
-      "id": 1522,
+      "id": 1526,
       "priority": 50
     },
     {
@@ -75678,7 +75786,7 @@
       "condition": {
         "urlFilter": "||bollywood.bhaskar.com/*ads*.js"
       },
-      "id": 1523,
+      "id": 1527,
       "priority": 50
     },
     {
@@ -75688,7 +75796,7 @@
       "condition": {
         "urlFilter": "||businesstoday.in/ad-blocker.html"
       },
-      "id": 1524,
+      "id": 1528,
       "priority": 40
     },
     {
@@ -75698,7 +75806,7 @@
       "condition": {
         "urlFilter": "||js.jansatta.com/ads_js.js"
       },
-      "id": 1525,
+      "id": 1529,
       "priority": 50
     },
     {
@@ -75708,7 +75816,7 @@
       "condition": {
         "urlFilter": "||thenextweb.com"
       },
-      "id": 1526,
+      "id": 1530,
       "priority": 50
     },
     {
@@ -75721,7 +75829,7 @@
         ],
         "urlFilter": "||adm.fwmrm.net/p/aetn_live/AdManager.swf"
       },
-      "id": 1527,
+      "id": 1531,
       "priority": 50
     },
     {
@@ -75734,7 +75842,7 @@
         ],
         "urlFilter": "||v.fwmrm.net/ad/p/1?"
       },
-      "id": 1528,
+      "id": 1532,
       "priority": 50
     },
     {
@@ -75747,7 +75855,7 @@
         ],
         "urlFilter": "||ad.doubleclick.net/ddm/ad/*"
       },
-      "id": 1529,
+      "id": 1533,
       "priority": 50
     },
     {
@@ -75757,7 +75865,7 @@
       "condition": {
         "urlFilter": "||xbox-store-checker.com/assets/js/*ads*.js"
       },
-      "id": 1530,
+      "id": 1534,
       "priority": 50
     },
     {
@@ -75770,7 +75878,7 @@
         ],
         "urlFilter": "||yandex.ru/ads/system/context.js"
       },
-      "id": 1531,
+      "id": 1535,
       "priority": 50
     },
     {
@@ -75783,7 +75891,7 @@
         ],
         "urlFilter": "||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
       },
-      "id": 1532,
+      "id": 1536,
       "priority": 50
     },
     {
@@ -75796,7 +75904,7 @@
         ],
         "urlFilter": "||partner.googleadservices.com/gpt/pubads_impl_"
       },
-      "id": 1533,
+      "id": 1537,
       "priority": 50
     },
     {
@@ -75809,7 +75917,7 @@
         ],
         "urlFilter": "||tags.crwdcntrl.net/*?ns=_"
       },
-      "id": 1534,
+      "id": 1538,
       "priority": 50
     },
     {
@@ -75822,7 +75930,7 @@
         ],
         "urlFilter": "||static.clmbtech.com/ad/commons/js/colombia_v2.js"
       },
-      "id": 1535,
+      "id": 1539,
       "priority": 50
     },
     {
@@ -75832,7 +75940,7 @@
       "condition": {
         "urlFilter": "||myabandonware.com/media/js/blckevent.js"
       },
-      "id": 1536,
+      "id": 1540,
       "priority": 40
     },
     {
@@ -75842,7 +75950,7 @@
       "condition": {
         "urlFilter": "||economictimes.com/*ads*/*.cms"
       },
-      "id": 1537,
+      "id": 1541,
       "priority": 50
     },
     {
@@ -75852,7 +75960,7 @@
       "condition": {
         "urlFilter": "||financialexpress.com/wp-content/themes/vip/financialexpress/js/ads_js.js"
       },
-      "id": 1538,
+      "id": 1542,
       "priority": 50
     },
     {
@@ -75862,7 +75970,7 @@
       "condition": {
         "urlFilter": "||hindustantimes.com/res/js/*ads*"
       },
-      "id": 1539,
+      "id": 1543,
       "priority": 50
     },
     {
@@ -75872,7 +75980,7 @@
       "condition": {
         "urlFilter": "||vietget.net^"
       },
-      "id": 1540,
+      "id": 1544,
       "priority": 50
     },
     {
@@ -75882,7 +75990,7 @@
       "condition": {
         "urlFilter": "||play-old-pc-games.com/wp-content/plugins/agreeable-vacation/assets/js/advertisement.min.js"
       },
-      "id": 1541,
+      "id": 1545,
       "priority": 50
     },
     {
@@ -75895,7 +76003,7 @@
         ],
         "urlFilter": "||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
       },
-      "id": 1542,
+      "id": 1546,
       "priority": 50
     },
     {
@@ -75905,7 +76013,7 @@
       "condition": {
         "urlFilter": "||mackie100projects.altervista.org/wp-content/uploads/*.js"
       },
-      "id": 1543,
+      "id": 1547,
       "priority": 40
     },
     {
@@ -75915,7 +76023,7 @@
       "condition": {
         "urlFilter": "||wallpapershome.com/scripts/ads.js"
       },
-      "id": 1544,
+      "id": 1548,
       "priority": 50
     },
     {
@@ -75925,7 +76033,7 @@
       "condition": {
         "urlFilter": "||maxcheaters.com^"
       },
-      "id": 1545,
+      "id": 1549,
       "priority": 50
     },
     {
@@ -75935,7 +76043,7 @@
       "condition": {
         "urlFilter": "||receivesmsonline.net/ads.js"
       },
-      "id": 1546,
+      "id": 1550,
       "priority": 50
     },
     {
@@ -75948,7 +76056,7 @@
         ],
         "urlFilter": "||b.scorecardresearch.com/b"
       },
-      "id": 1547,
+      "id": 1551,
       "priority": 50
     },
     {
@@ -75961,7 +76069,7 @@
         ],
         "urlFilter": "||platform.twitter.com/oct.js"
       },
-      "id": 1548,
+      "id": 1552,
       "priority": 50
     },
     {
@@ -75974,7 +76082,7 @@
         ],
         "urlFilter": "||googleadservices.com/pagead/conversion_async.js"
       },
-      "id": 1549,
+      "id": 1553,
       "priority": 50
     },
     {
@@ -75984,7 +76092,7 @@
       "condition": {
         "urlFilter": "||miuipro.ru/advert.js"
       },
-      "id": 1550,
+      "id": 1554,
       "priority": 50
     },
     {
@@ -75994,7 +76102,7 @@
       "condition": {
         "urlFilter": "||kingofshrink.com^"
       },
-      "id": 1551,
+      "id": 1555,
       "priority": 50
     },
     {
@@ -76004,7 +76112,7 @@
       "condition": {
         "urlFilter": "||cdn.cpmstar.com/cached/js/advertisement.js"
       },
-      "id": 1552,
+      "id": 1556,
       "priority": 50
     },
     {
@@ -76014,7 +76122,7 @@
       "condition": {
         "urlFilter": "||appdn.net/wp-content/plugins/chilly-pot/assets/js/advertisement.min.js"
       },
-      "id": 1553,
+      "id": 1557,
       "priority": 50
     },
     {
@@ -76024,7 +76132,7 @@
       "condition": {
         "urlFilter": "||appdn.net^"
       },
-      "id": 1554,
+      "id": 1558,
       "priority": 50
     },
     {
@@ -76034,7 +76142,7 @@
       "condition": {
         "urlFilter": "||filespace.com^"
       },
-      "id": 1555,
+      "id": 1559,
       "priority": 50
     },
     {
@@ -76044,7 +76152,7 @@
       "condition": {
         "urlFilter": "||biggestplayer.cachefly.net/ad300.html"
       },
-      "id": 1556,
+      "id": 1560,
       "priority": 50
     },
     {
@@ -76054,7 +76162,7 @@
       "condition": {
         "urlFilter": "||biggestplayer.cachefly.net/cricad.html"
       },
-      "id": 1557,
+      "id": 1561,
       "priority": 50
     },
     {
@@ -76064,7 +76172,7 @@
       "condition": {
         "urlFilter": "||thinkcomputers.org/wp-content/uploads/an-temp/"
       },
-      "id": 1558,
+      "id": 1562,
       "priority": 40
     },
     {
@@ -76077,7 +76185,7 @@
         ],
         "urlFilter": "||partner.googleadservices.com/gpt/pubads_impl_"
       },
-      "id": 1559,
+      "id": 1563,
       "priority": 50
     },
     {
@@ -76090,7 +76198,7 @@
         ],
         "urlFilter": "||pagead2.googlesyndication.com/pagead/show_ads.js"
       },
-      "id": 1560,
+      "id": 1564,
       "priority": 50
     },
     {
@@ -76103,7 +76211,7 @@
         ],
         "urlFilter": "||pagead2.googlesyndication.com/pagead/js/*/show_ads_impl.js"
       },
-      "id": 1561,
+      "id": 1565,
       "priority": 50
     },
     {
@@ -76113,7 +76221,7 @@
       "condition": {
         "urlFilter": "||dozenofelites.com^"
       },
-      "id": 1562,
+      "id": 1566,
       "priority": 50
     },
     {
@@ -76126,7 +76234,7 @@
         ],
         "urlFilter": "/scripts/adv.js"
       },
-      "id": 1563,
+      "id": 1567,
       "priority": 50
     },
     {
@@ -76136,7 +76244,7 @@
       "condition": {
         "urlFilter": "||cdn.needrom.com/advert*.js"
       },
-      "id": 1564,
+      "id": 1568,
       "priority": 50
     },
     {
@@ -76146,7 +76254,7 @@
       "condition": {
         "urlFilter": "||techonthenet.com/javascript/advert-min.js"
       },
-      "id": 1565,
+      "id": 1569,
       "priority": 50
     },
     {
@@ -76156,7 +76264,7 @@
       "condition": {
         "urlFilter": "||xsportnews.com/wp-content/uploads/an-temp/"
       },
-      "id": 1566,
+      "id": 1570,
       "priority": 40
     },
     {
@@ -76166,7 +76274,7 @@
       "condition": {
         "urlFilter": "||z0r.de/inc/adb.js"
       },
-      "id": 1567,
+      "id": 1571,
       "priority": 40
     },
     {
@@ -76176,7 +76284,7 @@
       "condition": {
         "urlFilter": "||dlh.net/public/js/advertisement.js"
       },
-      "id": 1568,
+      "id": 1572,
       "priority": 50
     },
     {
@@ -76186,7 +76294,7 @@
       "condition": {
         "urlFilter": "||dlh.net/_application/modules/Standard/Adv/assets/advertisement.js"
       },
-      "id": 1569,
+      "id": 1573,
       "priority": 50
     },
     {
@@ -76196,7 +76304,7 @@
       "condition": {
         "urlFilter": "||4shared.com/show_ad"
       },
-      "id": 1570,
+      "id": 1574,
       "priority": 50
     },
     {
@@ -76209,7 +76317,7 @@
         ],
         "urlFilter": "||pubads.g.doubleclick.net/gampad/ads?adk="
       },
-      "id": 1571,
+      "id": 1575,
       "priority": 50
     },
     {
@@ -76222,7 +76330,7 @@
         ],
         "urlFilter": "/abb-msg.js"
       },
-      "id": 1572,
+      "id": 1576,
       "priority": 40
     },
     {
@@ -76232,7 +76340,7 @@
       "condition": {
         "urlFilter": "||static.uptobox.com/adunblock/"
       },
-      "id": 1573,
+      "id": 1577,
       "priority": 40
     },
     {
@@ -76242,7 +76350,7 @@
       "condition": {
         "urlFilter": "||solidice.com/js/sneaky.js"
       },
-      "id": 1574,
+      "id": 1578,
       "priority": 40
     }
   ],
@@ -83417,6 +83525,7 @@
         "adblock_detection force_disable_adblock"
       ],
       "domains": [
+        "n1mwq.org",
         "bysezoxexe.com",
         "dismz4n3wp6xnr3.org",
         "nzn3.org",
@@ -84166,6 +84275,8 @@
         "checkAdsStatus"
       ],
       "domains": [
+        "apkgep.com",
+        "djbasskingg.com",
         "gcamupdater.com",
         "livebiz.in",
         "tvserialnews.in",
@@ -92044,7 +92155,7 @@
         "mens1069.com",
         "simpcity.*",
         "javfan.one",
-        "jmanga.cyou",
+        "jmanga.actor",
         "javfc2.xyz",
         "nukibooks.com",
         "jpg6.su",
@@ -99442,6 +99553,28 @@
       ],
       "excludeDomains": [],
       "scriptlet": "abort-current-inline-script"
+    },
+    {
+      "args": [
+        "/pagead2.googlesyndication.com|securepubads.g.doubleclick.net/",
+        "",
+        "opaque"
+      ],
+      "domains": [
+        "devuploads.com"
+      ],
+      "excludeDomains": [],
+      "scriptlet": "prevent-fetch"
+    },
+    {
+      "args": [
+        "_blank"
+      ],
+      "domains": [
+        "devuploads.com"
+      ],
+      "excludeDomains": [],
+      "scriptlet": "prevent-window-open"
     },
     {
       "args": [
@@ -111323,7 +111456,7 @@
     }
   ],
   "source": "AdguardTeam/AdguardFilters/BaseFilter/sections/antiadblock.txt",
-  "source_url": "https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/2e2c5ade10a6d20136c5ec0ea680696f39c18f0d/BaseFilter/sections/antiadblock.txt",
-  "upstream_commit": "2e2c5ade10a6d20136c5ec0ea680696f39c18f0d",
-  "upstream_sha256": "65d1d9de63b6abfebfeb9f4c3ff95ad9166f3e654706e23d81d4d95545704e7f"
+  "source_url": "https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/951e4ac46e894af40f664d4f52a013a259a89913/BaseFilter/sections/antiadblock.txt",
+  "upstream_commit": "951e4ac46e894af40f664d4f52a013a259a89913",
+  "upstream_sha256": "71ca1866a7e91f4f20c52d18872f96d251f9b19f4626bcfe9ad733bd864d5904"
 }
