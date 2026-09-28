@@ -1276,6 +1276,21 @@ youporn.com$$script:contains(/window\.[\s\S]*?_zone_[\s\S]*?{"zone_id":/)
 !
 ! NOTE: Regular rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/242780
+sexwebseries.com,nxxn.live#%#//scriptlet('prevent-setTimeout', '.clientHeight')
+! https://github.com/AdguardTeam/AdguardFilters/issues/242809
+sporteurope.tv#%#//scriptlet('google-ima3')
+!#if (adguard_app_ios || adguard_ext_android_cb)
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=sporteurope.tv
+!#endif
+! https://github.com/AdguardTeam/AdguardFilters/issues/242383
+naijavault.com#$##adblock-modal { display: none !important; }
+naijavault.com#$##adblock-backdrop { display: none !important; }
+naijavault.com#$#body { overflow: auto !important; }
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+@@||cdn.adsbetnet.com/libs/$script,domain=naijavault.com
+naijavault.com#@#.ad-unit:not(.textads)
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/242472
 uploadcloud.pro#%#//scriptlet('prevent-addEventListener', 'load', 'Monitoring started')
 uploadcloud.pro###container > div[id]:has(> div[class][style^="z-index: 999999; background:"])
@@ -1383,7 +1398,7 @@ adslink.pw#%#//scriptlet('prevent-fetch', 'adsbygoogle')
 @@||intercelestial.com/*/ads/$image,domain=intercelestial.com
 /^(?!.*(\/cdn-cgi\/|\.js\?ver)).*$/$~third-party,script,domain=aii.sh|srnky.com|clksz.com|lnbz.la
 srnky.com,lnbz.la,clksz.com,aii.sh,intercelestial.com#%#//scriptlet('prevent-fetch', 'googlesyndication')
-srnky.com,lnbz.la,clksz.com,aii.sh#$#body > script + div { display: none !important; }
+srnky.com,lnbz.la,clksz.com,aii.sh#$#body > script + div:not([class]) { display: none !important; }
 srnky.com,lnbz.la,clksz.com,aii.sh#$#html { overflow: auto !important; }
 $xmlhttprequest,redirect-rule=nooptext,domain=oko.sha|aii.sh|pahe.plus|intercelestial.com|linegee.net|clksz.com|srnky.com|lnbz.la
 !#if (adguard_app_ios || adguard_ext_android_cb || adguard_ext_safari)
