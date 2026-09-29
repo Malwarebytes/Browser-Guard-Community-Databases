@@ -4890,7 +4890,10 @@
         ".ad-placement"
       ],
       "airlive.net": [
-        "#adSense"
+        "#adSense",
+        "[id^=\"google_ads_iframe_\"]",
+        ".ads-banner",
+        ".ad-slot"
       ],
       "alliancex.org": [
         ".ad-spot"
@@ -12020,7 +12023,7 @@
     }
   },
   "counts": {
-    "cosmetic_exception": 445,
+    "cosmetic_exception": 448,
     "cosmetic_extended": 11,
     "cosmetic_hide": 610,
     "css_inject": 457,
@@ -12029,7 +12032,7 @@
     "scriptlet": 1851,
     "skipped": 2528
   },
-  "fetched_at": "2026-09-28T06:08:33Z",
+  "fetched_at": "2026-09-29T06:06:42Z",
   "hostIndex": {
     "*": {
       "cosmetic": true,
@@ -111936,7 +111939,7 @@
     }
   ],
   "source": "AdguardTeam/AdguardFilters/BaseFilter/sections/antiadblock.txt",
-  "source_url": "https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/0a4c0236893f86b6a1141efc93c322dcc09a0b60/BaseFilter/sections/antiadblock.txt",
-  "upstream_commit": "0a4c0236893f86b6a1141efc93c322dcc09a0b60",
-  "upstream_sha256": "55a37bbdc79584b75e20271516cd8786025fa973d9ee50d357676b4ddbbab9ee"
+  "source_url": "https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/9f20d9b3b1b9c6f455fcd7fa17b7128097b38549/BaseFilter/sections/antiadblock.txt",
+  "upstream_commit": "9f20d9b3b1b9c6f455fcd7fa17b7128097b38549",
+  "upstream_sha256": "345fce1f49c4aeeaa169d7255c154217ddedc79a420a9361ee88a169441dfc04"
 }
