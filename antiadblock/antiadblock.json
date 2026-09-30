@@ -6518,6 +6518,9 @@
         ".advertisements",
         ".adver"
       ],
+      "stacktv.ca": [
+        ".topAds"
+      ],
       "stamfordadvocate.com": [
         "[name^=\"google_ads_iframe\"]"
       ],
@@ -12032,7 +12035,7 @@
     "scriptlet": 1851,
     "skipped": 2528
   },
-  "fetched_at": "2026-09-29T06:06:42Z",
+  "fetched_at": "2026-09-30T06:06:31Z",
   "hostIndex": {
     "*": {
       "cosmetic": true,
@@ -42894,6 +42897,13 @@
         43
       ]
     },
+    "poppednews.com": {
+      "cosmetic": false,
+      "cssInject": false,
+      "scriptlets": [
+        634
+      ]
+    },
     "pops.tv": {
       "cosmetic": true,
       "cssInject": false,
@@ -48409,6 +48419,14 @@
       "cssInject": false,
       "scriptlets": [
         99
+      ]
+    },
+    "stacktv.ca": {
+      "cosmetic": true,
+      "cssInject": false,
+      "scriptlets": [
+        1475,
+        1476
       ]
     },
     "staige.tv": {
@@ -87539,6 +87557,7 @@
         "detect-modal"
       ],
       "domains": [
+        "poppednews.com",
         "conceptartworld.com",
         "themezon.net",
         "mrproblogger.com",
@@ -97320,6 +97339,7 @@
         "emptyObj"
       ],
       "domains": [
+        "stacktv.ca",
         "globaltv.com"
       ],
       "excludeDomains": [],
@@ -97331,6 +97351,7 @@
         "false"
       ],
       "domains": [
+        "stacktv.ca",
         "globaltv.com"
       ],
       "excludeDomains": [],
@@ -105159,11 +105180,11 @@
     },
     {
       "reason": "platform-gated (not chromium mv3)",
-      "rule": "conceptartworld.com,themezon.net,mrproblogger.com,brutaluniverse.com,animestotais.com.br,techfinancials.co.za,med-techinsights.com,bdn71.com,kampalaedgetimes.com,aljaras.com,nordest24.it,theouterhaven.net#@#.ad-slot"
+      "rule": "poppednews.com,conceptartworld.com,themezon.net,mrproblogger.com,brutaluniverse.com,animestotais.com.br,techfinancials.co.za,med-techinsights.com,bdn71.com,kampalaedgetimes.com,aljaras.com,nordest24.it,theouterhaven.net#@#.ad-slot"
     },
     {
       "reason": "platform-gated (not chromium mv3)",
-      "rule": "conceptartworld.com,themezon.net,mrproblogger.com,brutaluniverse.com,animestotais.com.br,techfinancials.co.za,med-techinsights.com,bdn71.com,kampalaedgetimes.com,aljaras.com,nordest24.it,theouterhaven.net#@#.ad-250"
+      "rule": "poppednews.com,conceptartworld.com,themezon.net,mrproblogger.com,brutaluniverse.com,animestotais.com.br,techfinancials.co.za,med-techinsights.com,bdn71.com,kampalaedgetimes.com,aljaras.com,nordest24.it,theouterhaven.net#@#.ad-250"
     },
     {
       "reason": "platform-gated (not chromium mv3)",
@@ -108963,7 +108984,7 @@
     },
     {
       "reason": "platform-gated (not chromium mv3)",
-      "rule": "globaltv.com#$#body .topAds { display: block !important; }"
+      "rule": "stacktv.ca,globaltv.com#$#body .topAds { display: block !important; }"
     },
     {
       "reason": "pending: $redirect Chromium bug 461824106",
@@ -111939,7 +111960,7 @@
     }
   ],
   "source": "AdguardTeam/AdguardFilters/BaseFilter/sections/antiadblock.txt",
-  "source_url": "https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/9f20d9b3b1b9c6f455fcd7fa17b7128097b38549/BaseFilter/sections/antiadblock.txt",
-  "upstream_commit": "9f20d9b3b1b9c6f455fcd7fa17b7128097b38549",
-  "upstream_sha256": "345fce1f49c4aeeaa169d7255c154217ddedc79a420a9361ee88a169441dfc04"
+  "source_url": "https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/efbabda725bac53215e328a7b5bdbb57dc7570ce/BaseFilter/sections/antiadblock.txt",
+  "upstream_commit": "efbabda725bac53215e328a7b5bdbb57dc7570ce",
+  "upstream_sha256": "7ca8aed036d09410496359db8bee06793c3936524ac8d0817bf61774a53fffb9"
 }
