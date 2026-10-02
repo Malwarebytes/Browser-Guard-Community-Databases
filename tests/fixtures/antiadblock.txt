@@ -1,0 +1,5 @@
+! Title: Antiadblock fixture (synthetic, small)
+! A tiny stand-in for the antiadblock source used by the multi-source builder tests.
+||ads.example.com^$script,domain=watchuseek.com
+example.com##.ad-banner
+example.com#%#//scriptlet('set-constant', 'adBlockDetected', 'false')

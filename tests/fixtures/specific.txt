@@ -1,0 +1,7 @@
+! Fora communities / Forum websites
+||html-load.com^$script,domain=watchuseek.com|edsupportforum.com|toyotanation.com
+edsupportforum.com,watchuseek.com,toyotanation.com#%#//scriptlet('remove-node-text', 'script', 'html-load.com')
+edsupportforum.com,watchuseek.com,toyotanation.com$$script:contains(html-load.com)
+!#if (adguard_ext_firefox)
+$document,replace=/<script(?: data-cfasync="false")?(?: nowprocket)?(?: type="[a-f0-9]+-text\/javascript")?>!?\(?function ?\(\) ?\{ ?function[\s\S]*?report\.error-report\.com\/modal[\s\S]*?\(\);<\/script>//,domain=watchuseek.com|edsupportforum.com|toyotanation.com
+!#endif

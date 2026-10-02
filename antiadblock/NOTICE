@@ -1,18 +1,25 @@
 antiadblock.txt in this release is an unmodified, byte-for-byte copy of:
 
-    AdguardTeam/AdguardFilters - BaseFilter/sections/antiadblock.txt
-    https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/1676463c85c4b19bcad34ef4c21ff929cbfd1c5b/BaseFilter/sections/antiadblock.txt
-    upstream commit: 1676463c85c4b19bcad34ef4c21ff929cbfd1c5b
-    sha256:          3ec16b4b6667f8651bb94acbd7eacc194122b1c0cd5effeb1e3324b7a53fc927
+    AdguardTeam/AdguardFilters/BaseFilter/sections/antiadblock.txt
+    https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/81e814475bfd1054470fdbaef05d887804f15d0f/BaseFilter/sections/antiadblock.txt
+    upstream commit: 81e814475bfd1054470fdbaef05d887804f15d0f
+    sha256:          e9237966ef7d68c7ccfdba698ff9e6d35059c26043deac4803e5699eb508d75f
 
-It is distributed under the GNU General Public License v3.0:
+specific.txt in this release is an unmodified, byte-for-byte copy of:
+
+    AdguardTeam/AdguardFilters/BaseFilter/sections/specific.txt
+    https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/a6ba082abc4267975559ecd97dddc4f375a330e4/BaseFilter/sections/specific.txt
+    upstream commit: a6ba082abc4267975559ecd97dddc4f375a330e4
+    sha256:          50f79ef96bba9ce6327235511cdf9d5ef1d0937778b4fa2f3617ac358fa382fa
+
+Each file above is distributed under the GNU General Public License v3.0:
     https://github.com/AdguardTeam/AdguardFilters/blob/master/LICENSE
 
-The upstream section file carries no in-file license header, which is why this
-notice accompanies it. The file itself is left untouched so that the sha256
-above stays verifiable against AdGuard's original.
+The upstream section files carry no in-file license header, which is why this
+notice accompanies them. The files themselves are left untouched so that the
+sha256 values above stay verifiable against AdGuard's originals.
 
 antiadblock.json is a derived work produced from the above by
 scripts/build_antiadblock.py, and is likewise GPL-3.0.
 
-Generated 2026-10-02T06:06:28Z. Do not edit by hand.
+Generated 2026-10-02T13:40:11Z. Do not edit by hand.

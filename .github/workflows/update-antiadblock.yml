@@ -4,6 +4,7 @@ on:
   schedule:
     - cron: '0 6 * * *'
   workflow_dispatch:
+  pull_request:
 
 permissions:
   contents: write
@@ -13,7 +14,29 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # Pull requests only validate the build; they never fetch, commit, or publish.
+  test:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Full history so the migration-regression test can read the pre-refactor
+          # antiadblock.txt / antiadblock.json from origin/main via `git show`.
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dev dependencies
+        run: python3 -m pip install -r requirements-dev.txt
+
+      - name: Run tests
+        run: python3 -m pytest -q
+
   update:
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -22,30 +45,53 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Build antiadblock manifest
+      - name: Build merged manifest
         run: python3 scripts/build_antiadblock.py
 
       - name: Commit and push if changed
         id: commit
         run: |
-          # Gate on the verbatim upstream file alone. The manifest and NOTICE embed
-          # fetched_at, so they differ on every run even when upstream has not moved.
-          if [ -n "$(git status --porcelain antiadblock/antiadblock.txt)" ]; then
+          # Gate on the verbatim upstream files alone. The manifest and NOTICE embed
+          # fetched_at, so they differ on every run even when no source has moved.
+          # Match any antiadblock/*.txt that git reports as modified or untracked.
+          if [ -n "$(git status --porcelain -- 'antiadblock/*.txt')" ]; then
             git config user.name  "browserguard-bot"
             git config user.email "browserguard-bot@users.noreply.github.com"
-            git add antiadblock/antiadblock.txt antiadblock/antiadblock.json antiadblock/NOTICE
+            git add antiadblock/antiadblock.txt antiadblock/specific.txt \
+                    antiadblock/antiadblock.json antiadblock/NOTICE
             today=$(date -u +'%Y-%m-%d')
-            counts=$(python3 -c "import json; c=json.load(open('antiadblock/antiadblock.json'))['counts']; print(', '.join(f'{k}={v}' for k,v in c.items()))")
-            upstream_commit=$(python3 -c "import json; print(json.load(open('antiadblock/antiadblock.json'))['upstream_commit'] or 'unpinned')")
-            git commit -m "chore: update antiadblock filter list (${today})" -m "Counts: ${counts}"
+
+            # Per-source provenance and counts come from sources[]/counts_by_source;
+            # merged totals come from counts. Emit a human-readable summary for the
+            # commit body and a machine-readable JSON blob for the release step.
+            summary=$(python3 - <<'PY'
+          import json
+          m = json.load(open('antiadblock/antiadblock.json'))
+          cbs = m.get('counts_by_source') or {}
+          lines = []
+          for s in m.get('sources', []):
+              name = s['name']
+              commit = s.get('upstream_commit') or 'unpinned'
+              counts = cbs.get(name, {})
+              cstr = ', '.join(f'{k}={v}' for k, v in sorted(counts.items()))
+              lines.append(f'{name}: commit {commit}; {cstr}')
+          merged = m.get('counts', {})
+          lines.append('merged totals: ' + ', '.join(f'{k}={v}' for k, v in sorted(merged.items())))
+          print('\n'.join(lines))
+          PY
+            )
+
+            git commit -m "chore: update merged filter list (${today})" -m "${summary}"
             git push
+
             {
               echo "changed=true"
-              echo "counts=${counts}"
-              echo "upstream_commit=${upstream_commit}"
+              echo "summary<<EOF"
+              echo "${summary}"
+              echo "EOF"
             } >> "$GITHUB_OUTPUT"
           else
-            echo "No upstream change to antiadblock.txt."
+            echo "No upstream change to any antiadblock/*.txt."
             echo "changed=false" >> "$GITHUB_OUTPUT"
           fi
 
@@ -53,27 +99,41 @@ jobs:
         if: steps.commit.outputs.changed == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
-          COUNTS: ${{ steps.commit.outputs.counts }}
-          UPSTREAM_COMMIT: ${{ steps.commit.outputs.upstream_commit }}
+          SUMMARY: ${{ steps.commit.outputs.summary }}
         run: |
           today=$(date -u +'%Y.%m.%d')
           notes="${RUNNER_TEMP}/release-notes.md"
-          gzip -kf antiadblock/antiadblock.json antiadblock/antiadblock.txt
-          (cd antiadblock && sha256sum antiadblock.json antiadblock.txt NOTICE > checksums.txt)
-          printf '%s\n' \
-            "Daily rebuild of AdGuard's antiadblock filter list." \
-            "" \
-            "Upstream commit: ${UPSTREAM_COMMIT}" \
-            "Counts: ${COUNTS}" \
-            "" \
-            "antiadblock.txt is an unmodified copy of the upstream section file, GPL-3.0. antiadblock.json is the manifest derived from it. NOTICE carries the licensing and the upstream sha256, and checksums.txt carries sha256sums for those three files." \
-            "" \
-            "The .gz assets exist because release assets are served as application/octet-stream with no transparent Content-Encoding. The plain JSON is 2.7MB, the gzip is 304KB." \
-            > "${notes}"
-          gh release create "v${today}" --title "antiadblock ${today}" --notes-file "${notes}" \
-              antiadblock/antiadblock.json antiadblock/antiadblock.json.gz \
-              antiadblock/antiadblock.txt antiadblock/antiadblock.txt.gz \
-              antiadblock/NOTICE antiadblock/checksums.txt \
-            || gh release upload "v${today}" antiadblock/antiadblock.json antiadblock/antiadblock.json.gz \
-                 antiadblock/antiadblock.txt antiadblock/antiadblock.txt.gz \
-                 antiadblock/NOTICE antiadblock/checksums.txt --clobber
+
+          # Release-only assets: gzip the JSON and both verbatim txt files.
+          gzip -kf antiadblock/antiadblock.json \
+                   antiadblock/antiadblock.txt \
+                   antiadblock/specific.txt
+          (cd antiadblock && sha256sum \
+             antiadblock.json antiadblock.json.gz \
+             antiadblock.txt antiadblock.txt.gz \
+             specific.txt specific.txt.gz \
+             NOTICE > checksums.txt)
+
+          # Dynamic sizes so the notes never drift from the actual assets.
+          json_size=$(du -h antiadblock/antiadblock.json | cut -f1)
+          json_gz_size=$(du -h antiadblock/antiadblock.json.gz | cut -f1)
+
+          {
+            printf '%s\n\n' "Daily rebuild of AdGuard's antiadblock and specific filter lists, merged into one manifest."
+            printf '%s\n' "Per-source upstream commits and counts:"
+            printf '%s\n' '```'
+            printf '%s\n' "${SUMMARY}"
+            printf '%s\n\n' '```'
+            printf '%s\n\n' "antiadblock.txt and specific.txt are unmodified, byte-for-byte copies of their upstream section files, GPL-3.0. antiadblock.json is the manifest merged from both. NOTICE carries the licensing and the per-source upstream sha256s, and checksums.txt carries sha256sums for every asset."
+            printf '%s\n' "The .gz assets exist because release assets are served as application/octet-stream with no transparent Content-Encoding. The plain JSON is ${json_size}, the gzip is ${json_gz_size}."
+          } > "${notes}"
+
+          assets=(
+            antiadblock/antiadblock.json antiadblock/antiadblock.json.gz
+            antiadblock/antiadblock.txt antiadblock/antiadblock.txt.gz
+            antiadblock/specific.txt antiadblock/specific.txt.gz
+            antiadblock/NOTICE antiadblock/checksums.txt
+          )
+
+          gh release create "v${today}" --title "antiadblock ${today}" --notes-file "${notes}" "${assets[@]}" \
+            || gh release upload "v${today}" "${assets[@]}" --clobber

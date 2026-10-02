@@ -1,0 +1,4 @@
+# Development-only dependencies. Not required to run scripts/build_antiadblock.py,
+# which uses only the Python standard library. Install with:
+#   python3 -m pip install -r requirements-dev.txt
+pytest==7.4.0
