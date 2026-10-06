@@ -1,9 +1,9 @@
 antiadblock.txt in this release is an unmodified, byte-for-byte copy of:
 
     AdguardTeam/AdguardFilters - BaseFilter/sections/antiadblock.txt
-    https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/95ffee094bf6627401fdb8ae6b7cd550a5db6118/BaseFilter/sections/antiadblock.txt
-    upstream commit: 95ffee094bf6627401fdb8ae6b7cd550a5db6118
-    sha256:          57216754ec010f2580c9a3a0c227818c87b68840d41bb9b23c83dd4f7a91a111
+    https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/dd75de562ad11ba1fc9688eefa006e01000a0e80/BaseFilter/sections/antiadblock.txt
+    upstream commit: dd75de562ad11ba1fc9688eefa006e01000a0e80
+    sha256:          0da5363c3a33fe24e4ebe44ba1db907b0c24827022a16fe760cde18ca6b1f576
 
 It is distributed under the GNU General Public License v3.0:
     https://github.com/AdguardTeam/AdguardFilters/blob/master/LICENSE
@@ -15,4 +15,4 @@ above stays verifiable against AdGuard's original.
 antiadblock.json is a derived work produced from the above by
 scripts/build_antiadblock.py, and is likewise GPL-3.0.
 
-Generated 2026-10-05T06:12:34Z. Do not edit by hand.
+Generated 2026-10-06T06:06:34Z. Do not edit by hand.
