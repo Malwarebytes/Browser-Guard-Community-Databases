@@ -1,9 +1,7 @@
-# Local scratch snapshots kept for diffing against a fresh build.
-antiadblock/antiadblock_*
+# Output of scripts/build_antiadblock.py. Published as release assets, never committed.
+build/
 
 __pycache__/
 *.pyc
-
-# Release-only assets produced by the workflow's publish step, never committed.
-antiadblock/*.gz
-antiadblock/checksums.txt
+.pytest_cache/
+.venv/

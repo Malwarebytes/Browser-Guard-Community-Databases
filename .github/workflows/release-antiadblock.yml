@@ -1,0 +1,92 @@
+name: Release anti-adblock databases
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/build_antiadblock.py
+      - .github/workflows/release-antiadblock.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-antiadblock
+  cancel-in-progress: false
+
+env:
+  OUT_DIR: build/antiadblock
+  # The files the extension loads. A release is published only when one of these changes, so
+  # upstream edits that convert to nothing new (or only move build.json's timestamp) are no-ops.
+  DB_FILES: >-
+    mbgc.mv3.antiadblock_1.json mbgc.db.antiadblock.cosmetic.json
+    mbgc.db.antiadblock.heuristics.json mbgc.db.antiadblock.scriptlets.json
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - run: pip install -r requirements-dev.txt
+
+      - name: Test converter
+        run: python -m pytest -q
+
+      - name: Build
+        run: python scripts/build_antiadblock.py --out-dir "$OUT_DIR"
+
+      - name: Checksums
+        working-directory: ${{ env.OUT_DIR }}
+        run: sha256sum $DB_FILES skipped.json build.json antiadblock.txt specific.txt NOTICE > checksums.txt
+
+      - name: Compare with latest release
+        id: compare
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          previous="${RUNNER_TEMP}/previous"
+          mkdir -p "$previous"
+          if ! gh release download --repo "$GITHUB_REPOSITORY" --pattern checksums.txt --dir "$previous" 2>/dev/null; then
+            echo "No previous release."
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          current_sums=$(cd "$OUT_DIR" && for f in $DB_FILES; do grep "  $f\$" checksums.txt; done)
+          previous_sums=$(for f in $DB_FILES; do grep "  $f\$" "$previous/checksums.txt" || true; done)
+          if [ "$current_sums" = "$previous_sums" ]; then
+            echo "Databases unchanged since the latest release."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Publish release
+        if: steps.compare.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="antiadblock-$(date -u +'%Y.%m.%d-%H%M')"
+          notes="${RUNNER_TEMP}/notes.md"
+          python3 - "$OUT_DIR/build.json" > "$notes" <<'EOF'
+          import json, sys
+          build = json.load(open(sys.argv[1]))
+          counts = build["counts"]
+          print("Browser Guard anti-adblock databases built from AdGuard filters.\n")
+          print(f"Upstream: {build['upstream_repo']}@{build['upstream_commit']}\n")
+          for key in ("dnr_block", "dnr_allow", "specific_hide", "extended_hide",
+                      "exception_rules", "heuristics", "scriptlets", "skipped"):
+              print(f"- {key}: {counts[key]}")
+          print("\nantiadblock.txt and specific.txt are unmodified upstream copies (GPL-3.0); see NOTICE.")
+          EOF
+          cd "$OUT_DIR"
+          gh release create "$tag" --repo "$GITHUB_REPOSITORY" --latest \
+            --title "Anti-adblock databases $(date -u +'%Y-%m-%d %H:%M') UTC" --notes-file "$notes" \
+            $DB_FILES skipped.json build.json antiadblock.txt specific.txt NOTICE checksums.txt
