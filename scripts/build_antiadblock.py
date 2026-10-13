@@ -1,669 +1,947 @@
 #!/usr/bin/env python3
 """
-Fetch AdGuard's antiadblock.txt and convert it into a Browser Guard-consumable JSON manifest.
+Build Browser Guard's anti-adblock databases from AdGuard's filter lists.
 
-Reads the raw filter list from AdGuardTeam/AdguardFilters and writes:
-  antiadblock/antiadblock.txt          - raw source, verbatim
-  antiadblock/antiadblock.json         - converted manifest
-  antiadblock/NOTICE                   - GPL-3.0 attribution and provenance
+Downloads, pinned to one upstream commit:
+  BaseFilter/sections/antiadblock.txt   - every rule
+  BaseFilter/sections/specific.txt      - only the sections in SPECIFIC_SECTIONS
 
-Rules the converter handles:
-  ||host^, ||host^$options            -> DNR block rule
-  @@||host^, @@||host^$options        -> DNR allow rule
-  hosts##selector                     -> cosmetic hide entry per host
-  hosts#@#selector                    -> cosmetic hide-exception entry per host
-  hosts#?#selector                    -> cosmetic extended-hide entry per host
-  hosts#$#css                         -> css-inject entry per host
-  hosts#%#//scriptlet('name', ...)    -> scriptlet entry per host
-  !#if / !#endif / !+ NOT_PLATFORM    -> platform gate for Chromium MV3
+and writes, into --out-dir, files the Browser Guard extension loads as they are:
 
-Rules the converter records but skips:
-  #%# inline JS (not the //scriptlet form) - would need a per-rule injection channel
-  $$html-filter                            - needs filterResponseData
-  $replace=                                - needs filterResponseData
-  trusted-* scriptlets                     - need signed rulesets
-  $redirect=                               - pending Chromium bug 461824106
+  mbgc.mv3.antiadblock_1.json            Chromium MV3 static DNR ruleset (array of rules)
+  mbgc.db.antiadblock.cosmetic.json      {specific_hide, extended_hide, exception_rules},
+                                         host -> [selector]; merged into the easylist DB
+  mbgc.db.antiadblock.heuristics.json    heuristics DB rules ({id, r, s, t, a}) for
+                                         element removal (`:remove()`, `{ remove: true; }`)
+  skipped.json                           every rule that was not converted, with the reason
+  build.json                             provenance and counts
+  antiadblock.txt, specific.txt          the upstream files, verbatim (GPL-3.0)
+  NOTICE                                 licensing and provenance
+
+Anything the extension cannot execute is skipped rather than approximated: scriptlets, inline
+JS, HTML filtering, response rewriting, redirects, regex network patterns, generic cosmetic
+rules, wildcard-TLD domains and CSS injections that do anything other than hide or remove.
 """
 
+from __future__ import annotations
+
 import argparse
-import ast
 import dataclasses
 import datetime as dt
 import hashlib
 import json
-import os
 import re
 import sys
 import urllib.request
 from pathlib import Path
-from typing import Iterable
-
-USER_AGENT = "browserguard-community-databases"
+from typing import Iterable, Iterator
 
 UPSTREAM_REPO = "AdguardTeam/AdguardFilters"
-UPSTREAM_PATH = "BaseFilter/sections/antiadblock.txt"
-UPSTREAM_SOURCE = UPSTREAM_REPO + "/" + UPSTREAM_PATH
-UPSTREAM_LICENSE_URL = "https://github.com/" + UPSTREAM_REPO + "/blob/master/LICENSE"
-RAW_URL_TEMPLATE = "https://raw.githubusercontent.com/" + UPSTREAM_REPO + "/{ref}/" + UPSTREAM_PATH
-COMMITS_API_URL = "https://api.github.com/repos/" + UPSTREAM_REPO + "/commits"
-ANTIADBLOCK_URL = RAW_URL_TEMPLATE.format(ref="master")
-
-UNPINNED_COMMIT = "unpinned (commit resolution unavailable at build time)"
+UPSTREAM_LICENSE_URL = f"https://github.com/{UPSTREAM_REPO}/blob/master/LICENSE"
+RAW_URL_TEMPLATE = f"https://raw.githubusercontent.com/{UPSTREAM_REPO}/{{ref}}/{{path}}"
+COMMIT_API_URL = f"https://api.github.com/repos/{UPSTREAM_REPO}/commits/master"
+USER_AGENT = "browserguard-community-databases"
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-OUTPUT_DIR = REPO_ROOT / "antiadblock"
-RAW_PATH = OUTPUT_DIR / "antiadblock.txt"
-MANIFEST_PATH = OUTPUT_DIR / "antiadblock.json"
-NOTICE_PATH = OUTPUT_DIR / "NOTICE"
+DEFAULT_OUT_DIR = REPO_ROOT / "build" / "antiadblock"
 
-# Chromium MV3 is the primary target; Firefox MV3 shares the same rule shape
-# but omits webtransport/webbundle resource types (see mv3_helpers.py:7).
-PLATFORM_FLAGS = {
-    "adguard": True,
-    "adguard_ext_chromium": True,
-    "adguard_ext_chromium_mv3": True,
-    "ext_chromium": True,
-    "ext_chromium_mv3": True,
-    "adguard_ext_firefox": False,
-    "adguard_ext_safari": False,
-    "adguard_ext_edge": False,
-    "adguard_ext_android_cb": False,
-    "adguard_ext_opera": False,
-    "adguard_app_ios": False,
-    "adguard_app_windows": False,
-    "adguard_app_mac": False,
-    "adguard_app_android": False,
-    "ext_ublock": False,
-    "ext_opera": False,
-    "mv3": True,
-    "ext_ff": False,
-}
-
-DNR_RESOURCES = {
-    "main_frame", "sub_frame", "stylesheet", "script", "image", "font",
-    "object", "xmlhttprequest", "ping", "csp_report", "media", "websocket",
-    "webtransport", "webbundle",
-}
-ADG_TO_DNR = {
-    "document": "main_frame",
-    "subdocument": "sub_frame",
-    "xhr": "xmlhttprequest",
-    "css": "stylesheet",
-}
-
-SCRIPTLET_UNSUPPORTED_PREFIXES = ("trusted-",)
-
-
-def _safe_eval_bool(node: ast.AST) -> bool:
-    """Evaluate a whitelisted subset of a Python AST: bool constants, `and`/`or`, `not`."""
-    if isinstance(node, ast.Constant) and isinstance(node.value, bool):
-        return node.value
-    if isinstance(node, ast.BoolOp):
-        values = [_safe_eval_bool(v) for v in node.values]
-        if isinstance(node.op, ast.And):
-            return all(values)
-        if isinstance(node.op, ast.Or):
-            return any(values)
-        raise ValueError(f"unsupported BoolOp: {type(node.op).__name__}")
-    if isinstance(node, ast.UnaryOp) and isinstance(node.op, ast.Not):
-        return not _safe_eval_bool(node.operand)
-    raise ValueError(f"unsupported node: {type(node).__name__}")
-
-
-def download(url: str) -> bytes:
-    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-    with urllib.request.urlopen(req, timeout=60) as resp:
-        return resp.read()
-
-
-def resolve_upstream_commit() -> str | None:
-    """Latest commit sha touching the upstream section file, or None if the API is unavailable."""
-    headers = {"User-Agent": USER_AGENT, "Accept": "application/vnd.github+json"}
-    token = os.environ.get("GITHUB_TOKEN")
-    if token:
-        # Raises the Actions rate limit from 60/hr to 1000/hr.
-        headers["Authorization"] = f"Bearer {token}"
-    url = f"{COMMITS_API_URL}?path={UPSTREAM_PATH}&per_page=1"
-    try:
-        req = urllib.request.Request(url, headers=headers)
-        with urllib.request.urlopen(req, timeout=30) as resp:
-            payload = json.loads(resp.read().decode("utf-8"))
-        sha = payload[0]["sha"]
-        if not isinstance(sha, str) or not sha:
-            raise ValueError("commits API returned no usable sha")
-        return sha
-    except Exception as exc:
-        # Deliberately broad: a daily blocklist refresh must not fail on a GitHub API
-        # hiccup, and a null commit in the manifest keeps the degradation auditable.
-        print(f"warning: could not resolve upstream commit ({exc}); recording null", file=sys.stderr)
-        return None
+DNR_FILE = "mbgc.mv3.antiadblock_1.json"
+COSMETIC_FILE = "mbgc.db.antiadblock.cosmetic.json"
+HEURISTICS_FILE = "mbgc.db.antiadblock.heuristics.json"
+SCRIPTLETS_FILE = "mbgc.db.antiadblock.scriptlets.json"
+SKIPPED_FILE = "skipped.json"
+BUILD_FILE = "build.json"
+NOTICE_FILE = "NOTICE"
 
 
 @dataclasses.dataclass(frozen=True)
-class Provenance:
-    """
-    Single source of truth for where the raw bytes came from.
+class Source:
+    name: str
+    path: str
+    # None means the whole file; otherwise only lines between `! START: <name>` and
+    # `! END: <name>` for each listed section.
+    sections: tuple[str, ...] | None
+    # Whether `#%#//scriptlet(...)` rules from this source are converted. Rolled out per source
+    # so each list's scriptlets can be verified on their own before the next is turned on.
+    scriptlets: bool
 
-    The manifest and the NOTICE file are both rendered from one instance so they
-    can never disagree about the commit, the hash, or the fetch time.
-    """
 
+# specific.txt is a general site-specific ad list (~25k lines). Only its anti-adblock sections
+# are taken: "Ad-Shield ad reinsertion" carries the html-load.com / Ad-Shield rules that
+# watchuseek.com, archerytalk.com and worldjournal.com need, none of which are in antiadblock.txt.
+SPECIFIC_SECTIONS = ("Ad-Shield ad reinsertion",)
+
+SOURCES = (
+    Source("antiadblock.txt", "BaseFilter/sections/antiadblock.txt", None, scriptlets=True),
+    Source("specific.txt", "BaseFilter/sections/specific.txt", SPECIFIC_SECTIONS, scriptlets=True),
+)
+
+# Scriptlets the extension implements (guard-app/content-scripts/content-scriptlets). Anything
+# else is skipped. trusted-* scriptlets are never supported: AdGuard only runs them from its own
+# signed lists because they can inject arbitrary content.
+SUPPORTED_SCRIPTLETS = frozenset({
+    "abort-current-inline-script",
+    "abort-on-property-read",
+    "abort-on-property-write",
+    "prevent-addEventListener",
+    "prevent-fetch",
+    "prevent-setInterval",
+    "prevent-setTimeout",
+    "prevent-xhr",
+    "remove-attr",
+    "remove-class",
+    "remove-node-text",
+    "set-constant",
+    "set-cookie",
+})
+
+# Priorities are chosen against the extension's own (guard-app/app/scripts/mv3/dynamic-rule-utils.js):
+#   static ads blocklist 90  <  anti-adblock block 100 / $important 105 / allow 110
+#   < tracker whitelist 120 < risky TLDs 150 < per-site ads exclusion 210 < malware 211.
+# So AdGuard exceptions (which un-block ad bait to get past detection) beat Browser Guard's ad
+# rules, but never its tracker whitelist, user exclusions or malware blocking.
+DNR_BLOCK_PRIORITY = 100
+DNR_IMPORTANT_BLOCK_PRIORITY = 105
+DNR_ALLOW_PRIORITY = 110
+
+# Heuristic rule ids live in their own range so they never collide with mbgc.db.heuristics.json.
+HEURISTIC_ID_BASE = 90_000_000
+
+# `!#if` identifiers that are true for the Browser Guard Chromium MV3 build. Everything else
+# (Safari, iOS, Firefox, desktop apps, uBlock) is false.
+TRUE_CONDITIONS = frozenset({
+    "adguard", "adguard_ext_chromium", "adguard_ext_chromium_mv3", "ext_chromium_mv3",
+})
+
+# `!+ PLATFORM(...)` / `!+ NOT_PLATFORM(...)` names that describe this build.
+OUR_PLATFORMS = frozenset({"ext_chromium", "ext_chromium_mv3"})
+
+DNR_RESOURCE_TYPES = {
+    "script": "script",
+    "image": "image",
+    "stylesheet": "stylesheet",
+    "css": "stylesheet",
+    "object": "object",
+    "xmlhttprequest": "xmlhttprequest",
+    "xhr": "xmlhttprequest",
+    "subdocument": "sub_frame",
+    "frame": "sub_frame",
+    "ping": "ping",
+    "media": "media",
+    "font": "font",
+    "websocket": "websocket",
+    "other": "other",
+}
+
+# Network options that need something DNR or the extension cannot do.
+UNSUPPORTED_NETWORK_OPTIONS = frozenset({
+    "redirect", "redirect-rule", "replace", "csp", "removeparam", "removeheader", "cookie",
+    "header", "permissions", "referrerpolicy", "app", "network", "hls", "jsonprune",
+    "urltransform", "empty", "mp4", "popup", "document", "doc", "generichide", "ghide",
+    "elemhide", "ehide", "specifichide", "shide", "content", "jsinject", "urlblock",
+    "genericblock", "extension", "stealth", "all", "inline-script", "inline-font",
+    "webrtc", "xmlhttprequest-rule", "strict1p", "strict3p", "method", "path", "url",
+})
+
+# Any of these in a rule means its option list can contain regexes with `$` and `,`, which a
+# plain split would mangle. They are all unsupported anyway, so reject before splitting.
+EARLY_REJECT_OPTION = re.compile(
+    r"[$,](redirect|redirect-rule|replace|csp|removeparam|removeheader|cookie|header|"
+    r"permissions|urltransform|jsonprune|hls)(=|,|$)"
+)
+
+COSMETIC_SEPARATOR = re.compile(
+    r"^(?P<domains>[^\s#$]*?)(?P<sep>#@\$\?#|#@\?#|#@\$#|#@%#|#@#|#\$\?#|#\?#|#\$#|#%#|##|\$@\$|\$\$)(?P<body>.+)$"
+)
+
+# AdGuard ExtCSS pseudo-classes rewritten to the spelling the extension's SelectorParser uses.
+PSEUDO_ALIASES = (
+    (":-abp-contains(", ":contains("),
+    (":has-text(", ":contains("),
+    (":-abp-has(", ":has("),
+    (":if(", ":has("),
+)
+# Functional pseudo-classes every target browser's CSS engine evaluates natively.
+NATIVE_PSEUDOS = frozenset({
+    "not", "is", "where", "has", "nth-child", "nth-last-child", "nth-of-type",
+    "nth-last-of-type", "lang", "dir",
+})
+# Functional pseudo-classes the extension's procedural tier (SelectorParser) evaluates.
+PROCEDURAL_PSEUDOS = frozenset({"contains", "has", "not", "xpath"})
+FUNCTIONAL_PSEUDO = re.compile(r":([a-zA-Z-]+)\(")
+
+DOMAIN_RE = re.compile(r"^(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9-]{2,}$")
+CSS_DISPLAY_NONE = re.compile(r"^display\s*:\s*none\s*(!\s*important)?\s*;?$", re.I)
+CSS_REMOVE = re.compile(r"^remove\s*:\s*true\s*;?$", re.I)
+
+
+# ---------------------------------------------------------------------------------------------
+# Results
+# ---------------------------------------------------------------------------------------------
+
+@dataclasses.dataclass(frozen=True)
+class Origin:
     source: str
-    source_url: str
-    upstream_commit: str | None
-    upstream_sha256: str
-    fetched_at: str
+    line: int
+    text: str
 
-    @classmethod
-    def record(cls, raw_text: str, source_url: str, upstream_commit: str | None) -> "Provenance":
-        return cls(
-            source=UPSTREAM_SOURCE,
-            source_url=source_url,
-            upstream_commit=upstream_commit,
-            upstream_sha256=hashlib.sha256(raw_text.encode("utf-8")).hexdigest(),
-            fetched_at=dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+
+class Skip(Exception):
+    """Raised by converters when a rule cannot be expressed; the message is the reason."""
+
+
+@dataclasses.dataclass
+class Outputs:
+    dnr: list[dict] = dataclasses.field(default_factory=list)
+    specific_hide: dict[str, set[str]] = dataclasses.field(default_factory=dict)
+    extended_hide: dict[str, set[str]] = dataclasses.field(default_factory=dict)
+    exception_rules: dict[str, set[str]] = dataclasses.field(default_factory=dict)
+    heuristics: list[str] = dataclasses.field(default_factory=list)
+    # (name, args) -> included hosts / excluded hosts
+    scriptlets: dict[tuple[str, tuple[str, ...]], set[str]] = dataclasses.field(default_factory=dict)
+    scriptlet_exclusions: dict[tuple[str, tuple[str, ...]], set[str]] = dataclasses.field(
+        default_factory=dict
+    )
+    # Hosts where `#@%#//scriptlet()` disables every scriptlet.
+    scriptlets_disabled: set[str] = dataclasses.field(default_factory=set)
+    skipped: list[dict] = dataclasses.field(default_factory=list)
+    out_of_scope: dict[str, int] = dataclasses.field(default_factory=dict)
+
+    def skip(self, origin: Origin, reason: str) -> None:
+        self.skipped.append(
+            {"source": origin.source, "line": origin.line, "rule": origin.text, "reason": reason}
         )
 
-    def manifest_fields(self) -> dict:
-        return {
-            "source": self.source,
-            "source_url": self.source_url,
-            "fetched_at": self.fetched_at,
-            "upstream_sha256": self.upstream_sha256,
-            "upstream_commit": self.upstream_commit,
-        }
 
-    def notice_text(self) -> str:
-        return f"""\
-antiadblock.txt in this release is an unmodified, byte-for-byte copy of:
+# ---------------------------------------------------------------------------------------------
+# Line selection and preprocessing
+# ---------------------------------------------------------------------------------------------
 
-    {UPSTREAM_REPO} - {UPSTREAM_PATH}
-    {self.source_url}
-    upstream commit: {self.upstream_commit or UNPINNED_COMMIT}
-    sha256:          {self.upstream_sha256}
+def select_sections(text: str, sections: tuple[str, ...] | None) -> Iterator[tuple[int, str]]:
+    """Yield (line number, line) for the requested `! START:`/`! END:` sections, or all lines."""
+    lines = text.splitlines()
+    if sections is None:
+        yield from enumerate(lines, start=1)
+        return
 
-It is distributed under the GNU General Public License v3.0:
-    {UPSTREAM_LICENSE_URL}
-
-The upstream section file carries no in-file license header, which is why this
-notice accompanies it. The file itself is left untouched so that the sha256
-above stays verifiable against AdGuard's original.
-
-antiadblock.json is a derived work produced from the above by
-scripts/build_antiadblock.py, and is likewise GPL-3.0.
-
-Generated {self.fetched_at}. Do not edit by hand.
-"""
-
-
-class PreprocessorGate:
-    """
-    Evaluates AdGuard preprocessor directives (`!#if`, `!#endif`, `!+ NOT_PLATFORM(...)`,
-    `!+ PLATFORM(...)`) so we only keep lines that apply to Chromium MV3.
-
-    The full AdGuard directive grammar is richer than this; we implement the subset
-    that appears in antiadblock.txt: single-token flags, `!`, `&&`, `||`, parens.
-    """
-
-    def __init__(self):
-        # Stack of (condition_result, seen_true) for nested !#if blocks.
-        self._stack = []
-        # PLATFORM/NOT_PLATFORM applies to the immediately-following rule only.
-        self._one_shot_gate = None
-
-    def _eval_flag_expr(self, expr: str) -> bool:
-        # Substitute identifiers with 'True'/'False' python literals, then walk the
-        # AST rejecting any node that isn't a boolean op / constant / unary-not.
-        # This avoids `eval` on upstream-controlled strings even after substitution.
-        def sub(match: re.Match) -> str:
-            ident = match.group(0)
-            return "True" if PLATFORM_FLAGS.get(ident, False) else "False"
-
-        expr = re.sub(r"[A-Za-z_][A-Za-z0-9_]*", sub, expr)
-        expr = expr.replace("&&", " and ").replace("||", " or ").replace("!", " not ")
-        try:
-            tree = ast.parse(expr, mode="eval")
-            return bool(_safe_eval_bool(tree.body))
-        except (SyntaxError, ValueError):
-            return False
-
-    def _current_allows(self) -> bool:
-        return all(entry[0] for entry in self._stack)
-
-    def feed(self, line: str) -> tuple[bool, bool]:
-        """
-        Returns (is_directive, keep_next_content_line).
-        The second value is only meaningful when is_directive is False;
-        directives themselves are consumed and never emitted.
-        """
+    found = set()
+    active: str | None = None
+    for number, line in enumerate(lines, start=1):
         stripped = line.strip()
-        if stripped.startswith("!#if"):
-            cond = stripped[len("!#if"):].strip()
-            if cond.startswith("(") and cond.endswith(")"):
-                cond = cond[1:-1]
-            self._stack.append((self._eval_flag_expr(cond), True))
-            return True, False
-        if stripped.startswith("!#endif"):
-            if self._stack:
-                self._stack.pop()
-            return True, False
-        if stripped.startswith("!#else"):
-            if self._stack:
-                cond, seen = self._stack[-1]
-                self._stack[-1] = (not cond, seen)
-            return True, False
-        if stripped.startswith("!+"):
-            payload = stripped[2:].strip()
-            # A `!+` line can carry compound hints (`NOT_OPTIMIZED PLATFORM(...)`).
-            # Only PLATFORM/NOT_PLATFORM affect our platform gating; unknown hints
-            # (NOT_OPTIMIZED, HINT, etc.) are informational and must NOT gate the next rule.
-            m = re.search(r"(NOT_PLATFORM|PLATFORM)\s*\(([^)]*)\)", payload)
-            if not m:
-                return True, False
-            kind, args = m.group(1), m.group(2)
-            flags = [a.strip() for a in args.split(",") if a.strip()]
-            any_match = any(PLATFORM_FLAGS.get(f, False) for f in flags)
-            self._one_shot_gate = (not any_match) if kind == "NOT_PLATFORM" else any_match
-            return True, False
-        if stripped.startswith("!"):
-            # regular comment
-            return True, False
-
-        # Content line
-        if self._one_shot_gate is not None:
-            allowed = self._one_shot_gate and self._current_allows()
-            self._one_shot_gate = None
-            return False, allowed
-        return False, self._current_allows()
-
-
-def parse_domain_list(head: str) -> tuple[list[str], list[str]]:
-    """Split a comma-separated cosmetic-rule domain list into includes/excludes."""
-    includes, excludes = [], []
-    if not head:
-        return includes, excludes
-    for token in head.split(","):
-        token = token.strip()
-        if not token:
+        if active is None:
+            for name in sections:
+                if stripped == f"! START: {name}":
+                    active = name
+                    found.add(name)
             continue
-        if token.startswith("~"):
-            excludes.append(token[1:])
+        if stripped == f"! END: {active}":
+            active = None
+            continue
+        yield number, line
+
+    missing = set(sections) - found
+    if missing:
+        raise ValueError(f"select_sections: upstream sections not found: {sorted(missing)}")
+
+
+def evaluate_condition(expression: str) -> bool:
+    """Evaluate an `!#if` expression: identifiers, `!`, `&&`, `||`, parentheses."""
+    tokens = re.findall(r"\|\||&&|!|\(|\)|[A-Za-z_][A-Za-z0-9_]*", expression)
+    if "".join(tokens) != re.sub(r"\s+", "", expression):
+        raise ValueError(f"evaluate_condition: unparseable expression {expression!r}")
+    position = 0
+
+    def peek() -> str | None:
+        return tokens[position] if position < len(tokens) else None
+
+    def take() -> str:
+        nonlocal position
+        position += 1
+        return tokens[position - 1]
+
+    def parse_or() -> bool:
+        value = parse_and()
+        while peek() == "||":
+            take()
+            value = parse_and() or value
+        return value
+
+    def parse_and() -> bool:
+        value = parse_unary()
+        while peek() == "&&":
+            take()
+            value = parse_unary() and value
+        return value
+
+    def parse_unary() -> bool:
+        token = take() if peek() is not None else None
+        if token == "!":
+            return not parse_unary()
+        if token == "(":
+            value = parse_or()
+            if take() != ")":
+                raise ValueError(f"evaluate_condition: unbalanced parentheses in {expression!r}")
+            return value
+        if token is None or not re.match(r"[A-Za-z_]", token):
+            raise ValueError(f"evaluate_condition: unexpected token {token!r} in {expression!r}")
+        return token == "true" or token in TRUE_CONDITIONS
+
+    result = parse_or()
+    if peek() is not None:
+        raise ValueError(f"evaluate_condition: trailing tokens in {expression!r}")
+    return result
+
+
+def hint_allows(hint: str) -> bool:
+    """Apply one `!+` hint line. PLATFORM/NOT_PLATFORM restrict; other hints are ignored."""
+    allowed = True
+    for name, args in re.findall(r"(NOT_PLATFORM|PLATFORM)\(([^)]*)\)", hint):
+        platforms = {p.strip() for p in args.split(",")}
+        matches = bool(platforms & OUR_PLATFORMS)
+        allowed = allowed and (not matches if name == "NOT_PLATFORM" else matches)
+    return allowed
+
+
+def active_rules(
+    source: str, numbered_lines: Iterable[tuple[int, str]], outputs: Outputs
+) -> Iterator[Origin]:
+    """Yield the rules that apply to Chromium MV3, after `!#if` blocks and `!+` hints."""
+    stack: list[bool] = []  # one entry per open !#if: is this branch active
+    pending_hint: bool | None = None
+    for number, raw in numbered_lines:
+        line = raw.strip()
+        if line.startswith("!#if"):
+            stack.append(evaluate_condition(line[len("!#if"):]))
+            continue
+        if line.startswith("!#else"):
+            if not stack:
+                raise ValueError(f"active_rules: {source}:{number} !#else without !#if")
+            stack[-1] = not stack[-1]
+            continue
+        if line.startswith("!#endif"):
+            if not stack:
+                raise ValueError(f"active_rules: {source}:{number} !#endif without !#if")
+            stack.pop()
+            continue
+        if line.startswith("!+"):
+            pending_hint = hint_allows(line[2:]) if pending_hint is None else (
+                pending_hint and hint_allows(line[2:])
+            )
+            continue
+        if not line or line.startswith("!") or (line.startswith("[") and line.endswith("]")):
+            continue
+
+        hint, pending_hint = pending_hint, None
+        if not all(stack) or hint is False:
+            outputs.out_of_scope[source] = outputs.out_of_scope.get(source, 0) + 1
+            continue
+        yield Origin(source, number, line)
+
+    if stack:
+        raise ValueError(f"active_rules: {source} ends with {len(stack)} unclosed !#if")
+
+
+# ---------------------------------------------------------------------------------------------
+# Domains
+# ---------------------------------------------------------------------------------------------
+
+def normalize_domain(domain: str) -> str:
+    """Lowercase and punycode a hostname; raise Skip if it is not a concrete hostname."""
+    domain = domain.strip().lower()
+    if domain.endswith(".*") or "*" in domain:
+        raise Skip("wildcard domain")
+    if domain.startswith("/"):
+        raise Skip("regex domain")
+    try:
+        domain = domain.encode("idna").decode("ascii")
+    except UnicodeError as error:
+        raise Skip("invalid domain") from error
+    if not DOMAIN_RE.match(domain):
+        raise Skip("invalid domain")
+    return domain
+
+
+def split_domains(entries: Iterable[str]) -> tuple[list[str], list[str], int]:
+    """Split `a.com|~b.com` style entries into (included, excluded, dropped wildcard count)."""
+    included: list[str] = []
+    excluded: list[str] = []
+    dropped = 0
+    for entry in entries:
+        entry = entry.strip()
+        if not entry:
+            continue
+        negated = entry.startswith("~")
+        try:
+            domain = normalize_domain(entry[1:] if negated else entry)
+        except Skip:
+            if negated:
+                # Dropping an exclusion would widen the rule, so the whole rule goes.
+                raise Skip("wildcard or invalid excluded domain")
+            dropped += 1
+            continue
+        target = excluded if negated else included
+        if domain not in target:
+            target.append(domain)
+    return included, excluded, dropped
+
+
+# ---------------------------------------------------------------------------------------------
+# Network rules -> DNR
+# ---------------------------------------------------------------------------------------------
+
+def convert_network(rule: str) -> dict:
+    """Convert one AdGuard network rule to a DNR rule (without id). Raise Skip if impossible."""
+    is_allow = rule.startswith("@@")
+    body = rule[2:] if is_allow else rule
+
+    if EARLY_REJECT_OPTION.search(body):
+        name = EARLY_REJECT_OPTION.search(body).group(1)
+        raise Skip(f"unsupported option ${name}")
+
+    pattern, options = body, ""
+    if "$" in body:
+        pattern, options = body.rsplit("$", 1)
+
+    if pattern.startswith("/") and pattern.endswith("/") and len(pattern) > 1:
+        raise Skip("regex pattern")
+
+    condition: dict = {}
+    priority = DNR_ALLOW_PRIORITY if is_allow else DNR_BLOCK_PRIORITY
+    resource_types: list[str] = []
+    excluded_resource_types: list[str] = []
+
+    for option in filter(None, (o.strip() for o in options.split(","))):
+        negated = option.startswith("~")
+        name, _, value = option.lstrip("~").partition("=")
+        name = name.lower()
+
+        if name in DNR_RESOURCE_TYPES:
+            target = excluded_resource_types if negated else resource_types
+            if DNR_RESOURCE_TYPES[name] not in target:
+                target.append(DNR_RESOURCE_TYPES[name])
+        elif name in ("third-party", "3p"):
+            condition["domainType"] = "firstParty" if negated else "thirdParty"
+        elif name in ("first-party", "1p"):
+            condition["domainType"] = "thirdParty" if negated else "firstParty"
+        elif name == "domain" and not negated:
+            included, excluded, dropped = split_domains(value.split("|"))
+            if dropped and not included:
+                raise Skip("only wildcard or invalid domains")
+            if included:
+                condition["initiatorDomains"] = included
+            if excluded:
+                condition["excludedInitiatorDomains"] = excluded
+        elif name == "denyallow" and not negated:
+            included, excluded, _ = split_domains(value.split("|"))
+            if excluded or not included:
+                raise Skip("invalid $denyallow")
+            condition["excludedRequestDomains"] = included
+        elif name == "to" and not negated:
+            included, excluded, dropped = split_domains(value.split("|"))
+            if dropped and not included:
+                raise Skip("only wildcard or invalid domains")
+            if included:
+                condition["requestDomains"] = included
+            if excluded:
+                condition["excludedRequestDomains"] = (
+                    condition.get("excludedRequestDomains", []) + excluded
+                )
+        elif name == "match-case" and not negated:
+            condition["isUrlFilterCaseSensitive"] = True
+        elif name == "important" and not negated:
+            if not is_allow:
+                priority = DNR_IMPORTANT_BLOCK_PRIORITY
+        elif name in UNSUPPORTED_NETWORK_OPTIONS or name == "badfilter":
+            raise Skip(f"unsupported option ${name}")
         else:
-            includes.append(token)
-    return includes, excludes
+            raise Skip(f"unknown option ${name}")
 
+    if resource_types:
+        condition["resourceTypes"] = sorted(resource_types)
+    if excluded_resource_types:
+        condition["excludedResourceTypes"] = sorted(excluded_resource_types)
 
-def tokenize_scriptlet_args(body: str) -> tuple[str, list[str]]:
-    """
-    Parse `'name', 'arg1', 'arg2'` from inside //scriptlet(...).
-    Handles single or double quotes, backslash escapes, and unquoted numeric-ish args.
-    """
-    tokens: list[str] = []
-    i, n = 0, len(body)
-    while i < n:
-        while i < n and body[i] in " \t\r\n,":
-            i += 1
-        if i >= n:
-            break
-        if body[i] in ("'", '"'):
-            quote = body[i]
-            i += 1
-            buf = []
-            while i < n and body[i] != quote:
-                if body[i] == "\\" and i + 1 < n:
-                    buf.append(body[i + 1])
-                    i += 2
-                else:
-                    buf.append(body[i])
-                    i += 1
-            tokens.append("".join(buf))
-            if i < n:
-                i += 1
-        else:
-            j = i
-            while j < n and body[j] != ",":
-                j += 1
-            tokens.append(body[i:j].strip())
-            i = j
-    if not tokens:
-        return "", []
-    return tokens[0], tokens[1:]
-
-
-def parse_network_options(options: str) -> tuple[list[str], list[str], list[str], bool, dict]:
-    """
-    Split network-rule `$options` into (resource_types, initiator_domains, excluded_domains,
-    third_party_only, extras) where extras carries flags like redirect=, replace=, etc.
-    """
-    resources: list[str] = []
-    include_domains: list[str] = []
-    exclude_domains: list[str] = []
-    third_party_only = False
-    first_party_only = False
-    extras = {}
-    if not options:
-        return resources, include_domains, exclude_domains, third_party_only, extras
-
-    for opt in options.split(","):
-        opt = opt.strip()
-        if not opt:
-            continue
-        if opt == "third-party":
-            third_party_only = True
-            continue
-        if opt == "~third-party":
-            first_party_only = True
-            continue
-        if opt.startswith("domain="):
-            for d in opt[len("domain="):].split("|"):
-                d = d.strip()
-                if not d:
-                    continue
-                if d.startswith("~"):
-                    exclude_domains.append(d[1:])
-                else:
-                    include_domains.append(d)
-            continue
-        if "=" in opt:
-            k, v = opt.split("=", 1)
-            extras[k] = v
-            continue
-        if opt.startswith("~"):
-            extras.setdefault("negated_resources", []).append(opt[1:])
-            continue
-        mapped = ADG_TO_DNR.get(opt, opt)
-        if mapped in DNR_RESOURCES:
-            resources.append(mapped)
-        else:
-            extras.setdefault("unknown", []).append(opt)
-
-    if first_party_only:
-        extras["first_party_only"] = True
-    return resources, include_domains, exclude_domains, third_party_only, extras
-
-
-def build_dnr_rule(rule_id: int, filter_expr: str, is_allow: bool) -> tuple[dict | None, str | None]:
-    """
-    Build a DNR rule from either `||host^$options` (domain-format) or
-    `/path/pattern$options` (path/URL-format). Returns (rule, skip_reason).
-    Exactly one is non-None.
-    """
-    body = filter_expr[2:] if is_allow else filter_expr  # strip @@
-    parts = body.split("$", 1)
-    pattern = parts[0]
-    options = parts[1] if len(parts) > 1 else ""
-
-    if pattern.startswith("||"):
-        url_filter = pattern
-    elif pattern.startswith("/") or pattern.startswith(".") or pattern.startswith("-") or "://" in pattern:
-        # Path-format (ABP): pass the pattern through as-is; DNR treats bare separators
-        # (`^`, `|`, `*`) with the same semantics.
-        url_filter = pattern
-    else:
-        return None, "unsupported: non-domain network pattern"
-
-    if pattern.startswith("/") and pattern.endswith("/"):
-        return None, "unsupported: regex network pattern"
-
-    resources, include_doms, exclude_doms, third_party, extras = parse_network_options(options)
-
-    if "redirect" in extras or "redirect-rule" in extras:
-        return None, "pending: $redirect Chromium bug 461824106"
-    if "replace" in extras:
-        return None, "unsupported: $replace"
-    if "csp" in extras:
-        return None, "unsupported: $csp"
-
-    condition: dict = {"urlFilter": url_filter}
-    if include_doms:
-        condition["initiatorDomains"] = include_doms
-    if exclude_doms:
-        condition["excludedInitiatorDomains"] = exclude_doms
-    if resources:
-        condition["resourceTypes"] = resources
-    if third_party:
-        condition["domainType"] = "thirdParty"
-    elif extras.get("first_party_only"):
-        condition["domainType"] = "firstParty"
-
-    action = {"type": "allow" if is_allow else "block"}
-    priority = 50 if is_allow else 40
-    return {"id": rule_id, "priority": priority, "action": action, "condition": condition}, None
-
-
-def find_cosmetic_separator(line: str) -> tuple[str, int] | None:
-    """
-    Return (separator, position) of the first cosmetic/scriptlet separator in line, or None.
-    Order matters: check longer/more-specific separators first.
-    """
-    candidates = [
-        "#%#//scriptlet(", "#@%#//scriptlet(",
-        "#%#", "#$?#", "#$#", "#@$#", "#?#", "#@#", "##",
-        "$$",
-    ]
-    best: tuple[str, int] | None = None
-    for sep in candidates:
-        idx = line.find(sep)
-        if idx == -1:
-            continue
-        if best is None or idx < best[1]:
-            best = (sep, idx)
-    return best
-
-
-def convert(raw_text: str) -> dict:
-    counts = {
-        "network": 0,
-        "network_exception": 0,
-        "cosmetic_hide": 0,
-        "cosmetic_exception": 0,
-        "cosmetic_extended": 0,
-        "css_inject": 0,
-        "scriptlet": 0,
-        "skipped": 0,
-    }
-    network_rules: list[dict] = []
-    cosmetic_hide: dict[str, list[str]] = {}
-    cosmetic_exceptions: dict[str, list[str]] = {}
-    cosmetic_extended: dict[str, list[str]] = {}
-    css_inject: dict[str, list[str]] = {}
-    scriptlets: list[dict] = []
-    skipped: list[dict] = []
-
-    gate = PreprocessorGate()
-    rule_id = 1
-
-    for raw_line in raw_text.splitlines():
-        is_directive, keep = gate.feed(raw_line)
-        if is_directive:
-            continue
-        line = raw_line.strip()
-        if not line:
-            continue
-        if not keep:
-            skipped.append({"rule": line, "reason": "platform-gated (not chromium mv3)"})
-            counts["skipped"] += 1
-            continue
-
-        sep = find_cosmetic_separator(line)
-
-        if sep is None:
-            # Network rule.
-            is_allow = line.startswith("@@")
-            filter_expr = line
-            rule, reason = build_dnr_rule(rule_id, filter_expr, is_allow)
-            if rule is None:
-                skipped.append({"rule": line, "reason": reason or "unsupported network rule"})
-                counts["skipped"] += 1
-                continue
-            network_rules.append(rule)
-            rule_id += 1
-            counts["network_exception" if is_allow else "network"] += 1
-            continue
-
-        sep_str, pos = sep
-        head = line[:pos]
-        body = line[pos + len(sep_str):]
-        includes, excludes = parse_domain_list(head)
-
-        if sep_str == "$$":
-            skipped.append({"rule": line, "reason": "unsupported: $$ html-filter"})
-            counts["skipped"] += 1
-            continue
-
-        if sep_str == "#@%#//scriptlet(":
-            skipped.append({"rule": line, "reason": "unsupported: scriptlet exception (#@%#)"})
-            counts["skipped"] += 1
-            continue
-
-        if sep_str == "#%#//scriptlet(":
-            if not body.endswith(")"):
-                skipped.append({"rule": line, "reason": "malformed scriptlet"})
-                counts["skipped"] += 1
-                continue
-            name, args = tokenize_scriptlet_args(body[:-1])
-            if not name:
-                skipped.append({"rule": line, "reason": "scriptlet missing name"})
-                counts["skipped"] += 1
-                continue
-            if any(name.startswith(prefix) for prefix in SCRIPTLET_UNSUPPORTED_PREFIXES):
-                skipped.append({"rule": line, "reason": f"unsupported: trusted scriptlet '{name}'"})
-                counts["skipped"] += 1
-                continue
-            scriptlets.append({
-                "domains": includes,
-                "excludeDomains": excludes,
-                "scriptlet": name,
-                "args": args,
-            })
-            counts["scriptlet"] += 1
-            continue
-
-        if sep_str == "#%#":
-            skipped.append({"rule": line, "reason": "unsupported: inline JS (#%#)"})
-            counts["skipped"] += 1
-            continue
-
-        if sep_str in ("#$#", "#$?#"):
-            for host in includes or ["*"]:
-                css_inject.setdefault(host, []).append(body)
-            counts["css_inject"] += 1
-            continue
-
-        if sep_str == "#@$#":
-            skipped.append({"rule": line, "reason": "unsupported: css-inject exception (#@$#)"})
-            counts["skipped"] += 1
-            continue
-
-        if sep_str == "#?#":
-            for host in includes or ["*"]:
-                cosmetic_extended.setdefault(host, []).append(body)
-            counts["cosmetic_extended"] += 1
-            continue
-
-        if sep_str == "#@#":
-            for host in includes or ["*"]:
-                cosmetic_exceptions.setdefault(host, []).append(body)
-            counts["cosmetic_exception"] += 1
-            continue
-
-        if sep_str == "##":
-            for host in includes or ["*"]:
-                cosmetic_hide.setdefault(host, []).append(body)
-            counts["cosmetic_hide"] += 1
-            continue
-
-        skipped.append({"rule": line, "reason": f"unhandled separator {sep_str}"})
-        counts["skipped"] += 1
-
-    host_index: dict[str, dict] = {}
-    for idx, entry in enumerate(scriptlets):
-        for host in entry["domains"] or ["*"]:
-            host_index.setdefault(host, {"scriptlets": [], "cosmetic": False, "cssInject": False})
-            host_index[host]["scriptlets"].append(idx)
-    for host in cosmetic_hide:
-        host_index.setdefault(host, {"scriptlets": [], "cosmetic": False, "cssInject": False})["cosmetic"] = True
-    for host in cosmetic_extended:
-        host_index.setdefault(host, {"scriptlets": [], "cosmetic": False, "cssInject": False})["cosmetic"] = True
-    for host in cosmetic_exceptions:
-        host_index.setdefault(host, {"scriptlets": [], "cosmetic": False, "cssInject": False})["cosmetic"] = True
-    for host in css_inject:
-        host_index.setdefault(host, {"scriptlets": [], "cosmetic": False, "cssInject": False})["cssInject"] = True
+    url_filter = convert_url_filter(pattern)
+    if url_filter:
+        condition["urlFilter"] = url_filter
+    elif not any(k in condition for k in ("initiatorDomains", "requestDomains")):
+        raise Skip("pattern matches every request")
 
     return {
-        "counts": counts,
-        "network_rules_dnr": network_rules,
-        "cosmetic": {
-            "hide": cosmetic_hide,
-            "hide_extended": cosmetic_extended,
-            "exceptions": cosmetic_exceptions,
-            "css_inject": css_inject,
-        },
-        "scriptlets": scriptlets,
-        "hostIndex": host_index,
-        "skipped": skipped,
+        "priority": priority,
+        "action": {"type": "allow" if is_allow else "block"},
+        "condition": condition,
     }
 
 
-def build_manifest(raw_text: str, provenance: Provenance) -> dict:
-    converted = convert(raw_text)
-    manifest = {
-        **provenance.manifest_fields(),
-        **converted,
-    }
-    return manifest
+def convert_url_filter(pattern: str) -> str | None:
+    """Return the DNR urlFilter for an AdGuard pattern, or None when it matches everything."""
+    if pattern in ("", "*", "|", "||"):
+        return None
+    if not pattern.isascii():
+        host_match = re.match(r"^(\|\|)?([^/^:*|]+)(.*)$", pattern)
+        if not host_match:
+            raise Skip("non-ASCII pattern")
+        try:
+            host = host_match.group(2).encode("idna").decode("ascii")
+        except UnicodeError as error:
+            raise Skip("non-ASCII pattern") from error
+        pattern = (host_match.group(1) or "") + host + host_match.group(3)
+        if not pattern.isascii():
+            raise Skip("non-ASCII pattern")
+    if pattern.startswith("||*"):
+        pattern = pattern[2:]
+    if "||" in pattern[2:] or re.search(r"\s", pattern):
+        raise Skip("invalid pattern")
+    return pattern
 
 
-def write_outputs(raw_text: str, manifest: dict, provenance: Provenance) -> None:
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    RAW_PATH.write_text(raw_text, encoding="utf-8")
-    with MANIFEST_PATH.open("w", encoding="utf-8") as fp:
-        json.dump(manifest, fp, indent=2, sort_keys=True)
-        fp.write("\n")
-    NOTICE_PATH.write_text(provenance.notice_text(), encoding="utf-8")
+# ---------------------------------------------------------------------------------------------
+# Cosmetic rules
+# ---------------------------------------------------------------------------------------------
+
+def normalize_selector(selector: str) -> str:
+    selector = selector.strip()
+    for alias, canonical in PSEUDO_ALIASES:
+        selector = selector.replace(alias, canonical)
+    return selector
 
 
-def main(argv: Iterable[str]) -> int:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--source-url", default=ANTIADBLOCK_URL,
-                        help="Override upstream URL (useful for local testing).")
-    parser.add_argument("--input-file",
-                        help="Read raw list from a local file instead of downloading. "
-                             "The manifest will still record --source-url as the origin.")
-    parser.add_argument("--dry-run", action="store_true",
-                        help="Print counts to stdout, do not write files.")
-    args = parser.parse_args(list(argv))
+def escape_contains_arguments(selector: str) -> str:
+    """
+    AdGuard's `:contains(text)` is a substring match; the extension's is a regex. Escape plain
+    arguments so they keep substring semantics. `/regex/` arguments are left as they are.
+    """
+    out = []
+    index = 0
+    marker = ":contains("
+    while True:
+        start = selector.find(marker, index)
+        if start == -1:
+            out.append(selector[index:])
+            return "".join(out)
+        content_start = start + len(marker)
+        end = matching_paren(selector, content_start)
+        argument = selector[content_start:end]
+        if not (argument.startswith("/") and argument.endswith("/") and len(argument) > 1):
+            argument = re.sub(r"([\\.*+?^${}()|\[\]])", r"\\\1", argument)
+        out.append(selector[index:content_start] + argument + ")")
+        index = end + 1
 
-    upstream_commit: str | None = None
-    if args.input_file:
-        raw_text = Path(args.input_file).read_text(encoding="utf-8")
-        source_url = args.source_url
-    elif args.source_url != ANTIADBLOCK_URL:
-        raw_text = download(args.source_url).decode("utf-8")
-        source_url = args.source_url
+
+def matching_paren(text: str, start: int) -> int:
+    depth = 1
+    index = start
+    while index < len(text):
+        char = text[index]
+        if char == "\\":
+            index += 2
+            continue
+        if char == "(":
+            depth += 1
+        elif char == ")":
+            depth -= 1
+            if depth == 0:
+                return index
+        index += 1
+    raise Skip("unbalanced parentheses")
+
+
+def classify_selector(selector: str) -> str:
+    """Return "plain" (CSS-native), "procedural" (extension's SelectorParser) or raise Skip."""
+    if not selector or re.search(r"[{}\n\r]", selector):
+        raise Skip("invalid selector")
+    if selector[0] in ">+~":
+        raise Skip("relative selector")
+    if selector.count("[") != selector.count("]"):
+        raise Skip("invalid selector")
+    pseudos = {name.lower() for name in FUNCTIONAL_PSEUDO.findall(selector)}
+    if pseudos <= NATIVE_PSEUDOS:
+        return "plain"
+    if pseudos <= PROCEDURAL_PSEUDOS:
+        for inner_start in (m.end() for m in re.finditer(r":has\(", selector)):
+            if selector[inner_start:].lstrip()[:1] in (">", "+", "~"):
+                raise Skip("relative :has() in extended selector")
+        return "procedural"
+    unsupported = sorted(pseudos - NATIVE_PSEUDOS - PROCEDURAL_PSEUDOS)
+    raise Skip(f"unsupported pseudo-class :{unsupported[0]}()")
+
+
+def cosmetic_domains(domains: str) -> tuple[list[str], list[str]]:
+    if not domains:
+        raise Skip("generic cosmetic rule")
+    included, excluded, dropped = split_domains(domains.split(","))
+    if not included:
+        raise Skip("only wildcard or invalid domains" if dropped else "generic cosmetic rule")
+    return included, excluded
+
+
+def heuristic_domain_pattern(included: list[str], excluded: list[str]) -> str:
+    """
+    Build the URL regex the heuristics engine matches against `location.href`.
+
+    `[.]` rather than `\\.`: the engine collapses doubled backslashes, and a character class
+    reads the same either way.
+    """
+    def alternation(domains: list[str]) -> str:
+        return "|".join(d.replace(".", "[.]") for d in sorted(domains))
+
+    host_suffix = r"([:/?]|$)"
+    prefix = r"^https?://"
+    exclusion = f"(?!([^/]+[.])?({alternation(excluded)}){host_suffix})" if excluded else ""
+    return f"{prefix}{exclusion}([^/]+[.])?({alternation(included)}){host_suffix}"
+
+
+def add_to(section: dict[str, set[str]], hosts: Iterable[str], selector: str) -> None:
+    for host in hosts:
+        section.setdefault(host, set()).add(selector)
+
+
+def add_hide(outputs: Outputs, included: list[str], excluded: list[str], selector: str) -> None:
+    selector = normalize_selector(selector)
+    remove = re.fullmatch(r"(.+?):remove\(\)", selector)
+    if remove:
+        add_remove(outputs, included, excluded, remove.group(1))
+        return
+    kind = classify_selector(selector)
+    if kind == "plain":
+        add_to(outputs.specific_hide, included, selector)
     else:
-        # Resolve the commit before fetching. The other order is racy: an upstream push
-        # between the two calls would record a sha describing bytes we do not have.
-        upstream_commit = resolve_upstream_commit()
-        source_url = RAW_URL_TEMPLATE.format(ref=upstream_commit) if upstream_commit else ANTIADBLOCK_URL
-        raw_text = download(source_url).decode("utf-8")
+        add_to(outputs.extended_hide, included, escape_contains_arguments(selector))
+    # `a.com,~b.a.com##x`: hide on a.com, but not on b.a.com.
+    add_to(outputs.exception_rules, excluded, selector)
 
-    provenance = Provenance.record(raw_text, source_url, upstream_commit)
-    manifest = build_manifest(raw_text, provenance)
 
-    if args.dry_run:
-        print(json.dumps(manifest["counts"], indent=2))
-        return 0
+def add_remove(outputs: Outputs, included: list[str], excluded: list[str], selector: str) -> None:
+    selector = normalize_selector(selector)
+    if classify_selector(selector) != "plain":
+        raise Skip("extended selector in remove rule")
+    if "#@#" in selector:
+        raise Skip("invalid selector")
+    outputs.heuristics.append(
+        f"{heuristic_domain_pattern(included, excluded)}##{selector}:remove()"
+    )
 
-    write_outputs(raw_text, manifest, provenance)
-    print(f"Wrote {RAW_PATH} ({len(raw_text):,} bytes)")
-    print(f"Wrote {MANIFEST_PATH}")
-    print(f"Wrote {NOTICE_PATH}")
-    print("Counts:")
-    for key, value in manifest["counts"].items():
-        print(f"  {key}: {value}")
+
+SCRIPTLET_ARGUMENT = re.compile(r"""\s*(?:'((?:[^'\\]|\\.)*)'|"((?:[^"\\]|\\.)*)")\s*(,|$)""", re.S)
+
+
+def parse_scriptlet_call(body: str) -> tuple[str, tuple[str, ...]] | None:
+    """
+    Parse `//scriptlet('name', 'arg', ...)` into (name, args). `//scriptlet()` returns None,
+    which as an exception means "every scriptlet". Raises Skip when the call is malformed.
+
+    Inside a quoted argument the only escape is a backslash before the quote character. Every
+    other backslash (regex escapes such as `\\.`) is kept as written, as AdGuard does.
+    """
+    match = re.fullmatch(r"//scriptlet\((.*)\)\s*", body, re.S)
+    if not match:
+        raise Skip("JavaScript injection")
+    inner = match.group(1).strip()
+    if not inner:
+        return None
+
+    values: list[str] = []
+    position = 0
+    while position < len(inner):
+        argument = SCRIPTLET_ARGUMENT.match(inner, position)
+        if not argument or argument.end() == position:
+            raise Skip("invalid scriptlet arguments")
+        single, double = argument.group(1), argument.group(2)
+        quote, raw = ("'", single) if single is not None else ('"', double)
+        values.append(raw.replace("\\" + quote, quote))
+        position = argument.end()
+        if argument.group(3) == "" and position < len(inner):
+            raise Skip("invalid scriptlet arguments")
+
+    name, *args = values
+    # Trailing empty arguments are AdGuard's way of writing "default"; drop them so equal calls
+    # compare equal.
+    while args and args[-1] == "":
+        args.pop()
+    return name, tuple(args)
+
+
+def convert_scriptlet(domains: str, body: str, is_exception: bool, outputs: Outputs) -> None:
+    call = parse_scriptlet_call(body)
+    if call is None:
+        if not is_exception:
+            raise Skip("invalid scriptlet arguments")
+        included, _ = cosmetic_domains(domains)
+        outputs.scriptlets_disabled.update(included)
+        return
+    name, _ = call
+    if name.startswith("trusted-"):
+        raise Skip("trusted scriptlet")
+    if name not in SUPPORTED_SCRIPTLETS:
+        raise Skip(f"unsupported scriptlet {name}")
+    included, excluded = cosmetic_domains(domains)
+    if is_exception:
+        outputs.scriptlet_exclusions.setdefault(call, set()).update(included)
+        return
+    outputs.scriptlets.setdefault(call, set()).update(included)
+    outputs.scriptlet_exclusions.setdefault(call, set()).update(excluded)
+
+
+def convert_cosmetic(
+    domains: str, separator: str, body: str, outputs: Outputs, scriptlets: bool
+) -> None:
+    if separator in ("#%#", "#@%#"):
+        if not body.startswith("//scriptlet("):
+            raise Skip("JavaScript injection")
+        if not scriptlets:
+            raise Skip("scriptlets not enabled for this source")
+        convert_scriptlet(domains, body, separator == "#@%#", outputs)
+        return
+    if separator in ("$$", "$@$"):
+        raise Skip("HTML filtering")
+    if separator in ("#@$#", "#@$?#"):
+        raise Skip("CSS injection exception")
+
+    if separator in ("#@#", "#@?#"):
+        included, _ = cosmetic_domains(domains)
+        selector = normalize_selector(body)
+        classify_selector(selector)
+        add_to(outputs.exception_rules, included, selector)
+        return
+
+    if separator in ("#$#", "#$?#"):
+        match = re.fullmatch(r"(.+?)\s*\{\s*(.*?)\s*\}", body.strip())
+        if not match:
+            raise Skip("invalid CSS injection")
+        selector, declaration = match.group(1), match.group(2)
+        included, excluded = cosmetic_domains(domains)
+        if CSS_REMOVE.match(declaration):
+            add_remove(outputs, included, excluded, selector)
+        elif CSS_DISPLAY_NONE.match(declaration):
+            add_hide(outputs, included, excluded, selector)
+        else:
+            raise Skip("CSS injection")
+        return
+
+    # ## and #?#
+    if re.search(r":(style|matches-css|matches-css-before|matches-css-after)\(", body):
+        raise Skip("CSS injection")
+    included, excluded = cosmetic_domains(domains)
+    add_hide(outputs, included, excluded, body)
+
+
+# ---------------------------------------------------------------------------------------------
+# Build
+# ---------------------------------------------------------------------------------------------
+
+def badfilter_target(rule: str) -> str | None:
+    """For `rule$opts,badfilter`, the rule text it disables (`rule$opts`); otherwise None."""
+    if "$" not in rule:
+        return None
+    pattern, options = rule.rsplit("$", 1)
+    names = options.split(",")
+    if "badfilter" not in names:
+        return None
+    rest = [name for name in names if name != "badfilter"]
+    return f"{pattern}${','.join(rest)}" if rest else pattern
+
+
+def convert(texts: dict[str, str]) -> Outputs:
+    """Convert upstream file contents (keyed by Source.name) into Outputs."""
+    outputs = Outputs()
+    network: list[tuple[Origin, dict]] = []
+    badfilters: set[str] = set()
+
+    for source in SOURCES:
+        lines = select_sections(texts[source.name], source.sections)
+        for origin in active_rules(source.name, lines, outputs):
+            rule = origin.text
+            try:
+                if rule.startswith("[$"):
+                    raise Skip("cosmetic rule modifiers")
+                cosmetic = COSMETIC_SEPARATOR.match(rule)
+                if cosmetic:
+                    convert_cosmetic(
+                        cosmetic["domains"], cosmetic["sep"], cosmetic["body"], outputs,
+                        source.scriptlets,
+                    )
+                    continue
+                disabled = badfilter_target(rule)
+                if disabled is not None:
+                    badfilters.add(disabled)
+                    raise Skip("badfilter")
+                network.append((origin, convert_network(rule)))
+            except Skip as reason:
+                outputs.skip(origin, str(reason))
+
+    seen: set[str] = set()
+    for origin, dnr in network:
+        if origin.text in badfilters:
+            outputs.skip(origin, "disabled by $badfilter")
+            continue
+        key = json.dumps(dnr, sort_keys=True)
+        if key in seen:
+            continue
+        seen.add(key)
+        outputs.dnr.append({"id": len(outputs.dnr) + 1, **dnr})
+    return outputs
+
+
+def cosmetic_document(outputs: Outputs) -> dict:
+    def sorted_section(section: dict[str, set[str]]) -> dict[str, list[str]]:
+        return {host: sorted(section[host]) for host in sorted(section)}
+
+    return {
+        "specific_hide": sorted_section(outputs.specific_hide),
+        "extended_hide": sorted_section(outputs.extended_hide),
+        "exception_rules": sorted_section(outputs.exception_rules),
+    }
+
+
+def scriptlets_document(outputs: Outputs) -> dict:
+    """
+    Scriptlet calls plus host indexes into them, so a page looks up its own hostname ladder
+    instead of scanning every rule:
+
+      {"scriptlets": [{"name": ..., "args": [...]}],
+       "hosts":    {host: [index, ...]},   # run these on host and its subdomains
+       "excluded": {host: [index, ...]}}   # but not on this host or its subdomains
+
+    A host in `#@%#//scriptlet()` is excluded from every scriptlet.
+    """
+    calls = sorted(outputs.scriptlets)
+    hosts: dict[str, list[int]] = {}
+    excluded: dict[str, list[int]] = {}
+    for index, call in enumerate(calls):
+        for host in outputs.scriptlets[call]:
+            hosts.setdefault(host, []).append(index)
+        for host in outputs.scriptlet_exclusions.get(call, set()) | outputs.scriptlets_disabled:
+            excluded.setdefault(host, []).append(index)
+    return {
+        "scriptlets": [{"name": name, "args": list(args)} for name, args in calls],
+        "hosts": {host: hosts[host] for host in sorted(hosts)},
+        "excluded": {host: excluded[host] for host in sorted(excluded)},
+    }
+
+
+def heuristics_document(outputs: Outputs) -> list[dict]:
+    rules = sorted(set(outputs.heuristics))
+    return [
+        {"id": HEURISTIC_ID_BASE + index, "r": rule, "s": False, "t": "adserver", "a": False}
+        for index, rule in enumerate(rules)
+    ]
+
+
+def counts(outputs: Outputs) -> dict:
+    by_reason: dict[str, int] = {}
+    for entry in outputs.skipped:
+        by_reason[entry["reason"]] = by_reason.get(entry["reason"], 0) + 1
+    return {
+        "dnr_block": sum(r["action"]["type"] == "block" for r in outputs.dnr),
+        "dnr_allow": sum(r["action"]["type"] == "allow" for r in outputs.dnr),
+        "specific_hide": sum(map(len, outputs.specific_hide.values())),
+        "extended_hide": sum(map(len, outputs.extended_hide.values())),
+        "exception_rules": sum(map(len, outputs.exception_rules.values())),
+        "heuristics": len(set(outputs.heuristics)),
+        "scriptlets": len(outputs.scriptlets),
+        "skipped": len(outputs.skipped),
+        "skipped_by_reason": dict(sorted(by_reason.items(), key=lambda kv: (-kv[1], kv[0]))),
+        "out_of_scope_for_platform": dict(sorted(outputs.out_of_scope.items())),
+    }
+
+
+def download(url: str) -> bytes:
+    request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+    with urllib.request.urlopen(request, timeout=60) as response:
+        return response.read()
+
+
+def resolve_upstream_commit() -> str:
+    data = json.loads(download(COMMIT_API_URL))
+    sha = data.get("sha")
+    if not isinstance(sha, str) or not re.fullmatch(r"[0-9a-f]{40}", sha):
+        raise ValueError(f"resolve_upstream_commit: unexpected response from {COMMIT_API_URL}")
+    return sha
+
+
+def write_json(path: Path, data) -> None:
+    # ASCII only: the extension reads bundled databases byte by byte (utils.binaryToString), with no
+    # UTF-8 decoding, so non-ASCII selectors survive only as \uXXXX escapes.
+    path.write_text(json.dumps(data, indent=1, ensure_ascii=True) + "\n", encoding="ascii")
+
+
+def notice_text(commit: str, hashes: dict[str, str]) -> str:
+    files = "\n".join(
+        f"    {source.name}: {RAW_URL_TEMPLATE.format(ref=commit, path=source.path)}\n"
+        f"        sha256 {hashes[source.name]}"
+        for source in SOURCES
+    )
+    return (
+        "antiadblock.txt and specific.txt in this release are unmodified copies of files from\n"
+        f"{UPSTREAM_REPO} at commit {commit}:\n\n{files}\n\n"
+        "They are distributed under the GNU General Public License v3.0:\n"
+        f"    {UPSTREAM_LICENSE_URL}\n\n"
+        f"{DNR_FILE}, {COSMETIC_FILE}, {HEURISTICS_FILE} and\n"
+        f"{SCRIPTLETS_FILE} are derived from them by\n"
+        "scripts/build_antiadblock.py in Malwarebytes/Browser-Guard-Community-Databases, and\n"
+        "are likewise GPL-3.0.\n"
+    )
+
+
+def build(out_dir: Path, texts: dict[str, bytes], commit: str) -> dict:
+    """Convert and write every artifact into out_dir. Returns the build summary."""
+    decoded = {name: data.decode("utf-8") for name, data in texts.items()}
+    outputs = convert(decoded)
+    hashes = {name: hashlib.sha256(data).hexdigest() for name, data in texts.items()}
+
+    out_dir.mkdir(parents=True, exist_ok=True)
+    for name, data in texts.items():
+        (out_dir / name).write_bytes(data)
+    write_json(out_dir / DNR_FILE, outputs.dnr)
+    write_json(out_dir / COSMETIC_FILE, cosmetic_document(outputs))
+    write_json(out_dir / HEURISTICS_FILE, heuristics_document(outputs))
+    write_json(out_dir / SCRIPTLETS_FILE, scriptlets_document(outputs))
+    write_json(out_dir / SKIPPED_FILE, outputs.skipped)
+    (out_dir / NOTICE_FILE).write_text(notice_text(commit, hashes), encoding="utf-8")
+
+    summary = {
+        "upstream_repo": UPSTREAM_REPO,
+        "upstream_commit": commit,
+        "sources": [
+            {
+                "name": source.name,
+                "url": RAW_URL_TEMPLATE.format(ref=commit, path=source.path),
+                "sections": list(source.sections) if source.sections else None,
+                "sha256": hashes[source.name],
+            }
+            for source in SOURCES
+        ],
+        "built_at": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "counts": counts(outputs),
+    }
+    write_json(out_dir / BUILD_FILE, summary)
+    return summary
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
+    parser.add_argument("--out-dir", type=Path, default=DEFAULT_OUT_DIR)
+    parser.add_argument(
+        "--input-dir", type=Path,
+        help="Read antiadblock.txt and specific.txt from here instead of downloading them.",
+    )
+    parser.add_argument("--commit", help="Upstream commit to fetch (default: master HEAD).")
+    args = parser.parse_args(argv)
+
+    if args.input_dir:
+        commit = args.commit or "local"
+        texts = {s.name: (args.input_dir / s.name).read_bytes() for s in SOURCES}
+    else:
+        commit = args.commit or resolve_upstream_commit()
+        texts = {
+            s.name: download(RAW_URL_TEMPLATE.format(ref=commit, path=s.path)) for s in SOURCES
+        }
+
+    summary = build(args.out_dir, texts, commit)
+    print(json.dumps({"upstream_commit": commit, **summary["counts"]}, indent=1))
     return 0
 
 
 if __name__ == "__main__":
-    sys.exit(main(sys.argv[1:]))
+    sys.exit(main())

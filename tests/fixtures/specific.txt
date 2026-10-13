@@ -1,0 +1,18 @@
+! Excerpt of AdguardTeam/AdguardFilters BaseFilter/sections/specific.txt (GPL-3.0), domain lists trimmed.
+||outside-section.example^
+! START: Ad-Shield ad reinsertion
+!#if (!adguard_app_ios && !adguard_ext_android_cb && !adguard_ext_safari && !ext_ublock)
+soccerdigestweb.com,worldjournal.com$$script:contains(html-load.com)
+soccerdigestweb.com,worldjournal.com#%#//scriptlet('remove-node-text', 'script', 'html-load.com')
+||html-load.com^$script,domain=soccerdigestweb.com|worldjournal.com
+!#endif
+!#if (adguard_ext_firefox)
+$document,replace=/<script(?: data-cfasync="false")?(?: nowprocket)?(?: type="[a-f0-9]+-text\/javascript")?>!?\(?function ?\(\) ?\{ ?function[\s\S]*?report\.error-report\.com\/modal[\s\S]*?\(\);<\/script>//,domain=worldjournal.com
+!#endif
+||html-load.com^$script,domain=1000rr.net|archerytalk.com|watchuseek.com
+1000rr.net,archerytalk.com,watchuseek.com#%#//scriptlet('remove-node-text', 'script', 'html-load.com')
+1000rr.net,archerytalk.com,watchuseek.com$$script:contains(html-load.com)
+!#if (adguard_ext_firefox)
+$document,replace=/<script(?: data-cfasync="false")?(?: nowprocket)?(?: type="[a-f0-9]+-text\/javascript")?>!?\(?function ?\(\) ?\{ ?function[\s\S]*?report\.error-report\.com\/modal[\s\S]*?\(\);<\/script>//,domain=1000rr.net|archerytalk.com|watchuseek.com
+!#endif
+! END: Ad-Shield ad reinsertion

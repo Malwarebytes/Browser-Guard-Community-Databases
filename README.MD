@@ -11,26 +11,47 @@ Our version of popular open source databases.
 
 ## Databases
 
-### `antiadblock/`
+### Anti-adblock
 
-A daily rebuild of AdGuard's [antiadblock.txt](https://github.com/AdguardTeam/AdguardFilters/blob/master/BaseFilter/sections/antiadblock.txt) filter list, converted into a JSON manifest that Browser Guard's extension build pipeline consumes.
+Browser Guard's anti-adblock databases, built from two AdGuard filter lists in [AdguardTeam/AdguardFilters](https://github.com/AdguardTeam/AdguardFilters/tree/master/BaseFilter/sections):
 
-- `antiadblock/antiadblock.txt` is the raw upstream file, verbatim.
-- `antiadblock/antiadblock.json` is the converted manifest. It holds DNR rules, cosmetic selectors, CSS injections, and scriptlet directives, plus a `skipped[]` list of unsupported rules with reasons.
-- `antiadblock/NOTICE` is the GPL-3.0 attribution for the verbatim upstream file, alongside the provenance of the build it came from.
+- `antiadblock.txt`: every rule.
+- `specific.txt`: only the sections listed in `SPECIFIC_SECTIONS` in `scripts/build_antiadblock.py`. The build fails if a listed section disappears upstream.
 
-The manifest's `upstream_commit` field records the sha-pinned upstream commit the bytes were fetched at. It is `null` when commit resolution was unavailable at build time, in which case the bytes came from `master` and `source_url` is the unpinned URL.
+Both files are fetched at the same pinned upstream commit. `!#if` blocks and `!+ PLATFORM` hints are evaluated for Chromium MV3. The converter writes these files, which the extension loads without further processing:
 
-The `.github/workflows/update-antiadblock.yml` workflow rebuilds all three files daily (06:00 UTC) and on manual dispatch. It commits and publishes only when the upstream `antiadblock.txt` actually changed, since the derived files carry a fresh `fetched_at` on every run. A converter change that alters `antiadblock.json` without an upstream change therefore needs its own commit; the workflow will not pick it up. Regenerate locally with `python3 scripts/build_antiadblock.py`.
+| File | Contents |
+| --- | --- |
+| `mbgc.mv3.antiadblock_1.json` | Static DNR ruleset. Block rules have priority 100 (105 with `$important`). Allow rules have priority 110. |
+| `mbgc.db.antiadblock.cosmetic.json` | `specific_hide`, `extended_hide` and `exception_rules` maps (host to selectors), merged into the easylist cosmetic database |
+| `mbgc.db.antiadblock.heuristics.json` | Heuristic rules (`{id, r, s, t, a}`, ids from 90000000) for element removal |
+| `mbgc.db.antiadblock.scriptlets.json` | Scriptlet calls (`scriptlets[]`) and host indexes into them (`hosts`, `excluded`). Only scriptlets in `SUPPORTED_SCRIPTLETS` are included, and only from sources with `scriptlets=True` |
+| `skipped.json` | Every rule that was not converted, with the reason |
+| `build.json` | Upstream commit, source hashes and counts |
+| `antiadblock.txt`, `specific.txt`, `NOTICE` | Unmodified upstream files and their GPL-3.0 attribution |
 
-#### Downloads
+The converter skips rules the extension cannot run and records each one in `skipped.json`. These include unsupported and `trusted-*` scriptlets, inline JS, `$$` HTML filtering, `$replace`, `$redirect`, regex network patterns, generic cosmetic rules, wildcard-TLD domains, and CSS injections that do anything other than hide or remove an element.
 
-Each upstream change publishes a dated release. These permalinks always resolve to the newest one:
+To build locally:
 
-- https://github.com/Malwarebytes/Browser-Guard-Community-Databases/releases/latest/download/antiadblock.json
-- https://github.com/Malwarebytes/Browser-Guard-Community-Databases/releases/latest/download/antiadblock.txt
+```sh
+pip install -r requirements-dev.txt
+python -m pytest -q
+python scripts/build_antiadblock.py                 # writes build/antiadblock/
+python scripts/build_antiadblock.py --input-dir DIR # use local antiadblock.txt/specific.txt
+```
 
-Both links need the repository to be public. It is internal today, so they will not resolve until that changes.
+#### Releases
+
+`.github/workflows/release-antiadblock.yml` runs daily at 06:00 UTC, on manual dispatch, and when the converter changes on `main`. It tests, builds and compares the database files against the latest release's `checksums.txt`. If any of them changed, it publishes a release tagged `antiadblock-YYYY.MM.DD-HHMM`. Nothing is committed to the repository.
+
+When the repository is public, these URLs resolve to the newest release:
+
+- https://github.com/Malwarebytes/Browser-Guard-Community-Databases/releases/latest/download/mbgc.mv3.antiadblock_1.json
+- https://github.com/Malwarebytes/Browser-Guard-Community-Databases/releases/latest/download/mbgc.db.antiadblock.cosmetic.json
+- https://github.com/Malwarebytes/Browser-Guard-Community-Databases/releases/latest/download/mbgc.db.antiadblock.heuristics.json
+- https://github.com/Malwarebytes/Browser-Guard-Community-Databases/releases/latest/download/mbgc.db.antiadblock.scriptlets.json
+- https://github.com/Malwarebytes/Browser-Guard-Community-Databases/releases/latest/download/checksums.txt
 
 ## Important Note
 
