@@ -22,7 +22,7 @@ Both files are fetched at the same pinned upstream commit. `!#if` blocks and `!+
 
 | File | Contents |
 | --- | --- |
-| `mbgc.mv3.antiadblock_1.json` | Static DNR ruleset. Block rules have priority 100 (105 with `$important`). Allow rules have priority 110. |
+| `mbgc.mv3.antiadblock_1.json` | Static DNR ruleset. Block rules have priority 100 (105 with `$important`). Allow rules have priority 110 and are only kept when scoped with `$domain`, so they can't weaken Browser Guard's blocking on other sites. |
 | `mbgc.db.antiadblock.cosmetic.json` | `specific_hide`, `extended_hide` and `exception_rules` maps (host to selectors), merged into the easylist cosmetic database |
 | `mbgc.db.antiadblock.heuristics.json` | Heuristic rules (`{id, r, s, t, a}`, ids from 90000000) for element removal |
 | `mbgc.db.antiadblock.scriptlets.json` | Scriptlet calls (`scriptlets[]`) and host indexes into them (`hosts`, `excluded`). Only scriptlets in `SUPPORTED_SCRIPTLETS` are included, and only from sources with `scriptlets=True` |

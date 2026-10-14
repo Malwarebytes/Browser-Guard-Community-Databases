@@ -467,6 +467,13 @@ def convert_network(rule: str) -> dict:
     elif not any(k in condition for k in ("initiatorDomains", "requestDomains")):
         raise Skip("pattern matches every request")
 
+    # An allow rule outranks Browser Guard's own ad and tracker blocking (see DNR_ALLOW_PRIORITY).
+    # AdGuard's generic exceptions undo AdGuard's own filters, which Browser Guard does not ship, so
+    # unscoped they would only weaken Browser Guard's blocking on every site. Keep the ones scoped to
+    # the sites they fix.
+    if is_allow and "initiatorDomains" not in condition:
+        raise Skip("exception without $domain")
+
     return {
         "priority": priority,
         "action": {"type": "allow" if is_allow else "block"},
