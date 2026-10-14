@@ -48,7 +48,7 @@ class TestNetworkRules:
         }
 
     def test_exception_becomes_allow_rule_above_browser_guard_ads(self):
-        assert only_dnr("@@||example.com/ads.js$xhr,third-party") == {
+        assert only_dnr("@@||example.com/ads.js$xhr,third-party,domain=site.com") == {
             "id": 1,
             "priority": 110,
             "action": {"type": "allow"},
@@ -56,8 +56,21 @@ class TestNetworkRules:
                 "urlFilter": "||example.com/ads.js",
                 "resourceTypes": ["xmlhttprequest"],
                 "domainType": "thirdParty",
+                "initiatorDomains": ["site.com"],
             },
         }
+
+    @pytest.mark.parametrize("rule", [
+        "@@||example.com/ads.js",
+        "@@||cdn.example/fuckadblock.js$script",
+        "@@/advertisement.js$~third-party",
+        "@@||example.com/ads.js$domain=~site.com",
+    ])
+    def test_exceptions_without_domain_are_skipped(self, rule):
+        assert skip_reason(rule) == "exception without $domain"
+
+    def test_unscoped_block_rules_are_kept(self):
+        assert only_dnr("||adblock-detector.example^$script")["action"] == {"type": "block"}
 
     def test_important_negated_types_match_case_denyallow(self):
         assert only_dnr("/adblock.$~image,~css,important,match-case,denyallow=a.com,domain=b.com") == {
