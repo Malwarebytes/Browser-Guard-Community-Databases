@@ -217,6 +217,16 @@ class TestScriptlets:
             "excluded": {"other.a.com": [0, 1], "sub.a.com": [1]},
         }
 
+    def test_abort_on_stack_trace_is_converted(self):
+        outputs = convert(
+            "indiatimes.com#%#//scriptlet('abort-on-stack-trace', 'document.getElementById', 'onerror')\n"
+        )
+        assert bab.scriptlets_document(outputs) == {
+            "scriptlets": [{"name": "abort-on-stack-trace", "args": ["document.getElementById", "onerror"]}],
+            "hosts": {"indiatimes.com": [0]},
+            "excluded": {},
+        }
+
     def test_quote_escapes_are_unescaped_and_regex_escapes_kept(self):
         outputs = convert(r"a.com#%#//scriptlet('remove-node-text', '#text', 'it\'s /a\.b/')" + "\n")
         assert bab.scriptlets_document(outputs)["scriptlets"] == [

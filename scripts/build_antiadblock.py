@@ -83,6 +83,7 @@ SUPPORTED_SCRIPTLETS = frozenset({
     "abort-current-inline-script",
     "abort-on-property-read",
     "abort-on-property-write",
+    "abort-on-stack-trace",
     "prevent-addEventListener",
     "prevent-fetch",
     "prevent-setInterval",
